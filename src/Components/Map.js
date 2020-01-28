@@ -1,8 +1,11 @@
-import React, {Component} from 'react'
+require('dotenv').config()
+
+import React from 'react'
 import { compose, withProps } from "recompose"
 import { withScriptjs, withGoogleMap, GoogleMap, Marker } from "react-google-maps"
 
-const KEY = "AIzaSyAsRAeb-uUlPUUY-Es0O2rm1Pr3DkAGd0g";
+const KEY = process.env.API_KEY;
+console.log(KEY)
 
 const MapComponent = compose(
   withProps({
