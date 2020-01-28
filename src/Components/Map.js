@@ -4,8 +4,7 @@ import React from 'react'
 import { compose, withProps } from "recompose"
 import { withScriptjs, withGoogleMap, GoogleMap, Marker } from "react-google-maps"
 
-const KEY = process.env.API_KEY;
-console.log(KEY)
+const KEY = process.env.REACT_APP_API_KEY;
 
 const MapComponent = compose(
   withProps({
