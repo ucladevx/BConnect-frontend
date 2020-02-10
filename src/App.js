@@ -1,5 +1,10 @@
 import React, {Component} from 'react';
-import Map from "./Components/Map";
+import { Route, Switch, Redirect } from 'react-router-dom';
+import Map from "./components/Map"
+import Login from "./components/Login"
+import Signup from "./components/Signup"
+import LoginContainer from './containers/LoginContainer'
+
 
 class App extends Component {
   constructor(props){
@@ -9,7 +14,7 @@ class App extends Component {
   render(){
     return (
       <div className="App">
-        <Map />
+        <LoginContainer />
       </div>
   )}
 
