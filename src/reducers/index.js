@@ -1,4 +1,5 @@
 import {authReducer} from './auth'
+import {mapReducer} from './map'
 import { createStore, combineReducers, compose, applyMiddleware } from 'redux';
 import { connectRouter } from 'connected-react-router'
 import thunk from 'redux-thunk';
@@ -9,7 +10,8 @@ const history = createBrowserHistory()
 
 const createRootReducer = (history) => combineReducers({
     router: connectRouter(history),
-    authReducer
+    authReducer,
+    mapReducer
 })
 
 const store = createStore(

@@ -2,7 +2,6 @@ const AUTH_FAILURE = Symbol();
 const AUTH_SUCCESS = Symbol();
 const AUTH_LOGOUT = Symbol();
 
-
 const initialState = {
     authenticated: false,
     error: ""

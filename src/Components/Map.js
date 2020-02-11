@@ -8,7 +8,7 @@ const MapComponent = compose(
   withProps({
     googleMapURL: `https://maps.googleapis.com/maps/api/js?key=${KEY}&v=3.exp&libraries=geometry,drawing,places`,
     loadingElement: <div style={{ height: `100%` }} />,
-    containerElement: <div style={{ height: `400px` }} />,
+    containerElement: <div style={{ height: `650px` }} />,
     mapElement: <div style={{ height: `100%` }} />,
   }),
   withScriptjs,
@@ -16,12 +16,17 @@ const MapComponent = compose(
 )((props) =>
 
   <GoogleMap
-    defaultZoom={8}
+    defaultZoom={11}
     defaultCenter={{ lat: 34.073, lng: -118.4496559 }}
-  >
-      <Marker  position={{lat: 34.073, lng: -118.4496559}}  />
+  > 
+    {props.markers.map(({lat, lng})=>{
+    return <Marker position={{lat, lng}} />
+  })}
+    
+    <Marker  position={{lat: 34.073, lng: -118.4496559}}  />
   </GoogleMap>
 
 )
 
 export default MapComponent;
+

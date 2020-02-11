@@ -1,5 +1,8 @@
 import React, {Component} from 'react'
 
+import Button from '@material-ui/core/Button';
+import TextField from '@material-ui/core/TextField';
+
 class Signup extends Component {
     constructor(props){
         super(props)
@@ -23,6 +26,7 @@ class Signup extends Component {
         return (
             <div> 
                 <form onSubmit={this.handleRegister}> 
+                
                     <input type="text" onChange={this.handleChange} name="username" value="username" placeholder="my username" />
                     <input type="password" onChange={this.handleChange} name="password" value="password" placeholder="my password" />
                     <button type="submit"> Signup! </button>

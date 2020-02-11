@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
-import Map from "./components/Map"
-import Login from "./components/Login"
+
+import MapContainer from "./containers/MapContainer"
 import Signup from "./components/Signup"
 import LoginContainer from './containers/LoginContainer'
 
