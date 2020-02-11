@@ -4,12 +4,18 @@ import { withScriptjs, withGoogleMap, GoogleMap, Marker } from "react-google-map
 
 const KEY = process.env.REACT_APP_API_KEY;
 
+//TODO:
+//to display info about other users, click on markers to render custom <InfoWindow /> , 
+//or render side bar that shows corresponding user info w/ links etc.
+//https://tomchentw.github.io/react-google-maps/#infowindow
+//https://material-ui.com/components/drawers/ (perhaps)
+
 const MapComponent = compose(
   withProps({
     googleMapURL: `https://maps.googleapis.com/maps/api/js?key=${KEY}&v=3.exp&libraries=geometry,drawing,places`,
     loadingElement: <div style={{ height: `100%` }} />,
-    containerElement: <div style={{ height: `650px` }} />,
-    mapElement: <div style={{ height: `100%` }} />,
+    containerElement: <div style={{ height: `780px`, marginTop: '70px'}} />,
+    mapElement: <div style={{ height: `100%`}} />,
   }),
   withScriptjs,
   withGoogleMap

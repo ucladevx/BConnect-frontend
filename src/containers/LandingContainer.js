@@ -2,18 +2,24 @@ import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import { fetchMarkers } from '../reducers/map';
 import Map from '../components/Map';
+import Navbar from '../components/Navbar'
+import {withRouter} from 'react-router-dom'
 
 
-class MapContainer extends Component {
+
+class LandingContainer extends Component {
   componentWillMount() {
       this.props.getMarkers();
   }
 
   render() {
     return (
-      <Map
-        markers={this.props.markers}
-      />
+      <div>
+        <Navbar />
+        <div>
+          <Map  markers={this.props.markers} />
+        </div>
+      </div>
     );
   }
 }
@@ -28,4 +34,4 @@ const mapDispatchToProps = dispatch => ({
   },
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(MapContainer);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(LandingContainer));

@@ -54,7 +54,7 @@ function Signup(props){
                       <Link href="#" variant="body2"> Forgot password?</Link>
                     </Grid>
                     <Grid item>
-                      <Link onClick={()=>{props.push("/login")}} variant="body2">{"Already have an account? Login"}</Link>
+                      <Link onClick={()=>{props.history.push("/login")}} variant="body2">{"Already have an account? Login"}</Link>
                     </Grid>
                   </Grid>
                   <Box mt={5}>

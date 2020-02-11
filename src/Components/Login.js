@@ -17,9 +17,10 @@ function Login(props){
     const [password, setPassword] = useState("");
     const [username, setUsername] = useState("");
 
+    console.log(props);
     useEffect(()=>{
         if (props.authenticated){
-            props.push("/");
+            props.history.push("/")
         }
     })
 
@@ -53,7 +54,7 @@ function Login(props){
                       <Link href="#" variant="body2"> Forgot password?</Link>
                     </Grid>
                     <Grid item>
-                        <Link onClick={()=>{props.push("/signup")}} variant="body2">{"Don't have an account? Sign Up"}</Link>
+                        <Link onClick={()=>{props.history.push("/signup")}} variant="body2">{"Don't have an account? Sign Up"}</Link>
                     </Grid>
                   </Grid>
                   <Box mt={5}>

@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
-import { Route, Switch, withRouter } from 'react-router'
-import MapContainer from "./containers/MapContainer"
-import SignupContainer from "./containers/RegisterContainer"
-import LoginContainer from './containers/LoginContainer'
+import { Route, Switch, withRouter } from 'react-router-dom'
+import Landing from "./containers/LandingContainer"
+import Signup from "./containers/RegisterContainer"
+import Login from './containers/LoginContainer'
 
 
 class App extends Component {
@@ -14,9 +14,9 @@ class App extends Component {
     return (
       <div className="App">
         <Switch>
-          <Route exact to="/login" component={LoginContainer} />
-          <Route exact to="/signup" component={SignupContainer}/>
-          <Route to="/" component={MapContainer}/>
+          <Route exact to="/" component={Landing}/>
+          <Route  to="/signup" component={Signup}/>
+          <Route  to="/login" component={Login} />
         </Switch>
       </div>
   )}
@@ -24,4 +24,4 @@ class App extends Component {
   
 }
 
-export default App;
+export default withRouter(App);
