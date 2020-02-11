@@ -5,8 +5,10 @@ import { connectRouter } from 'connected-react-router'
 import thunk from 'redux-thunk';
 import { createBrowserHistory } from 'history'
 import { routerMiddleware } from 'connected-react-router'
+import { composeWithDevTools } from 'redux-devtools-extension';
 
 const history = createBrowserHistory()
+const composeEnhancers = composeWithDevTools({trace: true});
 
 const createRootReducer = (history) => combineReducers({
     router: connectRouter(history),
@@ -16,9 +18,9 @@ const createRootReducer = (history) => combineReducers({
 
 const store = createStore(
     createRootReducer(history),
-    compose(
+    composeEnhancers(
       applyMiddleware(
-        routerMiddleware(history), thunk)
+        thunk, routerMiddleware(history))
     )
   )
 

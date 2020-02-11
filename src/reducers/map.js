@@ -1,6 +1,6 @@
 
-const FETCH_SUCCESS = Symbol();
-const FETCH_ERR = Symbol();
+const FETCH_SUCCESS = "FETCH_SUCCESS"
+const FETCH_ERR = "FETCH_ERR"
 
 const initialState = {
     markers: [],
