@@ -24,7 +24,7 @@ export function authReducer(state = initialState, action) {
 export const login = (username, password) => async (dispatch) => {
     try {
         //let response = await axios.post('some-server/some-endpoint', {username, password})
-        var response = {success: true, data: {}}
+        var response = {success: true, data: []}
     } catch(err){
         dispatch({type: AUTH_FAILURE})
     }

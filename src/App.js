@@ -1,8 +1,7 @@
 import React, {Component} from 'react';
-import { Route, Switch, Redirect } from 'react-router-dom';
-
+import { Route, Switch } from 'react-router'
 import MapContainer from "./containers/MapContainer"
-import Signup from "./components/Signup"
+import SignupContainer from "./containers/RegisterContainer"
 import LoginContainer from './containers/LoginContainer'
 
 
@@ -14,7 +13,11 @@ class App extends Component {
   render(){
     return (
       <div className="App">
-        <LoginContainer />
+        <Switch>
+          <Route exact to="/login" component={LoginContainer} />
+          <Route exact to="/signup" component={SignupContainer}/>
+          <Route to="/" component={MapContainer}/>
+        </Switch>
       </div>
   )}
 

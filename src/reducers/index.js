@@ -17,7 +17,8 @@ const createRootReducer = (history) => combineReducers({
 const store = createStore(
     createRootReducer(history),
     compose(
-      applyMiddleware(routerMiddleware(history), thunk)
+      applyMiddleware(
+        routerMiddleware(history), thunk)
     )
   )
 
