@@ -55,7 +55,7 @@ export const login = (username, password) => async (dispatch) => {
 };
 
   
-export const logout = (error)=> async (dispatch) => {
+export const logout = () => async (dispatch) => {
     dispatch({type: AUTH_LOGOUT})
 };
 

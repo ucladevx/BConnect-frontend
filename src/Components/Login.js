@@ -22,9 +22,9 @@ function Login(props){
 
     console.log(props);
     useEffect(()=>{
-        // if (props.authenticated){
-        //     props.history.push("/")
-        // }
+        if (props.authenticated){
+            props.history.push("/")
+        }
     })
 
     const classes = useStyles();
