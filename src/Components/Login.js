@@ -10,18 +10,21 @@ import Grid from '@material-ui/core/Grid';
 import EmojiEventsIcon from '@material-ui/icons/EmojiEvents';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
+import Alert from '@material-ui/lab/Alert';
+import { useHistory } from "react-router-dom";
 
 //IDEA FOR IMAGE
 //https://www.npmjs.com/package/react-responsive-carousel
 function Login(props){
+    let history = useHistory();
     const [password, setPassword] = useState("");
     const [username, setUsername] = useState("");
 
     console.log(props);
     useEffect(()=>{
-        if (props.authenticated){
-            props.history.push("/")
-        }
+        // if (props.authenticated){
+        //     props.history.push("/")
+        // }
     })
 
     const classes = useStyles();
@@ -46,6 +49,7 @@ function Login(props){
                   <TextField autoComplete='false' variant="outlined" margin="normal" required fullWidth onChange={(e)=>{setPassword(e.target.value)}}
                     name="password" label="Password" type="password" id="password" value={password}
                   />
+                  {props.error ?  <Alert severity="error">{props.error}</Alert> : null}
                   <Button type="submit" fullWidth variant="contained" color="primary" className={classes.submit}>
                     Login
                   </Button>
@@ -54,7 +58,7 @@ function Login(props){
                       <Link href="#" variant="body2"> Forgot password?</Link>
                     </Grid>
                     <Grid item>
-                        <Link onClick={()=>{props.history.push("/signup")}} variant="body2">{"Don't have an account? Sign Up"}</Link>
+                        <Link onClick={()=>{history.push("/signup")}} variant="body2">{"Don't have an account? Sign Up"}</Link>
                     </Grid>
                   </Grid>
                   <Box mt={5}>

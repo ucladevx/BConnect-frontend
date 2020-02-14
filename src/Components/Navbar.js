@@ -14,6 +14,7 @@ import AccountCircle from '@material-ui/icons/AccountCircle';
 import MessageIcon from '@material-ui/icons/Message';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import MoreIcon from '@material-ui/icons/MoreVert';
+import {useHistory} from 'react-router-dom'
 
 const useStyles = makeStyles(theme => ({
   grow: {
@@ -77,7 +78,8 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export default function PrimarySearchAppBar(props) {
+function PrimarySearchAppBar(props) {
+  let history = useHistory();
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
@@ -113,21 +115,26 @@ export default function PrimarySearchAppBar(props) {
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
-      <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
-      <MenuItem onClick={handleMenuClose}>Logout</MenuItem>
+    {props.authenticated 
+        ? <span>
+                <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
+                <MenuItem onClick={handleMenuClose}>Logout</MenuItem>
+            </span> 
+        : <span>
+                <MenuItem onClick={()=>{ handleMenuClose(); history.push("/signup")}}>Signup</MenuItem>
+                <MenuItem onClick={()=>{ handleMenuClose(); history.push("/login")}}>Login</MenuItem>
+            </span>
+    }
+      
     </Menu>
   );
 
   const mobileMenuId = 'primary-search-account-menu-mobile';
   const renderMobileMenu = (
     <Menu
-      anchorEl={mobileMoreAnchorEl}
-      anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
-      id={mobileMenuId}
-      keepMounted
-      transformOrigin={{ vertical: 'top', horizontal: 'right' }}
-      open={isMobileMenuOpen}
-      onClose={handleMobileMenuClose}
+      anchorEl={mobileMoreAnchorEl} anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+      id={mobileMenuId} keepMounted transformOrigin={{ vertical: 'top', horizontal: 'right' }}
+      open={isMobileMenuOpen} onClose={handleMobileMenuClose}
     >
       <MenuItem>
         <IconButton aria-label="show 4 new mails" color="inherit">
@@ -147,10 +154,8 @@ export default function PrimarySearchAppBar(props) {
       </MenuItem>
       <MenuItem onClick={handleProfileMenuOpen}>
         <IconButton
-          aria-label="account of current user"
-          aria-controls="primary-search-account-menu"
-          aria-haspopup="true"
-          color="inherit"
+          aria-label="account of current user" aria-controls="primary-search-account-menu"
+          aria-haspopup="true" color="inherit"
         >
           <AccountCircle />
         </IconButton>
@@ -164,10 +169,8 @@ export default function PrimarySearchAppBar(props) {
       <AppBar styles={{}}>
         <Toolbar>
           <IconButton
-            edge="start"
-            className={classes.menuButton}
-            color="inherit"
-            aria-label="open drawer"
+            edge="start" className={classes.menuButton}
+            color="inherit" aria-label="open drawer"
           >
             <MenuIcon />
           </IconButton>
@@ -202,23 +205,16 @@ export default function PrimarySearchAppBar(props) {
               </Badge>
             </IconButton>
             <IconButton
-              edge="end"
-              aria-label="account of current user"
-              aria-controls={menuId}
-              aria-haspopup="true"
-              onClick={handleProfileMenuOpen}
-              color="inherit"
+              edge="end" aria-label="account of current user" aria-controls={menuId}
+              aria-haspopup="true" onClick={handleProfileMenuOpen} color="inherit"
             >
               <AccountCircle />
             </IconButton>
           </div>
           <div className={classes.sectionMobile}>
             <IconButton
-              aria-label="show more"
-              aria-controls={mobileMenuId}
-              aria-haspopup="true"
-              onClick={handleMobileMenuOpen}
-              color="inherit"
+              aria-label="show more" aria-controls={mobileMenuId} aria-haspopup="true"
+              onClick={handleMobileMenuOpen} color="inherit"
             >
               <MoreIcon />
             </IconButton>
@@ -230,3 +226,5 @@ export default function PrimarySearchAppBar(props) {
     </div>
   );
 }
+
+export default PrimarySearchAppBar;

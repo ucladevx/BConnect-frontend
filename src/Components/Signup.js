@@ -10,6 +10,7 @@ import Grid from '@material-ui/core/Grid';
 import GroupAddIcon from '@material-ui/icons/GroupAdd';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
+import {withRouter} from 'react-router-dom'
 
 //IDEA FOR IMAGE
 //https://www.npmjs.com/package/react-responsive-carousel
@@ -66,7 +67,7 @@ function Signup(props){
     );
 }
 
-export default Signup;
+export default withRouter(Signup);
 
 
 const useStyles = makeStyles(theme => ({

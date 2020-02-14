@@ -15,7 +15,7 @@ class LandingContainer extends Component {
   render() {
     return (
       <div>
-        <Navbar />
+        <Navbar authenticated={this.props.authenticated} />
         <div>
           <Map  markers={this.props.markers} />
         </div>
@@ -25,6 +25,7 @@ class LandingContainer extends Component {
 }
 
 const mapStateToProps = state => ({
+  authenticated: state.authReducer.authenticated,
   markers: state.mapReducer.markers,
 });
 

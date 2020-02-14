@@ -12,11 +12,11 @@ class App extends Component {
 
   render(){
     return (
-      <div className="App">
+      <div>
         <Switch>
-          <Route exact to="/" component={Landing}/>
-          <Route  to="/signup" component={Signup}/>
-          <Route  to="/login" component={Login} />
+          <Route  path="/login" component={Login} />
+          <Route exact path="/" component={Landing}/>
+          <Route  path="/signup" component={Signup}/>
         </Switch>
       </div>
   )}

@@ -6,7 +6,8 @@ import {withRouter} from 'react-router-dom'
 
 
 const mapStateToProps = state => ({
-    authenticated: state.authReducer.authenticated
+    authenticated: state.authReducer.authenticated,
+    error: state.authReducer.error
 });
 
 const mapDispatchToProps = dispatch => ({

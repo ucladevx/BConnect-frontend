@@ -6,16 +6,16 @@ const AUTH_LOGOUT = "AUTH_LOGOUT"
 
 const initialState = {
     authenticated: false,
-    error: "",
+    error: null,
     user: {}
 }
 
 export function authReducer(state = initialState, action) {
     switch (action.type) {
         case AUTH_FAILURE:
-            return state;
+            return {...state, error: action.err};
         case AUTH_SUCCESS:
-            return {...state, authenticated: true, user: action.user}
+            return {...state, authenticated: true, user: action.user, error: null}
         case AUTH_LOGOUT:
             return {...state, authenticated: false}
       default:
@@ -31,6 +31,7 @@ export const login = (username, password) => async (dispatch) => {
             user: {name: "Dan Smith", 
                     job: "Software Engineer",
                     interests: ["Biking", "Reading", "Boxing"],
+                    friends: ["object_id1", "object_id2"],
                     bio: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam vitae imperdiet quam. 
                     Nullam blandit ipsum quis dapibus placerat. Suspendisse mauris eros, 
                     fringilla at augue in, tempus tincidunt lectus. Phasellus interdum dui a sagittis tempor. 
@@ -42,13 +43,15 @@ export const login = (username, password) => async (dispatch) => {
                      Maecenas vel diam nec magna convallis dignissim. Nunc egestas maximus dignissim. Ut vel erat dolor.`
             }
         }}
+        if(username != "thomas" || password != "thomas" || !response.success){
+            throw new Error("Invalid username or password")
+        }
+        dispatch({type: AUTH_SUCCESS, user: response.data.user})
     } catch(err){
-        dispatch({type: AUTH_FAILURE})
+        dispatch({type: AUTH_FAILURE, err: err.message})
     }
 
-    if(response.success){
-        dispatch({type: AUTH_SUCCESS, user: response.data.user})
-    }
+   
 };
 
   
@@ -61,11 +64,11 @@ export const register = (username, password) => async (dispatch) => {
     try {
         //let response = await axios.post('some-server/some-endpoint-register', {username, password})
         var response = {success: true, data: {user:{name:'not complete'}}}
-    } catch(err){
-        dispatch({type: AUTH_FAILURE})
-    }
-
-    if(response.success){
+        if(!response.success){
+            throw new Error("Error in creating new account")
+        }
         dispatch({type: AUTH_SUCCESS})
+    } catch(err){
+        dispatch({type: AUTH_FAILURE, err: err.message})
     }
 };
