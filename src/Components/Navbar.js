@@ -118,7 +118,7 @@ function PrimarySearchAppBar(props) {
     {props.authenticated 
         ? <span>
                 <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
-                <MenuItem onClick={handleMenuClose}>Logout</MenuItem>
+                <MenuItem onClick={()=>{ handleMenuClose(); props.logout()}}>Logout</MenuItem>
             </span> 
         : <span>
                 <MenuItem onClick={()=>{ handleMenuClose(); history.push("/signup")}}>Signup</MenuItem>
