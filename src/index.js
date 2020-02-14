@@ -1,10 +1,27 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
+import { Provider, createStore } from 'react-redux';
+import { store, history } from './reducers';
+//import { ConnectedRouter } from 'connected-react-router'
+import {BrowserRouter as Router} from 'react-router-dom'
 import App from './App';
-import * as serviceWorker from './serviceWorker';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+ReactDOM.render(
+<Provider store = {store}> 
+    <Router> 
+        <App />
+    </Router>
+</Provider>
+
+, document.getElementById('root'));
 
 
-serviceWorker.unregister();
+
+// ReactDOM.render(
+//     <Provider store = {store}> 
+//         <ConnectedRouter history={history}> 
+//             <App />
+//         </ConnectedRouter>
+//     </Provider>
+    
+//     , document.getElementById('root'));

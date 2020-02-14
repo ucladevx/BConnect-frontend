@@ -1,5 +1,9 @@
 import React, {Component} from 'react';
-import Map from "./Components/Map";
+import { Route, Switch, withRouter } from 'react-router-dom'
+import Landing from "./containers/LandingContainer"
+import Signup from "./containers/RegisterContainer"
+import Login from './containers/LoginContainer'
+
 
 class App extends Component {
   constructor(props){
@@ -8,12 +12,16 @@ class App extends Component {
 
   render(){
     return (
-      <div className="App">
-        <Map />
+      <div>
+        <Switch>
+          <Route  path="/login" component={Login} />
+          <Route exact path="/" component={Landing}/>
+          <Route  path="/signup" component={Signup}/>
+        </Switch>
       </div>
   )}
 
   
 }
 
-export default App;
+export default withRouter(App);
