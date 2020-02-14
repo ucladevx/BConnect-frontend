@@ -10,18 +10,18 @@ import Grid from '@material-ui/core/Grid';
 import GroupAddIcon from '@material-ui/icons/GroupAdd';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
-import {withRouter} from 'react-router-dom'
+import {useHistory} from 'react-router-dom'
 
 //IDEA FOR IMAGE
 //https://www.npmjs.com/package/react-responsive-carousel
 function Signup(props){
+    let history = useHistory();
     const [password, setPassword] = useState("");
     const [username, setUsername] = useState("");
 
     useEffect(()=>{
         if (props.authenticated) {
-            props.push("/");
-            
+            history.push("/");  
         }
     })
 
@@ -55,7 +55,7 @@ function Signup(props){
                       <Link href="#" variant="body2"> Forgot password?</Link>
                     </Grid>
                     <Grid item>
-                      <Link onClick={()=>{props.history.push("/login")}} variant="body2">{"Already have an account? Login"}</Link>
+                      <Link onClick={()=>{history.push("/login")}} variant="body2">{"Already have an account? Login"}</Link>
                     </Grid>
                   </Grid>
                   <Box mt={5}>
@@ -67,7 +67,7 @@ function Signup(props){
     );
 }
 
-export default withRouter(Signup);
+export default Signup;
 
 
 const useStyles = makeStyles(theme => ({
