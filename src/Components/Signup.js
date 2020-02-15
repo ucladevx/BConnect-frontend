@@ -21,7 +21,7 @@ function Signup(props){
     const [username, setUsername] = useState("");
 
     useEffect(()=>{
-        if (props.authenticated) {
+        if (props.authenticated && !props.needInfo) {
             history.push("/");  
         }
     })
@@ -32,7 +32,7 @@ function Signup(props){
         e.preventDefault();
         props.register(username, password)
         
-        if(props.error !== null){
+        if(props.authenticated){
           props.next();
         }
     }

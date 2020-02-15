@@ -1,4 +1,5 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
+import {useHistory} from 'react-router-dom'
 import { makeStyles, withStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Paper from '@material-ui/core/Paper';
@@ -14,7 +15,8 @@ import Check from '@material-ui/icons/Check';
 import Map from './LocationSelect'
 import clsx from 'clsx';
 
-function Info() {
+function Info(props) {
+  let history = useHistory();
   const classes = useStyles();
   const [activeStep, setActiveStep] = React.useState(0);
   const [degree, setDegree] = useState("");
@@ -24,6 +26,15 @@ function Info() {
   const [bio, setBio] = useState("");
   const [useCurLoc, set] = useState(true);  
   const [locObj, setLoc] = useState({lat: "", lng:""});  
+
+  useEffect(()=> {
+    if(props.needInfo===false && props.authenticated===true){
+      history.push("/")
+    }
+    if(activeStep === steps.length){
+      props.handleInfo({degree, year, interests, clubs, bio, locObj})
+    }
+  })
 
   let formFuncs = {setDegree, setYear, setInterests, setClubs, setBio, set}
   let infos = {degree, year, interests, clubs, bio, useCurLoc}
@@ -62,9 +73,8 @@ function Info() {
           <React.Fragment>
             {activeStep === steps.length ? (
               <React.Fragment>
-                <Typography variant="h5" gutterBottom>
-                  REDIRECT
-                </Typography>
+                
+                
               </React.Fragment>
             ) : (
               <React.Fragment>

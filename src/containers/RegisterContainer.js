@@ -1,30 +1,18 @@
 import { connect } from 'react-redux';
-import { register } from '../reducers/auth'
+import { register, addInfo } from '../reducers/auth'
 import Signup from '../components/Signup';
 import Info from '../components/Info/Info'
 import React, {Component} from 'react';
 import {withRouter, Switch, Route} from 'react-router-dom'
 
 class RegisterContainer extends Component {
-    constructor(props){
-        super(props);
-        this.state={
-            registered: false
-        }
-    }
-
-    nextForm = () => {
-        this.setState({registered: true})
-    }
-
     render() {
       return (
         <div>
-            {this.state.registered === false 
-                ? <Signup next={this.nextForm} error={this.props.error} 
-                    authenticated={this.props.authenticated} register={this.props.register} />
+            {this.props.authenticated === false 
+                ? <Signup {...this.props} />
                 : <div>
-                    <Info />
+                    <Info needInfo={this.props.needInfo} authenticated={this.props.authenticated} handleInfo={this.props.handleInfo} />
                 </div>
             }
         </div>
@@ -35,12 +23,16 @@ class RegisterContainer extends Component {
 
 const mapStateToProps = state => ({
     authenticated: state.authReducer.authenticated,
-    error: state.authReducer.error
+    error: state.authReducer.error,
+    needInfo: state.authReducer.needInfo
 });
 
 const mapDispatchToProps = dispatch => ({
     register: (email, password) => {
         dispatch(register(email, password));
+    },
+    handleInfo: (data)=> {
+        dispatch(addInfo(data));
     }
 });
 
