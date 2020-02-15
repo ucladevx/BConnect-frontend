@@ -20,7 +20,6 @@ function Login(props){
     const [password, setPassword] = useState("");
     const [username, setUsername] = useState("");
 
-    console.log(props);
     useEffect(()=>{
         if (props.authenticated){
             props.history.push("/")

@@ -1,8 +1,6 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 import { makeStyles, withStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
 import Paper from '@material-ui/core/Paper';
 import Stepper from '@material-ui/core/Stepper';
 import Step from '@material-ui/core/Step';
@@ -15,55 +13,6 @@ import InfoForm from './InfoForm'
 import Check from '@material-ui/icons/Check';
 import Map from './LocationSelect'
 import clsx from 'clsx';
-
-const useStyles = makeStyles(theme => ({
-  layout: {
-    width: 'auto',
-    marginLeft: theme.spacing(2),
-    marginRight: theme.spacing(2),
-    [theme.breakpoints.up(600 + theme.spacing(2) * 2)]: {
-      width: 750,
-      marginLeft: 'auto',
-      marginRight: 'auto',
-    },
-  },
-  paper: {
-    marginTop: theme.spacing(3),
-    marginBottom: theme.spacing(3),
-    padding: theme.spacing(2),
-    [theme.breakpoints.up(600 + theme.spacing(3) * 2)]: {
-      marginTop: theme.spacing(6),
-      marginBottom: theme.spacing(6),
-      padding: theme.spacing(3),
-    },
-  },
-  stepper: {
-    padding: theme.spacing(3, 0, 5),
-  },
-  buttons: {
-    display: 'flex',
-    justifyContent: 'flex-end',
-  },
-  button: {
-    marginTop: theme.spacing(3),
-    marginLeft: theme.spacing(1),
-  },
-}));
-
-const steps = ['Important Info', 'Location', 'Find other Bruins!'];
-
-function getStepContent(step, funcs, infos, loc) {
-  switch (step) {
-    case 0:
-      return <InfoForm {...funcs} {...infos} />;
-    case 1:
-      return <Map {...loc} />;
-    case 2:
-      return <h2>Skippable</h2>;
-    default:
-      throw new Error('Unknown step');
-  }
-}
 
 function Info() {
   const classes = useStyles();
@@ -114,7 +63,7 @@ function Info() {
             {activeStep === steps.length ? (
               <React.Fragment>
                 <Typography variant="h5" gutterBottom>
-                  Thank you for signing up with BConnect. Search for other Bruins now!
+                  REDIRECT
                 </Typography>
               </React.Fragment>
             ) : (
@@ -145,6 +94,55 @@ function Info() {
 }
 
 export default Info;
+
+const useStyles = makeStyles(theme => ({
+  layout: {
+    width: 'auto',
+    marginLeft: theme.spacing(2),
+    marginRight: theme.spacing(2),
+    [theme.breakpoints.up(600 + theme.spacing(2) * 2)]: {
+      width: 750,
+      marginLeft: 'auto',
+      marginRight: 'auto',
+    },
+  },
+  paper: {
+    marginTop: theme.spacing(3),
+    marginBottom: theme.spacing(3),
+    padding: theme.spacing(2),
+    [theme.breakpoints.up(600 + theme.spacing(3) * 2)]: {
+      marginTop: theme.spacing(6),
+      marginBottom: theme.spacing(6),
+      padding: theme.spacing(3),
+    },
+  },
+  stepper: {
+    padding: theme.spacing(3, 0, 5),
+  },
+  buttons: {
+    display: 'flex',
+    justifyContent: 'flex-end',
+  },
+  button: {
+    marginTop: theme.spacing(3),
+    marginLeft: theme.spacing(1),
+  },
+}));
+
+const steps = ['Important Info', 'Location', 'Find other Bruins!'];
+
+function getStepContent(step, funcs, infos, loc) {
+  switch (step) {
+    case 0:
+      return <InfoForm {...funcs} {...infos} />;
+    case 1:
+      return <Map {...loc} />;
+    case 2:
+      return <h2>Skippable</h2>;
+    default:
+      throw new Error('Unknown step');
+  }
+}
 
 const QontoConnector = withStyles({
   alternativeLabel: {
