@@ -2,6 +2,9 @@ const AUTH_FAILURE = "AUTH_FAILURE"
 const AUTH_SUCCESS = "AUTH_SUCCESS"
 const AUTH_LOGOUT = "AUTH_LOGOUT"
 
+const INFO_UPDATE_SUCCESS = "INFO_UPDATE_SUCCESS"
+const INFO_UPDATE_FAILURE = "INFO_UPDATE_FAILURE"
+
 const initialState = {
     authenticated: false,
     error: null,
@@ -70,3 +73,16 @@ export const register = (username, password) => async (dispatch) => {
         dispatch({type: AUTH_FAILURE, err: err.message})
     }
 };
+
+export const addInfo = ({data}) => async (dispatch) => {
+    try {
+        //let response = await axios.post('some-server/some-endpoint-updateuser', {data})
+        var response = {success: true}
+        if(!response.success){
+            throw new Error("Could not update info")
+        }
+        dispatch({type: INFO_UPDATE_SUCCESS})
+    } catch(err){
+        dispatch({type: INFO_UPDATE_FAILURE})
+    }
+}

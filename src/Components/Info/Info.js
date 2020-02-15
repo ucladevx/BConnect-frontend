@@ -53,12 +53,12 @@ const useStyles = makeStyles(theme => ({
 
 const steps = ['Important Info', 'Location', 'Find other Bruins!'];
 
-function getStepContent(step, funcs, infos) {
+function getStepContent(step, funcs, infos, loc) {
   switch (step) {
     case 0:
       return <InfoForm {...funcs} {...infos} />;
     case 1:
-      return <Map />;
+      return <Map {...loc} />;
     case 2:
       return <h2>Skippable</h2>;
     default:
@@ -74,10 +74,22 @@ function Info() {
   const [interests, setInterests] = useState("");
   const [clubs, setClubs] = useState("");
   const [bio, setBio] = useState("");
-  const [useCurLoc, set] = useState(true);
+  const [useCurLoc, set] = useState(true);  
+  const [locObj, setLoc] = useState({lat: "", lng:""});  
 
   let formFuncs = {setDegree, setYear, setInterests, setClubs, setBio, set}
   let infos = {degree, year, interests, clubs, bio, useCurLoc}
+  let loc = {locObj, setLoc}
+
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(displayLocationInfo);
+  }
+  
+  function displayLocationInfo(position) {
+    const lng = position.coords.longitude;
+    const lat = position.coords.latitude;
+    setLoc({lng, lat})
+  }
 
   const handleNext = () => {
     setActiveStep(activeStep + 1);
@@ -108,7 +120,7 @@ function Info() {
               </React.Fragment>
             ) : (
               <React.Fragment>
-                {getStepContent(activeStep, formFuncs, infos)}
+                {getStepContent(activeStep, formFuncs, infos, loc)}
                 <div className={classes.buttons}>
                   {activeStep !== 0 && (
                     <Button onClick={handleBack} className={classes.button}>
