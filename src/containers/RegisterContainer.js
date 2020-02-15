@@ -1,8 +1,35 @@
 import { connect } from 'react-redux';
 import { register } from '../reducers/auth'
-//import { push } from 'connected-react-router';
 import Signup from '../components/Signup';
-import {withRouter} from 'react-router-dom'
+import Info from '../components/Info/Info'
+import React, {Component} from 'react';
+import {withRouter, Switch, Route} from 'react-router-dom'
+
+class RegisterContainer extends Component {
+    constructor(props){
+        super(props);
+        this.state={
+            registered: false
+        }
+    }
+
+    nextForm = () => {
+        this.setState({registered: true})
+    }
+
+    render() {
+      return (
+        <div>
+            {this.state.registered === false 
+                ? <Signup next={this.nextForm} authenticated={this.props.authenticated} register={this.props.register} />
+                : <div>
+                    <Info />
+                </div>
+            }
+        </div>
+      );
+    }
+  }
 
 
 const mapStateToProps = state => ({
@@ -15,4 +42,4 @@ const mapDispatchToProps = dispatch => ({
     }
 });
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Signup));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(RegisterContainer));
