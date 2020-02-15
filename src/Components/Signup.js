@@ -11,6 +11,7 @@ import GroupAddIcon from '@material-ui/icons/GroupAdd';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import {useHistory} from 'react-router-dom'
+import Alert from '@material-ui/lab/Alert';
 
 //IDEA FOR IMAGE
 //https://www.npmjs.com/package/react-responsive-carousel
@@ -30,7 +31,10 @@ function Signup(props){
     let handleLogin = (e) => {
         e.preventDefault();
         props.register(username, password)
-        props.next();
+        
+        if(props.error !== null){
+          props.next();
+        }
     }
 
     return (
@@ -48,6 +52,7 @@ function Signup(props){
                   <TextField variant="outlined" margin="normal" required fullWidth onChange={(e)=>{setPassword(e.target.value)}}
                     name="password" label="Password" type="password" id="password" value={password} autoComplete="off"
                   />
+                  {props.error ?  <Alert severity="error">{props.error}</Alert> : null}
                   <Button type="submit" fullWidth variant="contained" color="primary" className={classes.submit}>
                     Sign Up
                   </Button>

@@ -21,7 +21,8 @@ class RegisterContainer extends Component {
       return (
         <div>
             {this.state.registered === false 
-                ? <Signup next={this.nextForm} authenticated={this.props.authenticated} register={this.props.register} />
+                ? <Signup next={this.nextForm} error={this.props.error} 
+                    authenticated={this.props.authenticated} register={this.props.register} />
                 : <div>
                     <Info />
                 </div>
@@ -33,7 +34,8 @@ class RegisterContainer extends Component {
 
 
 const mapStateToProps = state => ({
-    authenticated: state.authReducer.authenticated
+    authenticated: state.authReducer.authenticated,
+    error: state.authReducer.error
 });
 
 const mapDispatchToProps = dispatch => ({

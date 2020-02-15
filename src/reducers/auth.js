@@ -44,7 +44,7 @@ export const login = (username, password) => async (dispatch) => {
                      Maecenas vel diam nec magna convallis dignissim. Nunc egestas maximus dignissim. Ut vel erat dolor.`
             }
         }}
-        if(username != "thomas" || password != "thomas" || !response.success){
+        if(username !== "thomas" || password !== "thomas" || !response.success){
             throw new Error("Invalid username or password")
         }
         dispatch({type: AUTH_SUCCESS, user: response.data.user})
@@ -63,6 +63,9 @@ export const logout = () => async (dispatch) => {
 
 export const register = (username, password) => async (dispatch) => {
     try {
+        if(username === "" || password === ""){
+            throw new Error("Cannot leave inputs empty")
+        }
         //let response = await axios.post('some-server/some-endpoint-register', {username, password})
         var response = {success: true, data: {user:{name:'not complete'}}}
         if(!response.success){

@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import { makeStyles, withStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import AppBar from '@material-ui/core/AppBar';
@@ -15,7 +15,6 @@ import InfoForm from './InfoForm'
 import Check from '@material-ui/icons/Check';
 import Map from './LocationSelect'
 import clsx from 'clsx';
-
 
 const useStyles = makeStyles(theme => ({
   layout: {
@@ -70,7 +69,7 @@ function Info() {
   const classes = useStyles();
   const [activeStep, setActiveStep] = React.useState(0);
   const [degree, setDegree] = useState("");
-  const [year, setYear] = useState(null);
+  const [year, setYear] = useState('');
   const [interests, setInterests] = useState("");
   const [clubs, setClubs] = useState("");
   const [bio, setBio] = useState("");
@@ -79,7 +78,7 @@ function Info() {
 
   let formFuncs = {setDegree, setYear, setInterests, setClubs, setBio, set}
   let infos = {degree, year, interests, clubs, bio, useCurLoc}
-  let loc = {locObj, setLoc}
+  let loc = {locObj, setLoc, useCurLoc}
 
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(displayLocationInfo);
