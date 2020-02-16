@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Provider, createStore } from 'react-redux';
-import { store, history } from './reducers';
+import { Provider } from 'react-redux';
+import { store } from './reducers';
 //import { ConnectedRouter } from 'connected-react-router'
 import {BrowserRouter as Router} from 'react-router-dom'
 import App from './App';

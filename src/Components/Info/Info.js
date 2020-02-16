@@ -8,8 +8,6 @@ import Step from '@material-ui/core/Step';
 import StepConnector from '@material-ui/core/StepConnector';
 import StepLabel from '@material-ui/core/StepLabel';
 import Button from '@material-ui/core/Button';
-import Link from '@material-ui/core/Link';
-import Typography from '@material-ui/core/Typography';
 import InfoForm from './InfoForm'
 import Check from '@material-ui/icons/Check';
 import Map from './LocationSelect'
@@ -26,6 +24,11 @@ function Info(props) {
   const [bio, setBio] = useState("");
   const [useCurLoc, set] = useState(true);  
   const [locObj, setLoc] = useState({lat: "", lng:""});  
+  const [hasClicked, setClick] = useState(false)
+
+  let formFuncs = {setDegree, setYear, setInterests, setClubs, setBio, set}
+  let infos = {degree, year, interests, clubs, bio, useCurLoc}
+  let loc = {locObj, setLoc, useCurLoc, hasClicked, setClick}
 
   useEffect(()=> {
     if(props.needInfo===false && props.authenticated===true){
@@ -35,10 +38,6 @@ function Info(props) {
       props.handleInfo({degree, year, interests, clubs, bio, locObj})
     }
   })
-
-  let formFuncs = {setDegree, setYear, setInterests, setClubs, setBio, set}
-  let infos = {degree, year, interests, clubs, bio, useCurLoc}
-  let loc = {locObj, setLoc, useCurLoc}
 
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(displayLocationInfo);

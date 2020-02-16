@@ -3,7 +3,7 @@ import { register, addInfo } from '../reducers/auth'
 import Signup from '../components/Signup';
 import Info from '../components/Info/Info'
 import React, {Component} from 'react';
-import {withRouter, Switch, Route} from 'react-router-dom'
+import {withRouter} from 'react-router-dom'
 
 class RegisterContainer extends Component {
     render() {

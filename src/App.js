@@ -3,6 +3,7 @@ import { Route, Switch, withRouter } from 'react-router-dom'
 import Landing from "./containers/LandingContainer"
 import Signup from "./containers/RegisterContainer"
 import Login from './containers/LoginContainer'
+import './App.css'
 
 
 class App extends Component {
