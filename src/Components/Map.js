@@ -14,9 +14,9 @@ const KEY = process.env.REACT_APP_API_KEY;
 const MapComponent = compose(
   withProps({
     googleMapURL: `https://maps.googleapis.com/maps/api/js?key=${KEY}&v=3.exp&libraries=geometry,drawing,places`,
-    loadingElement: <div style={{ height: `100%` }} />,
-    containerElement: <div style={{ height: `780px`, marginTop: '70px'}} />,
-    mapElement: <div style={{ height: `100%`}} />,
+    loadingElement: <div style={{ height: `100%`, width: '100%', margin: '0'}} />,
+    containerElement: <div style={{ height: `100vh`, width: '100%', margin: '0', marginTop: '64px'}} />,
+    mapElement: <div style={{ height: `100%`, width: '100%', margin: '0'}} />,
   }),
   withScriptjs,
   withGoogleMap

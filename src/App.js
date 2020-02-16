@@ -3,6 +3,7 @@ import { Route, Switch, withRouter } from 'react-router-dom'
 import Landing from "./containers/LandingContainer"
 import Signup from "./containers/RegisterContainer"
 import Login from './containers/LoginContainer'
+import './App.css'
 
 
 class App extends Component {
@@ -15,8 +16,8 @@ class App extends Component {
       <div>
         <Switch>
           <Route  path="/login" component={Login} />
-          <Route exact path="/" component={Landing}/>
           <Route  path="/signup" component={Signup}/>
+          <Route exact path="/" component={Landing}/>
         </Switch>
       </div>
   )}

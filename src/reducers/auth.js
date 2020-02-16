@@ -1,11 +1,13 @@
-//import { push } from 'connected-react-router'
-
 const AUTH_FAILURE = "AUTH_FAILURE"
 const AUTH_SUCCESS = "AUTH_SUCCESS"
 const AUTH_LOGOUT = "AUTH_LOGOUT"
 
+const INFO_UPDATE_SUCCESS = "INFO_UPDATE_SUCCESS"
+const INFO_UPDATE_FAILURE = "INFO_UPDATE_FAILURE"
+
 const initialState = {
     authenticated: false,
+    needInfo: true,
     error: null,
     user: {}
 }
@@ -17,7 +19,11 @@ export function authReducer(state = initialState, action) {
         case AUTH_SUCCESS:
             return {...state, authenticated: true, user: action.user, error: null}
         case AUTH_LOGOUT:
-            return {...state, authenticated: false}
+            return {...state, authenticated: false, needInfo: true}
+        case INFO_UPDATE_SUCCESS:
+            return {...state, needInfo: false}
+        case INFO_UPDATE_FAILURE:
+            return {...state, error: action.err}
       default:
         return state;
     }
@@ -43,10 +49,11 @@ export const login = (username, password) => async (dispatch) => {
                      Maecenas vel diam nec magna convallis dignissim. Nunc egestas maximus dignissim. Ut vel erat dolor.`
             }
         }}
-        if(username != "thomas" || password != "thomas" || !response.success){
+        if(username !== "thomas" || password !== "thomas" || !response.success){
             throw new Error("Invalid username or password")
         }
         dispatch({type: AUTH_SUCCESS, user: response.data.user})
+        dispatch({type: INFO_UPDATE_SUCCESS})
     } catch(err){
         dispatch({type: AUTH_FAILURE, err: err.message})
     }
@@ -62,6 +69,9 @@ export const logout = () => async (dispatch) => {
 
 export const register = (username, password) => async (dispatch) => {
     try {
+        if(username === "" || password === ""){
+            throw new Error("Cannot leave inputs empty")
+        }
         //let response = await axios.post('some-server/some-endpoint-register', {username, password})
         var response = {success: true, data: {user:{name:'not complete'}}}
         if(!response.success){
@@ -72,3 +82,17 @@ export const register = (username, password) => async (dispatch) => {
         dispatch({type: AUTH_FAILURE, err: err.message})
     }
 };
+
+export const addInfo = (data) => async (dispatch) => {
+    console.log(data)
+    try {
+        //let response = await axios.post('some-server/some-endpoint-updateuser', {data})
+        var response = {success: true}
+        if(!response.success){
+            throw new Error("Could not update info")
+        }
+        dispatch({type: INFO_UPDATE_SUCCESS})
+    } catch(err){
+        dispatch({type: INFO_UPDATE_FAILURE, err: err.message})
+    }
+}

@@ -11,6 +11,7 @@ import GroupAddIcon from '@material-ui/icons/GroupAdd';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import {useHistory} from 'react-router-dom'
+import Alert from '@material-ui/lab/Alert';
 
 //IDEA FOR IMAGE
 //https://www.npmjs.com/package/react-responsive-carousel
@@ -20,7 +21,7 @@ function Signup(props){
     const [username, setUsername] = useState("");
 
     useEffect(()=>{
-        if (props.authenticated) {
+        if (props.authenticated && !props.needInfo) {
             history.push("/");  
         }
     })
@@ -30,6 +31,10 @@ function Signup(props){
     let handleLogin = (e) => {
         e.preventDefault();
         props.register(username, password)
+        
+        if(props.authenticated){
+          props.next();
+        }
     }
 
     return (
@@ -41,19 +46,17 @@ function Signup(props){
                 <Avatar className={classes.avatar}><GroupAddIcon /></Avatar>
                 <Typography component="h1" variant="h4"> Sign Up </Typography>
                 <form onSubmit={handleLogin} className={classes.form} noValidate>
-                  <TextField onChange={(e)=>{setUsername(e.target.value)}} name="username" value={username} variant="outlined" 
+                  <TextField autoComplete="off" onChange={(e)=>{setUsername(e.target.value)}} name="username" value={username} variant="outlined" 
                     margin="normal" required fullWidth id="email" label="Username" autoFocus
                   />
                   <TextField variant="outlined" margin="normal" required fullWidth onChange={(e)=>{setPassword(e.target.value)}}
-                    name="password" label="Password" type="password" id="password" value={password}
+                    name="password" label="Password" type="password" id="password" value={password} autoComplete="off"
                   />
+                  {props.error ?  <Alert severity="error">{props.error}</Alert> : null}
                   <Button type="submit" fullWidth variant="contained" color="primary" className={classes.submit}>
                     Sign Up
                   </Button>
                   <Grid container>
-                    <Grid item xs>
-                      <Link href="#" variant="body2"> Forgot password?</Link>
-                    </Grid>
                     <Grid item>
                       <Link onClick={()=>{history.push("/login")}} variant="body2">{"Already have an account? Login"}</Link>
                     </Grid>

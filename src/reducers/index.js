@@ -1,6 +1,6 @@
 import {authReducer} from './auth'
 import {mapReducer} from './map'
-import { createStore, combineReducers, compose, applyMiddleware } from 'redux';
+import { createStore, combineReducers, applyMiddleware } from 'redux';
 //import { connectRouter, routerMiddleware } from 'connected-react-router'
 import thunk from 'redux-thunk';
 import { createBrowserHistory } from 'history'
