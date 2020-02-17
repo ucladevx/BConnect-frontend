@@ -27,8 +27,8 @@ const MapComponent = compose(
       defaultZoom={11}
       defaultCenter={{ lat: 34.073, lng: -118.4496559 }}
     > 
-      {props.markers.map(({lat, lng}, i)=>{
-      return <Marker key={i} position={{lat, lng}} />
+      {props.markers.map((data, i)=>{
+      return <Marker onClick={()=>{props.toggle(data)}} key={i} position={{lng: data.lng, lat: data.lat}} />
     })}
     </GoogleMap>
   </React.Fragment>

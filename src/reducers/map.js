@@ -4,8 +4,7 @@ const FETCH_ERR = "FETCH_ERR"
 
 const initialState = {
     markers: [],
-    error: "",
-    infoDisplay: false
+    error: ""
 }
 
 export function mapReducer(state = initialState, action) {
