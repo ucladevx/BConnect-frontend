@@ -29,7 +29,7 @@ Real time chat between friends
 
 Add friends feature
 
-Nice landing pace
+Nice landing page
 
 Better UI (pretty much redo everything, only minimal MaterialUI?)
 
