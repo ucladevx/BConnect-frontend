@@ -7,6 +7,8 @@ import {withRouter} from 'react-router-dom'
 const KEY = process.env.REACT_APP_API_KEY;
 
 //TODO:
+//to initiate zoom, onClick function would start a setInterval that lasts x time and increases the zoom every interval,
+//eventually, a setTimeout would cancel the Interval
 //to display info about other users, click on markers to render custom <InfoWindow /> , 
 //or render side bar that shows corresponding user info w/ links etc.
 //https://tomchentw.github.io/react-google-maps/#infowindow

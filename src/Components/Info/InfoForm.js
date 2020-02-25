@@ -18,9 +18,6 @@ function InfoForm(props) {
           <TextField value={props.year} onChange={(e)=>{props.setYear(e.target.value)}} variant="outlined" required name="year" label="Graduation Year" fullWidth />
         </Grid>
         <Grid item xs={12}>
-          <TextField value={props.interests} onChange={(e)=>{props.setInterests(e.target.value)}} variant="outlined" required name="interests" label="Interests" fullWidth />
-        </Grid>
-        <Grid item xs={12}>
           <TextField value={props.clubs} onChange={(e)=>{props.setClubs(e.target.value)}} variant="outlined" name="clubs" label="Clubs/Fraternities/Sororities" fullWidth />
         </Grid>
         <Grid item xs={12}>

@@ -9,6 +9,7 @@ import StepConnector from '@material-ui/core/StepConnector';
 import StepLabel from '@material-ui/core/StepLabel';
 import Button from '@material-ui/core/Button';
 import InfoForm from './InfoForm'
+import InterestsForm from './InterestsForm'
 import Check from '@material-ui/icons/Check';
 import Map from './LocationSelect'
 import clsx from 'clsx';
@@ -19,14 +20,15 @@ function Info(props) {
   const [activeStep, setActiveStep] = React.useState(0);
   const [degree, setDegree] = useState("");
   const [year, setYear] = useState('');
-  const [interests, setInterests] = useState("");
+  const [interests, setInterests] = useState([]);
   const [clubs, setClubs] = useState("");
   const [bio, setBio] = useState("");
   const [useCurLoc, set] = useState(true);  
   const [locObj, setLoc] = useState({lat: "", lng:""});  
   const [hasClicked, setClick] = useState(false)
 
-  let formFuncs = {setDegree, setYear, setInterests, setClubs, setBio, set}
+  let formFuncs = {setDegree, setYear, setClubs, setBio, set}
+  let interestInfo = {interests, setInterests}
   let infos = {degree, year, interests, clubs, bio, useCurLoc}
   let loc = {locObj, setLoc, useCurLoc, hasClicked, setClick}
 
@@ -77,7 +79,7 @@ function Info(props) {
               </React.Fragment>
             ) : (
               <React.Fragment>
-                {getStepContent(activeStep, formFuncs, infos, loc)}
+                {getStepContent(activeStep, formFuncs, infos, loc, interestInfo)}
                 <div className={classes.buttons}>
                   {activeStep !== 0 && (
                     <Button onClick={handleBack} className={classes.button}>
@@ -140,14 +142,14 @@ const useStyles = makeStyles(theme => ({
 
 const steps = ['Important Info', 'Location', 'Find other Bruins!'];
 
-function getStepContent(step, funcs, infos, loc) {
+function getStepContent(step, funcs, infos, loc, interestInfo) {
   switch (step) {
     case 0:
       return <InfoForm {...funcs} {...infos} />;
     case 1:
       return <Map {...loc} />;
     case 2:
-      return <h2>Skippable</h2>;
+      return <InterestsForm {...interestInfo} />;
     default:
       throw new Error('Unknown step');
   }
