@@ -1,3 +1,5 @@
+import axios from 'axios';
+
 const AUTH_FAILURE = "AUTH_FAILURE"
 const AUTH_SUCCESS = "AUTH_SUCCESS"
 const AUTH_LOGOUT = "AUTH_LOGOUT"

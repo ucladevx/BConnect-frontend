@@ -174,7 +174,6 @@ function PrimarySearchAppBar(props) {
           >
             <MenuIcon />
           </IconButton>
-          <img src='logo.png' style={{height: `50px`, width: `50px`, border: `1px solid black`, marginRight: `10px` }}/>
           <Typography className={classes.title} variant="h4" noWrap>
             BConnect
           </Typography>
