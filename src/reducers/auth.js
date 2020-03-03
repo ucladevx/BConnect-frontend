@@ -1,4 +1,5 @@
 import axios from 'axios';
+const baseUrl = "https://protected-refuge-33249.herokuapp.com"
 
 const AUTH_FAILURE = "AUTH_FAILURE"
 const AUTH_SUCCESS = "AUTH_SUCCESS"
@@ -34,7 +35,7 @@ export function authReducer(state = initialState, action) {
 
 export const login = (username, password) => async (dispatch) => {
     try {
-        //let response = await axios.post('some-server/some-endpoint', {username, password})
+        let response = await axios.post(`${baseUrl}/login`, {username, password})
         var response = {success: true, data: {
             user: {name: "Dan Smith", 
                     job: "Software Engineer",
@@ -74,8 +75,8 @@ export const register = (username, password) => async (dispatch) => {
         if(username === "" || password === ""){
             throw new Error("Cannot leave inputs empty")
         }
-        //let response = await axios.post('some-server/some-endpoint-register', {username, password})
-        var response = {success: true, data: {user:{name:'not complete'}}}
+        let response = await axios.post(`${baseUrl}/signup`, {username, password})
+        //var response = {success: true, data: {user:{name:'not complete'}}}
         if(!response.success){
             throw new Error("Error in creating new account")
         }
