@@ -28,8 +28,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-    register: (email, password) => {
-        dispatch(register(email, password));
+    register: (email, password, fname, lname) => {
+        dispatch(register(email, password, fname, lname));
     },
     handleInfo: (data)=> {
         dispatch(addInfo(data));

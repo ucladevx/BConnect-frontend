@@ -35,7 +35,7 @@ export function authReducer(state = initialState, action) {
 
 export const login = (username, password) => async (dispatch) => {
     try {
-        let response = await axios.post(`${baseUrl}/login`, {username, password})
+        //let response = await axios.post(`${baseUrl}/login`, {username, password})
         var response = {success: true, data: {
             user: {name: "Dan Smith", 
                     job: "Software Engineer",
@@ -70,12 +70,12 @@ export const logout = () => async (dispatch) => {
 };
 
 
-export const register = (username, password) => async (dispatch) => {
+export const register = (username, password, fname, lname) => async (dispatch) => {
     try {
         if(username === "" || password === ""){
             throw new Error("Cannot leave inputs empty")
         }
-        let response = await axios.post(`${baseUrl}/signup`, {username, password})
+        let response = await axios.post(`${baseUrl}/signup`, {username, password, fname, lname})
         //var response = {success: true, data: {user:{name:'not complete'}}}
         if(!response.success){
             throw new Error("Error in creating new account")

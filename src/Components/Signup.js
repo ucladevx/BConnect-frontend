@@ -19,6 +19,8 @@ function Signup(props){
     let history = useHistory();
     const [password, setPassword] = useState("");
     const [username, setUsername] = useState("");
+    const [fName, setFN] = useState("");
+    const [lName, setLN] = useState("");
 
     useEffect(()=>{
         if (props.authenticated && !props.needInfo) {
@@ -30,7 +32,7 @@ function Signup(props){
 
     let handleLogin = (e) => {
         e.preventDefault();
-        props.register(username, password)
+        props.register(username, password, fName, lName)
         
         if(props.authenticated){
           props.next();
@@ -46,6 +48,14 @@ function Signup(props){
                 <Avatar className={classes.avatar}><GroupAddIcon /></Avatar>
                 <Typography component="h1" variant="h4"> Sign Up </Typography>
                 <form onSubmit={handleLogin} className={classes.form} noValidate>
+                  <div >
+                    <TextField style={{width: '49%', marginRight: '1%'}} variant="outlined" margin="normal" required  onChange={(e)=>{setFN(e.target.value)}}
+                      name="fname" label="First Name" id="password" value={fName} autoComplete="off"
+                    />
+                    <TextField style={{width: '49%', marginLeft: '1%'}} variant="outlined" margin="normal" required onChange={(e)=>{setLN(e.target.value)}}
+                      name="password" label="Last Name"  id="lname" value={lName} autoComplete="off"
+                    />
+                  </div>
                   <TextField autoComplete="off" onChange={(e)=>{setUsername(e.target.value)}} name="username" value={username} variant="outlined" 
                     margin="normal" required fullWidth id="email" label="Username" autoFocus
                   />
