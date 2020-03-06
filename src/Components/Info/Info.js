@@ -15,6 +15,7 @@ import Map from './LocationSelect'
 import clsx from 'clsx';
 
 function Info(props) {
+
   let history = useHistory();
   const classes = useStyles();
   const [activeStep, setActiveStep] = React.useState(0);
@@ -32,12 +33,15 @@ function Info(props) {
   let infos = {degree, year, interests, clubs, bio, useCurLoc}
   let loc = {locObj, setLoc, useCurLoc, hasClicked, setClick}
 
+  let token = props.token
+
   useEffect(()=> {
     if(props.needInfo===false && props.authenticated===true){
       history.push("/")
     }
     if(activeStep === steps.length){
-      props.handleInfo({degree, year, interests, clubs, bio, locObj})
+      token = props.token
+      props.handleInfo({degree, year, interests, clubs, bio, locObj}, token)
     }
   })
 

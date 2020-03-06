@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import { login } from '../reducers/auth'
 //import { push } from 'connected-react-router';
-import Login from '../components/Login';
+import Login from '../Components/Login';
 import {withRouter} from 'react-router-dom'
 
 

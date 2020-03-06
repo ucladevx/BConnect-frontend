@@ -2,8 +2,8 @@ import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import { fetchMarkers } from '../reducers/map';
 import { logout } from '../reducers/auth'
-import Map from '../components/Map';
-import Navbar from '../components/Navbar'
+import Map from '../Components/Map';
+import Navbar from '../Components/Navbar'
 import {withRouter} from 'react-router-dom'
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
