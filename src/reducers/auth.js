@@ -92,19 +92,12 @@ export const register = (username, password, fname, lname) => async (dispatch) =
 
 export const addInfo = (data, token) => async (dispatch) => {
     try {
-        console.log("test")
         let degree = "degree" in data ? data.degree : ""
-        console.log(degree)
         let year = "year" in data ? data.year : ""
-        console.log(year)
         let interests = "interests" in data ? data.interests : []
-        console.log(interests)
         let clubs = "clubs" in data ? data.clubs : ""
-        console.log(clubs)
         let bio = "bio" in data ? data.bio : ""
-        console.log(bio)
         let locObj = "locObj" in data ? data.locObj : {}
-        console.log(locObj)
 
         let response = await axios.post(`${CORSurl}${baseUrl}/auth/change`, {degree, year, interests, clubs, bio, locObj}, {
             headers: {"x-access-token": token}
