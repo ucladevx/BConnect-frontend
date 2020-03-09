@@ -1,6 +1,5 @@
 import React from 'react'
 import { compose, withProps } from "recompose"
-import Paper from '@material-ui/core/Paper';
 import { withScriptjs, withGoogleMap, GoogleMap, Marker } from "react-google-maps"
 import {withRouter} from 'react-router-dom'
 

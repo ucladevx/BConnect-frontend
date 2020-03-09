@@ -13,8 +13,6 @@ import { makeStyles } from '@material-ui/core/styles';
 import {useHistory} from 'react-router-dom'
 import Alert from '@material-ui/lab/Alert';
 
-//IDEA FOR IMAGE
-//https://www.npmjs.com/package/react-responsive-carousel
 function Signup(props){
     let history = useHistory();
     const [password, setPassword] = useState("");
@@ -50,7 +48,7 @@ function Signup(props){
                 <form onSubmit={handleLogin} className={classes.form} noValidate>
                   <div >
                     <TextField style={{width: '49%', marginRight: '1%'}} variant="outlined" margin="normal" required  onChange={(e)=>{setFN(e.target.value)}}
-                      name="fname" label="First Name" id="password" value={fName} autoComplete="off"
+                      name="fname" label="First Name" id="fname" value={fName} autoComplete="off"
                     />
                     <TextField style={{width: '49%', marginLeft: '1%'}} variant="outlined" margin="normal" required onChange={(e)=>{setLN(e.target.value)}}
                       name="password" label="Last Name"  id="lname" value={lName} autoComplete="off"

@@ -21,17 +21,3 @@ const store = createStore(
 
 export {store, history};
 
-
-// const createRootReducer = (history) => combineReducers({
-//   router: connectRouter(history),
-//   authReducer,
-//   mapReducer
-// })
-
-// const store = createStore(
-//   createRootReducer(history),
-//   composeEnhancers(
-//     applyMiddleware(
-//       thunk, routerMiddleware(history))
-//   )
-// )

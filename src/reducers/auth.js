@@ -24,7 +24,7 @@ export function authReducer(state = initialState, action) {
         case AUTH_SUCCESS:
             return {...state, authenticated: true, user: action.user, token: action.token, error: null}
         case AUTH_LOGOUT:
-            return {...state, authenticated: false, needInfo: true}
+            return {...state, authenticated: false, needInfo: true, user: action.user, token: action.token}
         case INFO_UPDATE_SUCCESS:
             return {...state, needInfo: false}
         case INFO_UPDATE_FAILURE:
@@ -59,7 +59,7 @@ export const login = (username, password) => async (dispatch) => {
             throw new Error("Invalid username or password")
         }
         dispatch({type: AUTH_SUCCESS, user: response.data.user, token: response.data.token})
-        dispatch({type: INFO_UPDATE_SUCCESS})
+        setTokenHeader(response.data.token);
     } catch(err){
         dispatch({type: AUTH_FAILURE, err: err.message})
     }
@@ -70,6 +70,7 @@ export const login = (username, password) => async (dispatch) => {
   
 export const logout = () => async (dispatch) => {
     dispatch({type: AUTH_LOGOUT, user: {}, token: ""})
+    setTokenHeader(null);
 };
 
 
@@ -83,8 +84,10 @@ export const register = (username, password, fname, lname) => async (dispatch) =
         if(response.status !== 200){
             throw new Error("Error in creating new account")
         }
+        //DELETE BELOW LINE WHEN NECESSARY
         console.log(response.data.token)
         dispatch({type: AUTH_SUCCESS, user: response.data.user, token: response.data.token})
+        setTokenHeader(response.data.token);
     } catch(err){
         dispatch({type: AUTH_FAILURE, err: err.message})
     }
@@ -108,5 +111,13 @@ export const addInfo = (data, token) => async (dispatch) => {
         dispatch({type: INFO_UPDATE_SUCCESS})
     } catch(err){
         dispatch({type: INFO_UPDATE_FAILURE, err: err.message})
+    }
+}
+
+export function setTokenHeader(token) {
+    if (token) {
+      axios.defaults.headers.common["Authorization"] = `Bearer ${token}`
+    } else {
+      delete axios.defaults.headers.common["Authorization"]
     }
 }

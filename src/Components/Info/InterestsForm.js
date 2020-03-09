@@ -1,6 +1,5 @@
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
-import Switch from '@material-ui/core/Switch';
 import TextField from '@material-ui/core/TextField';
 import Chip from '@material-ui/core/Chip';
 import React, {useState} from 'react';
