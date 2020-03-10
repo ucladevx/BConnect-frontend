@@ -17,11 +17,11 @@ const INFO_UPDATE_FAILURE = "INFO_UPDATE_FAILURE"
 
 
 const initialState = {
-    authenticated: checkSession() ? true : false,
+    authenticated: checkSession(),
     needInfo: true,
     error: null,
     user: {},
-    token: ""
+    token: checkToken()
 }
 
 export function authReducer(state = initialState, action) {
@@ -131,13 +131,22 @@ function setTokenHeader(token) {
 }
 
 function checkSession() {
-    console.log("checkSession()")
     let token = cookies.get("token");
     if(token){
+        //console.log(Date.now() >= token.StandardClaims.exp * 1000)
+        // return true;
         token = jwt.decode(token);
         if (Date.now() >= token.StandardClaims.exp * 1000) {
             return true;
           }
     }
     return false;
+}
+
+function checkToken() {
+    let token = cookies.get("token");
+    if(token)
+        return token;
+    return "";
+      
 }
