@@ -133,10 +133,8 @@ function setTokenHeader(token) {
 function checkSession() {
     let token = cookies.get("token");
     if(token){
-        //console.log(Date.now() >= token.StandardClaims.exp * 1000)
-        // return true;
         token = jwt.decode(token);
-        if (token.UUID && Date.now() >= token.StandardClaims.exp * 1000) {
+        if (token && token.hasOwnProperty("UUID") && Date.now().valueOf()/1000 < token.StandardClaims.exp) {
             return true;
           }
     }
