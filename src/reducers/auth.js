@@ -136,7 +136,7 @@ function checkSession() {
         //console.log(Date.now() >= token.StandardClaims.exp * 1000)
         // return true;
         token = jwt.decode(token);
-        if (Date.now() >= token.StandardClaims.exp * 1000) {
+        if (token.UUID && Date.now() >= token.StandardClaims.exp * 1000) {
             return true;
           }
     }
