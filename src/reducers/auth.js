@@ -1,4 +1,10 @@
 import axios from 'axios';
+import jwt from 'jsonwebtoken';
+import Cookies from 'universal-cookie';
+const cookies = new Cookies();
+ 
+
+
 const baseUrl = "https://protected-refuge-33249.herokuapp.com"
 const CORSurl = "https://cors-anywhere.herokuapp.com/";
 
@@ -9,8 +15,9 @@ const AUTH_LOGOUT = "AUTH_LOGOUT"
 const INFO_UPDATE_SUCCESS = "INFO_UPDATE_SUCCESS"
 const INFO_UPDATE_FAILURE = "INFO_UPDATE_FAILURE"
 
+
 const initialState = {
-    authenticated: false,
+    authenticated: checkSession() ? true : false,
     needInfo: true,
     error: null,
     user: {},
@@ -59,6 +66,7 @@ export const login = (username, password) => async (dispatch) => {
             throw new Error("Invalid username or password")
         }
         dispatch({type: AUTH_SUCCESS, user: response.data.user, token: response.data.token})
+        cookies.set("token", response.data.token, {path: '/'});
         setTokenHeader(response.data.token);
     } catch(err){
         dispatch({type: AUTH_FAILURE, err: err.message})
@@ -71,6 +79,7 @@ export const login = (username, password) => async (dispatch) => {
 export const logout = () => async (dispatch) => {
     dispatch({type: AUTH_LOGOUT, user: {}, token: ""})
     setTokenHeader(null);
+    cookies.set("token", null, {path: '/'});
 };
 
 
@@ -84,9 +93,8 @@ export const register = (username, password, fname, lname) => async (dispatch) =
         if(response.status !== 200){
             throw new Error("Error in creating new account")
         }
-        //DELETE BELOW LINE WHEN NECESSARY
-        console.log(response.data.token)
         dispatch({type: AUTH_SUCCESS, user: response.data.user, token: response.data.token})
+        cookies.set("token", response.data.token, {path: '/'});
         setTokenHeader(response.data.token);
     } catch(err){
         dispatch({type: AUTH_FAILURE, err: err.message})
@@ -114,10 +122,22 @@ export const addInfo = (data, token) => async (dispatch) => {
     }
 }
 
-export function setTokenHeader(token) {
+function setTokenHeader(token) {
     if (token) {
       axios.defaults.headers.common["Authorization"] = `Bearer ${token}`
     } else {
       delete axios.defaults.headers.common["Authorization"]
     }
+}
+
+function checkSession() {
+    console.log("checkSession()")
+    let token = cookies.get("token");
+    if(token){
+        token = jwt.decode(token);
+        if (Date.now() >= token.StandardClaims.exp * 1000) {
+            return true;
+          }
+    }
+    return false;
 }

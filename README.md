@@ -11,15 +11,13 @@ Routing with react-router
 
 Styles with Material UI
 
-Dummy login/signup/logout with redux state (no backend connection)
+Login/signup/logout with redux state/jwt/refresh token
 
 Dummy map data displayed on front page map
 
 Additional forms after sign up to get more information and location data
 
 ## Upcoming
-
-Connect to backend API for data persistence, user creation, and authentication
 
 Query user/location data from API and display to user on map interface
 
@@ -51,10 +49,10 @@ Note that the maps may not work because the Google Maps API key is in an ignored
 ## Authors
 
 * **Thomas K** - DevX Frontend Engineer 
+* **Rahul N** - DevX Engineering Manager
 
 ## Other BConnect members
 
-* **Rahul N** - DevX Engineering Manager
 * **Leo W** - DevX Backend Engineer 
 * **Saachi K** - DevX Project Manager 
 * **Shreya C** - DevX Project Manager 

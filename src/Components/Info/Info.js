@@ -37,6 +37,7 @@ function Info(props) {
 
   useEffect(()=> {
     if(props.needInfo===false && props.authenticated===true){
+      //props.cookies.set("token", props.token, {path: "/"})
       history.push("/")
     }
     if(activeStep === steps.length){

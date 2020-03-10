@@ -22,6 +22,7 @@ function Login(props){
 
     useEffect(()=>{
         if (props.authenticated){
+            //props.cookies.set("token", props.token, { path: '/' })
             props.history.push("/")
         }
     })

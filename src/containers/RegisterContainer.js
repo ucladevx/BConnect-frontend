@@ -4,6 +4,7 @@ import Signup from '../Components/Signup';
 import Info from '../Components/Info/Info'
 import React, {Component} from 'react';
 import {withRouter} from 'react-router-dom'
+import { withCookies } from 'react-cookie'
 
 class RegisterContainer extends Component {
     render() {
@@ -12,7 +13,8 @@ class RegisterContainer extends Component {
             {this.props.authenticated === false 
                 ? <Signup {...this.props} />
                 : <div>
-                    <Info needInfo={this.props.needInfo} authenticated={this.props.authenticated} handleInfo={this.props.handleInfo} token={this.props.token} />
+                    <Info needInfo={this.props.needInfo} authenticated={this.props.authenticated} 
+                        handleInfo={this.props.handleInfo} token={this.props.token} cookies={this.props.cookies} />
                 </div>
             }
         </div>
@@ -25,7 +27,7 @@ const mapStateToProps = state => ({
     authenticated: state.authReducer.authenticated,
     error: state.authReducer.error,
     needInfo: state.authReducer.needInfo,
-    token: state.authReducer.token
+    token: state.authReducer.token,
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -37,4 +39,4 @@ const mapDispatchToProps = dispatch => ({
     }
 });
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(RegisterContainer));
+export default withCookies(withRouter(connect(mapStateToProps, mapDispatchToProps)(RegisterContainer)));
