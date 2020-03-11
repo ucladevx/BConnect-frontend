@@ -27,7 +27,7 @@ function InfoForm(props) {
       <Grid style={{marginTop: '15px'}}>
         <Typography >
         Use your current location
-            <Switch checked={props.useCurLoc} onChange={()=>{props.set(!props.useCurLoc) }} color="primary" />
+            <Switch checked={props.useCurLoc} onChange={()=>{props.set(!props.useCurLoc) }} color='primary' />
         </Typography>
      </Grid>
     </React.Fragment>

@@ -18,7 +18,7 @@ const [interest, changeInterest] = React.useState("");
         <Grid item xs={12}>
           <TextField value={interest} autoComplete="off" onChange={(e)=>{changeInterest(e.target.value)}} variant="outlined" name="interests" label="Interests" fullWidth />
         </Grid>
-        <Button type='submit'  onClick={()=>{props.setInterests([...props.interests, interest]); changeInterest("");}} variant="contained" color="primary"> 
+        <Button style={{backgroundColor: '#1793eb', color: 'white'}} type='submit'  onClick={()=>{props.setInterests([...props.interests, interest]); changeInterest("");}} variant="contained" color="primary"> 
             Add! 
         </Button>
        

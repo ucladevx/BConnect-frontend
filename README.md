@@ -11,13 +11,19 @@ Routing with react-router
 
 Styles with Material UI
 
-Login/signup/logout with redux state/jwt/refresh token
+Login/signup/logout with redux state/jwt
 
 Dummy map data displayed on front page map
 
 Additional forms after sign up to get more information and location data
 
+UI for searching for other Bruins
+
 ## Upcoming
+
+Searching for other Bruins & dislaying to user
+
+Refresh token @ refresh endpoint
 
 Query user/location data from API and display to user on map interface
 
@@ -28,6 +34,8 @@ Real time chat between friends
 Add friends feature
 
 Nice landing page
+
+Profile page
 
 Better UI (pretty much redo everything, only minimal MaterialUI?)
 

@@ -93,7 +93,7 @@ function Info(props) {
                   )}
                   <Button
                     variant="contained"
-                    color="primary"
+                    style={{backgroundColor: '#1793eb', color: 'white'}} 
                     onClick={handleNext}
                     className={classes.button}
                   >
@@ -145,7 +145,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const steps = ['Important Info', 'Location', 'Find other Bruins!'];
+const steps = ['Important Info', 'Location', 'Add Your Interests!'];
 
 function getStepContent(step, funcs, infos, loc, interestInfo) {
   switch (step) {

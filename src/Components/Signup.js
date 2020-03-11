@@ -48,7 +48,7 @@ function Signup(props){
                 <form onSubmit={handleLogin} className={classes.form} noValidate>
                   <div >
                     <TextField style={{width: '49%', marginRight: '1%'}} variant="outlined" margin="normal" required  onChange={(e)=>{setFN(e.target.value)}}
-                      name="fname" label="First Name" id="fname" value={fName} autoComplete="off"
+                      name="fname" label="First Name" id="fname" value={fName} autoComplete="off" 
                     />
                     <TextField style={{width: '49%', marginLeft: '1%'}} variant="outlined" margin="normal" required onChange={(e)=>{setLN(e.target.value)}}
                       name="password" label="Last Name"  id="lname" value={lName} autoComplete="off"
@@ -61,12 +61,13 @@ function Signup(props){
                     name="password" label="Password" type="password" id="password" value={password} autoComplete="off"
                   />
                   {props.error ?  <Alert severity="error">{props.error}</Alert> : null}
-                  <Button type="submit" fullWidth variant="contained" color="primary" className={classes.submit}>
+                  <Button type="submit" fullWidth variant="contained" style={{backgroundColor:'#1793eb', color: 'white'}} className={classes.submit}>
                     Sign Up
                   </Button>
                   <Grid container>
                     <Grid item>
-                      <Link onClick={()=>{history.push("/login")}} variant="body2">{"Already have an account? Login"}</Link>
+                      <Link style={{color: '#1793eb'}}
+                          onClick={()=>{history.push("/login")}} variant="body2">{"Already have an account? Login"}</Link>
                     </Grid>
                   </Grid>
                   <Box mt={5}>

@@ -56,7 +56,7 @@ class LandingContainer extends Component {
                   t amet, consectetur adipiscing elit. Nunc dapibus nisi a risus mattis ullamcorper. Interdum et malesuada fames ac ante
                    ipsum primis in faucibus. Fusce porta magna nibh, ut scelerisque ex luctus luctus. 
                    </Typography>
-                   <Button variant="contained" color="primary">
+                   <Button style={{backgroundColor: '#1793eb'}}  variant="contained" color="primary">
                     Connect now!
                   </Button>
               </Paper> 

@@ -16,16 +16,17 @@ import Checkbox from '@material-ui/core/Checkbox';
 import Slider from '@material-ui/core/Slider';
 import Skeleton from '@material-ui/lab/Skeleton';
 
-const drawerWidth = 440;
+const drawerWidth = 460;
 
 export default function Search(props) {
   const classes = useStyles();
   const theme = useTheme();
   const [check, setCheck] = useState({
-    interests: true,
-    gradyear: true,
-    major: true
+    interests: false,
+    gradyear: false,
+    major: false
   });
+  const [distance, setDistance] = useState(5)
   const [look, setLook] = useState(false)
 
   const handleChange = name => event => {
@@ -48,6 +49,8 @@ export default function Search(props) {
             <IconButton onClick={props.toggle}> {theme.direction === 'ltr' ? <CancelIcon /> : null}</IconButton>
         </div>
         <Typography className={classes.title} variant="h5" gutterBottom> Search For Other Bruins </Typography>
+        {!look ? 
+        <React.Fragment>
         <Divider />
             <div className={classes.formBox}>
                 <FormControlLabel
@@ -69,18 +72,22 @@ export default function Search(props) {
             <div className={classes.sliderBox}>
                 <Typography variant="subtitle1" gutterBottom> Distance </Typography>
                 <IOSSlider aria-label="ios slider" min={0} max={60} aria-labelledby="discrete-slider"
-                    defaultValue={5}    marks={marks}/>
+                    defaultValue={distance}    marks={marks}/>
             </div>
             <Button onClick={()=>{ console.log("looking for other Bruins!"); setLook(true) }} color="primary">Search!</Button>
         <Divider />
-        {look ? <div style={{padding: '15px'}}>
-            <Skeleton varient='text' height={70}/>
+        </React.Fragment>
+        : <div style={{padding: '15px'}}>
             <Skeleton height={70}/>
             <Skeleton height={70}/>
             <Skeleton height={70}/>
             <Skeleton height={70}/>
             <Skeleton height={70}/>
-        </div> : null}
+            <Skeleton height={70}/>
+            <Skeleton height={70}/>
+            <Skeleton height={70}/>
+            <Skeleton height={70}/>
+        </div>}
       </Drawer>
     </div>
   );

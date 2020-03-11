@@ -50,15 +50,15 @@ function Login(props){
                     name="password" label="Password" type="password" id="password" value={password}
                   />
                   {props.error ?  <Alert severity="error">{props.error}</Alert> : null}
-                  <Button type="submit" fullWidth variant="contained" color="primary" className={classes.submit}>
+                  <Button style={{backgroundColor: '#1793eb'}} type="submit" fullWidth variant="contained" color="primary" className={classes.submit}>
                     Login
                   </Button>
                   <Grid container>
                     <Grid item xs>
-                      <Link href="#" variant="body2"> Forgot password?</Link>
+                      <Link style={{color: '#1793eb'}} href="#" variant="body2"> Forgot password?</Link>
                     </Grid>
                     <Grid item>
-                        <Link onClick={()=>{history.push("/signup")}} variant="body2">{"Don't have an account? Sign Up"}</Link>
+                        <Link style={{color: '#1793eb'}} onClick={()=>{history.push("/signup")}} variant="body2">{"Don't have an account? Sign Up"}</Link>
                     </Grid>
                   </Grid>
                   <Box mt={5}>
