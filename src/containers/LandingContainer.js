@@ -2,27 +2,33 @@ import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import { fetchMarkers } from '../reducers/map';
 import { logout } from '../reducers/auth'
-import Map from '../Components/Map';
-import Navbar from '../Components/Navbar'
+import Divider from '@material-ui/core/Divider';
 import {withRouter} from 'react-router-dom'
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import Zoom from '@material-ui/core/Zoom';
 import Button from '@material-ui/core/Button';
 
-
+import Map from '../Components/Map';
+import Navbar from '../Components/Navbar'
+import Search from '../Components/Search'
 
 class LandingContainer extends Component {
   constructor(props){
     super(props)
     this.state = {
       infoHidden: true,
-      data: {}
+      data: {},
+      showSearch: false
     }
   }
   
   componentWillMount() {
       this.props.getMarkers();
+  }
+
+  toggleSearch = () => {
+    this.setState({showSearch: !this.state.showSearch})
   }
 
   toggle = (data) => {
@@ -33,8 +39,9 @@ class LandingContainer extends Component {
   render() {
     return (
       <div>
-        <Navbar authenticated={this.props.authenticated} logout = {this.props.logout} />
+        <Navbar authenticated={this.props.authenticated} logout = {this.props.logout} toggle={this.toggleSearch} />
         <div>
+            <Search open={this.state.showSearch} toggle={this.toggleSearch} />
             <Zoom in={!this.state.infoHidden}>
                 <Paper elevation={3} variant="outlined" 
               style={{height: '70%', width: '25%', position: 'absolute', flexDirection: 'column', justifyContent: 'center',

@@ -3,7 +3,6 @@ import { login } from '../reducers/auth'
 //import { push } from 'connected-react-router';
 import Login from '../Components/Login';
 import {withRouter} from 'react-router-dom'
-import { withCookies } from 'react-cookie'
 
 
 const mapStateToProps = state => ({
@@ -18,4 +17,4 @@ const mapDispatchToProps = dispatch => ({
     }
 });
 
-export default withCookies(withRouter(connect(mapStateToProps, mapDispatchToProps)(Login)));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Login));

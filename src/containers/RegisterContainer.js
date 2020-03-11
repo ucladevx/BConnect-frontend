@@ -4,7 +4,6 @@ import Signup from '../Components/Signup';
 import Info from '../Components/Info/Info'
 import React, {Component} from 'react';
 import {withRouter} from 'react-router-dom'
-import { withCookies } from 'react-cookie'
 
 class RegisterContainer extends Component {
     render() {
@@ -39,4 +38,4 @@ const mapDispatchToProps = dispatch => ({
     }
 });
 
-export default withCookies(withRouter(connect(mapStateToProps, mapDispatchToProps)(RegisterContainer)));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(RegisterContainer));

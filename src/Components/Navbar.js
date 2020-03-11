@@ -19,7 +19,11 @@ import {useHistory} from 'react-router-dom'
 
 const useStyles = makeStyles(theme => ({
   grow: {
-    flexGrow: 1,
+    flexGrow: 1
+  },
+  appBar: {
+    zIndex: theme.zIndex.drawer + 1,
+    backgroundColor: '#1793eb'
   },
   menuButton: {
     marginRight: theme.spacing(2),
@@ -143,14 +147,15 @@ function PrimarySearchAppBar(props) {
 
   return (
     <div className={classes.grow}>
-      <AppBar styles={{}}>
+      <AppBar className={classes.appBar}>
         <Toolbar>
-          <IconButton
+          <ContactsIcon
             edge="start" className={classes.menuButton}
             color="inherit" aria-label="open drawer"
+            onClick={props.toggle}
           >
             <MenuIcon />
-          </IconButton>
+          </ContactsIcon>
           <Typography className={classes.title} variant="h4" noWrap>
             BConnect
           </Typography>
