@@ -22,7 +22,7 @@ function Signup(props){
 
     useEffect(()=>{
         if (props.authenticated && !props.needInfo) {
-            history.push("/");  
+            history.push("/connect");  
         }
     })
 

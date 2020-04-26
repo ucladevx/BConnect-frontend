@@ -152,7 +152,11 @@ function PrimarySearchAppBar(props) {
           <ContactsIcon
             edge="start" className={classes.menuButton}
             color="inherit" aria-label="open drawer"
-            onClick={props.toggle}
+            onClick={()=>{
+              if(props.toggle){
+                props.toggle()
+              }
+            }}
           >
             <MenuIcon />
           </ContactsIcon>

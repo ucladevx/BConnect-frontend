@@ -1,8 +1,9 @@
 import React, {Component} from 'react';
 import { Route, Switch, withRouter } from 'react-router-dom'
-import Landing from "./containers/LandingContainer"
+import MapInterface from "./containers/MapContainer"
 import Signup from "./containers/RegisterContainer"
 import Login from './containers/LoginContainer'
+import Home from "./containers/LandingContainer"
 import './App.css'
 
 
@@ -17,7 +18,8 @@ class App extends Component {
         <Switch>
           <Route  path="/login" component={Login} />
           <Route  path="/signup" component={Signup}/>
-          <Route exact path="/" component={Landing}/>
+          <Route  path="/connect" component={MapInterface}/>
+          <Route  exact path="/" component={Home} />
         </Switch>
       </div>
   )}
