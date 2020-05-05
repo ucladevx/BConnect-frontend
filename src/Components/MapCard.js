@@ -17,7 +17,7 @@ function MapCard(props){
                   t amet, consectetur adipiscing elit. Nunc dapibus nisi a risus mattis ullamcorper. Interdum et malesuada fames ac ante
                    ipsum primis in faucibus. Fusce porta magna nibh, ut scelerisque ex luctus luctus. 
                 </Typography>
-                <Button style={{backgroundColor: '#1793eb'}}  variant="contained" color="primary">
+                <Button style={{backgroundColor: '#2d75b0'}}  variant="contained" color="primary">
                     Connect now!
                 </Button>
         </React.Fragment>

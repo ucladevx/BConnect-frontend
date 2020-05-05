@@ -61,12 +61,12 @@ function Signup(props){
                     name="password" label="Password" type="password" id="password" value={password} autoComplete="off"
                   />
                   {props.error ?  <Alert severity="error">{props.error}</Alert> : null}
-                  <Button type="submit" fullWidth variant="contained" style={{backgroundColor:'#1793eb', color: 'white'}} className={classes.submit}>
+                  <Button type="submit" fullWidth variant="contained" style={{backgroundColor:'#2d75b0', color: 'white'}} className={classes.submit}>
                     Sign Up
                   </Button>
                   <Grid container>
                     <Grid item>
-                      <Link style={{color: '#1793eb'}}
+                      <Link style={{color: '#2d75b0'}}
                           onClick={()=>{history.push("/login")}} variant="body2">{"Already have an account? Login"}</Link>
                     </Grid>
                   </Grid>
@@ -103,7 +103,7 @@ const useStyles = makeStyles(theme => ({
     },
     avatar: {
       margin: theme.spacing(1),
-      backgroundColor: theme.palette.secondary.main,
+      backgroundColor: '#2d75b0',
     },
     form: {
       width: '95%', // Fix IE 11 issue.

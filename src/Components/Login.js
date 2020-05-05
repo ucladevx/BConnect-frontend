@@ -41,7 +41,7 @@ function Login(props){
             <Grid item xs={12} sm={6} md={4} component={Paper} elevation={6} square>
               <div className={classes.paper}>
                 <Avatar className={classes.avatar}><EmojiEventsIcon /></Avatar>
-                <Typography component="h1" variant="h4"> Login </Typography>
+                <Typography component="h1" variant="h4"> Welcome, Bruin! </Typography>
                 <form onSubmit={handleLogin} className={classes.form} noValidate>
                   <TextField autoComplete='false' onChange={(e)=>{setUsername(e.target.value)}} name="username" value={username} variant="outlined" 
                     margin="normal" required fullWidth id="email" label="Username" autoFocus
@@ -50,15 +50,15 @@ function Login(props){
                     name="password" label="Password" type="password" id="password" value={password}
                   />
                   {props.error ?  <Alert severity="error">{props.error}</Alert> : null}
-                  <Button style={{backgroundColor: '#1793eb'}} type="submit" fullWidth variant="contained" color="primary" className={classes.submit}>
+                  <Button style={{backgroundColor: '#2d75b0'}} type="submit" fullWidth variant="contained" color="primary" className={classes.submit}>
                     Login
                   </Button>
                   <Grid container>
                     <Grid item xs>
-                      <Link style={{color: '#1793eb'}} href="#" variant="body2"> Forgot password?</Link>
+                      <Link style={{color: '#2d75b0'}} href="#" variant="body2"> Forgot password?</Link>
                     </Grid>
                     <Grid item>
-                        <Link style={{color: '#1793eb'}} onClick={()=>{history.push("/signup")}} variant="body2">{"Don't have an account? Sign Up"}</Link>
+                        <Link style={{color: '#2d75b0'}} onClick={()=>{history.push("/signup")}} variant="body2">{"Don't have an account? Sign Up"}</Link>
                     </Grid>
                   </Grid>
                   <Box mt={5}>
@@ -94,7 +94,7 @@ const useStyles = makeStyles(theme => ({
     },
     avatar: {
       margin: theme.spacing(1),
-      backgroundColor: theme.palette.secondary.main,
+      backgroundColor: '#2d75b0',
     },
     form: {
       width: '95%', // Fix IE 11 issue.

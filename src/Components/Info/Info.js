@@ -38,7 +38,7 @@ function Info(props) {
   useEffect(()=> {
     if(props.needInfo===false && props.authenticated===true){
       //props.cookies.set("token", props.token, {path: "/"})
-      history.push("/")
+      history.push("/connect")
     }
     if(activeStep === steps.length){
       token = props.token
@@ -93,7 +93,7 @@ function Info(props) {
                   )}
                   <Button
                     variant="contained"
-                    style={{backgroundColor: '#1793eb', color: 'white'}} 
+                    style={{backgroundColor: '#2d75b0', color: 'white'}} 
                     onClick={handleNext}
                     className={classes.button}
                   >
