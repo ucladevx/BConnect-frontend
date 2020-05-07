@@ -1,10 +1,23 @@
-import React from 'react'
+import React, {useState} from 'react'
+import axios from 'axios'
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import LocationOnIcon from '@material-ui/icons/LocationOn';
 
 function OldHome(props){
+    const [email, changeEmail] = useState("")
+    const [submitted, changeSubmitStatus] = useState(false)
     const classes = useStyles();
+
+    const submit = (e) => {
+        e.preventDefault()
+        if(submitted === false){
+            // call some function from props that is from reducer, calls axios
+            // axios.post("https://protected-refuge-33249.herokuapp.com/CHANGE-THIS", {email})
+            changeEmail("Thank you! We can't wait to see you again soon!")
+            changeSubmitStatus(true)
+        }
+    }
 
     return (
         <div class={classes.background}>
@@ -18,7 +31,11 @@ function OldHome(props){
                 <Typography class={classes.text1}>alumni near</Typography>
                 <Typography class={classes.text1}><span style={{color:'#9fc9eb'}}>you</span>.</Typography>
                 <img class={classes.img} src={"/landing_graphic.png"} />
-                <Typography class={classes.text2} style={{flexItem: 'flex-end'}}> Sign up <span onClick={props.redirect} class={classes.fancy} >now</span></Typography>
+                <Typography class={classes.text2} style={{flexItem: 'flex-end'}}> Sign up <span onClick={props.redirect} class={classes.fancy} >now</span>.</Typography>
+                <form onSubmit={submit} style={{'alignSelf':'flex-end'}}>
+                    <input value={email} onChange={(e)=>{changeEmail(e.target.value)}} placeholder="Enter your email address" 
+                        type='text' class={classes.input}/>
+                </form>
             </div>
         </div>
     );
@@ -27,8 +44,22 @@ function OldHome(props){
 export default OldHome;
 
 const useStyles = makeStyles((theme) => ({
-    logo: {
-
+    input: {
+        width: '520px',
+        height: '40px',
+        border: 'none',
+        borderRadius: '32px',
+        backgroundColor: '#569ad1',
+        padding: '8px',
+        paddingLeft: '33px',
+        color: 'white',
+        fontSize: '18px',
+        fontWeight: '200',
+        marginTop: '-10px',
+        outline: 'none',
+        '&::placeholder': {
+            color: 'white'
+        },
     },
     img: {
         width: '550px',
