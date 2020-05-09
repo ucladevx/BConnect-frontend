@@ -9,7 +9,7 @@ Redux set up
 
 Routing with react-router
 
-Styles with Material UI
+Landing Page
 
 Login/signup/logout with redux state/jwt
 
@@ -33,15 +33,13 @@ Real time chat between friends
 
 Add friends feature
 
-Nice landing page
-
 Profile page
 
 Better UI (pretty much redo everything, only minimal MaterialUI?)
 
 ## Running the code
 
-Fork the code. Run 
+Fork/Clone the code. Run 
 ```
 npm install
 ```
@@ -54,14 +52,16 @@ Note that the maps may not work because the Google Maps API key is in an ignored
 
 
 
-## Authors
+## Contributors
 
 * **Thomas K** - DevX Frontend Engineer 
 * **Rahul N** - DevX Engineering Manager
+* **Sam H** - DevX Frontend Engineer
 
 ## Other BConnect members
 
-* **Leo W** - DevX Backend Engineer 
+* **David D** - DevX Backend Engineer
+* **Tiffany C** - DevX Backend Engineer
 * **Saachi K** - DevX Project Manager 
 * **Shreya C** - DevX Project Manager 
 * **Sue Z** - DevX Designer/Marketing 
