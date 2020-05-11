@@ -31,7 +31,7 @@ function Info(props) {
   let formFuncs = {setDegree, setYear, setClubs, setBio, set}
   let interestInfo = {interests, setInterests}
   let infos = {degree, year, interests, clubs, bio, useCurLoc}
-  let loc = {locObj, setLoc, useCurLoc, hasClicked, setClick}
+  let loc = {locObj, setLoc, useCurLoc, hasClicked, setClick, set}
 
   let token = props.token
 
@@ -66,6 +66,7 @@ function Info(props) {
 
   return (
     <React.Fragment>
+      <div class={classes.picBehind}></div>
       <CssBaseline />
       <main className={classes.layout}>
         <Paper className={classes.paper}>
@@ -112,8 +113,22 @@ function Info(props) {
 export default Info;
 
 const useStyles = makeStyles(theme => ({
+  picBehind: {
+    zIndex: -2,
+    left: 0,
+    top: 0,
+    position: 'absolute',
+    opacity: .8,
+    backgroundColor: '#2d75b0',
+    width: '100%',
+    height: '100%',
+    // backgroundImage: 'url(https://s7d2.scene7.com/is/image/TWCNews/ucla-corona_jpg)',
+    // backgroundRepeat: 'no-repeat',
+    // backgroundSize: 'cover'
+  },
   layout: {
     width: 'auto',
+    position: 'relative',
     marginLeft: theme.spacing(2),
     marginRight: theme.spacing(2),
     [theme.breakpoints.up(600 + theme.spacing(2) * 2)]: {

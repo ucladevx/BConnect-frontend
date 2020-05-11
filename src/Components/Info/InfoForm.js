@@ -24,12 +24,6 @@ function InfoForm(props) {
           <TextField value={props.bio} onChange={(e)=>{props.setBio(e.target.value)}} variant="outlined" name="bio" multiline rowsMax="5" label="Bio" fullWidth />
         </Grid>
       </Grid>
-      <Grid style={{marginTop: '15px'}}>
-        <Typography >
-        Use your current location
-            <Switch checked={props.useCurLoc} onChange={()=>{props.set(!props.useCurLoc) }} color='primary' />
-        </Typography>
-     </Grid>
     </React.Fragment>
   );
 }

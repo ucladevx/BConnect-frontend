@@ -23,7 +23,7 @@ class LandingContainer extends Component {
 
     render() {
       return (
-        <div>
+        <div style={{height: '100%', width: '100%', backgroundColor: '#2d75b0'}}>
             
             <Home redirect={this.redirect} />
         </div>

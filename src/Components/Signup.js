@@ -16,9 +16,11 @@ import Alert from '@material-ui/lab/Alert';
 function Signup(props){
     let history = useHistory();
     const [password, setPassword] = useState("");
+    const [mpassword, setMPassword] = useState("");
     const [username, setUsername] = useState("");
     const [fName, setFN] = useState("");
     const [lName, setLN] = useState("");
+    const [passwordError, changePError] = useState(false)
 
     useEffect(()=>{
         if (props.authenticated && !props.needInfo) {
@@ -30,8 +32,14 @@ function Signup(props){
 
     let handleLogin = (e) => {
         e.preventDefault();
-        props.register(username, password, fName, lName)
+        if(password === mpassword){
+          changePError(false)
+          props.register(username, password, fName, lName)
+        } else {
+          changePError(true)
+        }
         
+        //not sure if this is doing anything
         if(props.authenticated){
           props.next();
         }
@@ -43,7 +51,7 @@ function Signup(props){
             <Grid item xs={false} sm={5} md={8} className={classes.image} />
             <Grid item xs={12} sm={6} md={4} component={Paper} elevation={6} square>
               <div className={classes.paper}>
-                <Avatar className={classes.avatar}><GroupAddIcon /></Avatar>
+                <img style={{width: '70px', height: '80px', marginTop: '-10px'}} src='logo.png'/>
                 <Typography component="h1" variant="h4"> Sign Up </Typography>
                 <form onSubmit={handleLogin} className={classes.form} noValidate>
                   <div >
@@ -55,11 +63,15 @@ function Signup(props){
                     />
                   </div>
                   <TextField autoComplete="off" onChange={(e)=>{setUsername(e.target.value)}} name="username" value={username} variant="outlined" 
-                    margin="normal" required fullWidth id="email" label="Username" autoFocus
+                    margin="normal" required fullWidth id="email" label="Email" autoFocus
                   />
                   <TextField variant="outlined" margin="normal" required fullWidth onChange={(e)=>{setPassword(e.target.value)}}
                     name="password" label="Password" type="password" id="password" value={password} autoComplete="off"
                   />
+                   <TextField variant="outlined" margin="normal" required fullWidth onChange={(e)=>{setMPassword(e.target.value)}}
+                    name="mpassword" label="Match Password" type="password" id="mpassword" value={mpassword} autoComplete="off"
+                  />
+                  {passwordError === true ?  <Alert severity="error">Your passwords must match!</Alert> : null}
                   {props.error ?  <Alert severity="error">{props.error}</Alert> : null}
                   <Button type="submit" fullWidth variant="contained" style={{backgroundColor:'#2d75b0', color: 'white'}} className={classes.submit}>
                     Sign Up

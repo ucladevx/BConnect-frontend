@@ -40,7 +40,7 @@ function Login(props){
             <Grid item xs={false} sm={5} md={8} className={classes.image} />
             <Grid item xs={12} sm={6} md={4} component={Paper} elevation={6} square>
               <div className={classes.paper}>
-                <Avatar className={classes.avatar}><EmojiEventsIcon /></Avatar>
+                <img style={{width: '70px', height: '80px', marginTop: '-10px'}} src='logo.png'/>
                 <Typography component="h1" variant="h4"> Welcome, Bruin! </Typography>
                 <form onSubmit={handleLogin} className={classes.form} noValidate>
                   <TextField autoComplete='false' onChange={(e)=>{setUsername(e.target.value)}} name="username" value={username} variant="outlined" 

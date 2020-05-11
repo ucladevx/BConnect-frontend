@@ -14,14 +14,14 @@ class App extends Component {
 
   render(){
     return (
-      <div>
+      <React.Fragment>
         <Switch>
           <Route  path="/login" component={Login} />
           <Route  path="/signup" component={Signup}/>
           <Route  path="/connect" component={MapInterface}/>
-          <Route  exact path="/" component={Home} />
+          <Route  path="/" component={Home} />
         </Switch>
-      </div>
+      </React.Fragment>
   )}
 
   
