@@ -7,7 +7,32 @@ import LocationOnIcon from '@material-ui/icons/LocationOn';
 function Home(props){
     const [email, changeEmail] = useState("")
     const [submitted, changeSubmitStatus] = useState(false)
-    const classes = useStyles();
+    const vw = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
+    const vh = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
+
+    let cssProps;
+
+    if(vw > 0 && vw < 450 && vh > 0 && vh < 850){
+        cssProps = {bconnectMarginLeft: '3vh', bconnectSize: '3vh',
+                locIconSize: '2.4vh', locIconMargin: '-1.35vh', locIconMarginBottom: '-0.75vh',
+                imgWidth: '80%', imgMarginTop: '0%',
+                mainWidth: '90vw', mainHeight: '90vh', mainMinHeight: '0px', mainMinWidth: '0px', mainJustify: 'center', mainAlign: 'center',
+                text1Size: '4vh', text1LineHeight: '4.8vh',
+                text2Size: '3.8vh', text2LineHeight: '4.6vh', text2Width: '80%', text2Align: 'center',
+                formWidth: '70%', formAlignSelf: 'center',
+                inputTextSize: '13.5px', inputHeight: '30px', inputPaddingLeft: '15px'}
+    } else {
+        cssProps = {bconnectMarginLeft: '55px', bconnectSize: '40px',
+                locIconSize: '32px', locIconMargin: '-18px', locIconMarginBottom: '-10px',
+                imgWidth: '50%', imgMarginTop: '-10%',
+                mainWidth: '60vw', mainHeight: '80vh', mainMinHeight: '800px', mainMinWidth: '600ox', mainJustify: 'flex-start', mainAlign: 'flex-start',
+                text1Size: '50px', text1LineHeight: '60px',
+                text2Size: '27px', text2LineHeight: '40px', text2Width: '40%', text2Align: 'flex-end',
+                formWidth: '40%', formAlignSelf: 'flex-end',
+                inputTextSize: '18px', inputHeight: '40px', inputPaddingLeft: '33px'}
+    }
+
+    const classes = useStyles(cssProps);
 
     const submit = (e) => {
         e.preventDefault()
@@ -19,28 +44,28 @@ function Home(props){
         }
     }
 
+
     return (
         <div class={classes.background}>
             <div class={classes.top}>
                 <Typography class={classes.bconnect}> <span style={{color: '#9fc9eb'}}>B</span>
-                    <span style={{color: '#f9d149'}}>C <LocationOnIcon style={{color: '#9fc9eb', fontSize: '32px',margin: '-18px', marginBottom:'-10px'}} /> nnect</span></Typography>
+                    <span style={{color: '#f9d149'}}>C <LocationOnIcon className={classes.locIcon} /> nnect</span></Typography>
             </div>
-            <img class={classes.img} src={"/landing_graphic.png"} />
             <div class={classes.main}>
-                <div style={{alignSelf: 'flex-start', zIndex: '1'}}>
+                <div>
                     <Typography class={classes.text1}> Meet <span style={{color: '#f9d149'}}>UCLA</span> </Typography>
                     <Typography class={classes.text1}>alumni near</Typography>
                     <Typography class={classes.text1}><span style={{color:'#9fc9eb'}}>you</span>.</Typography>
                 </div>
-                <div name="just filling space" style={{height: '300px'}}></div>
+                <img class={classes.img} src={"/landing_graphic.png"} />
                 <div class={classes.bottom} >
                         <Typography class={classes.text2}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod 
                             tempor incididunt ut labore et dolore magna.
                         </Typography>
-                        <form onSubmit={submit} >
-                            {submitted===false ? <input value={email} onChange={(e)=>{changeEmail(e.target.value)}} placeholder="Enter your email address" 
+                        <form onSubmit={submit} class={classes.form}>
+                            {submitted===false ? <input value={email} onChange={(e)=>{changeEmail(e.target.value)}} placeholder="Enter your UCLA email address" 
                                 type='text' class={classes.input}/> :
-                                <input value={email} placeholder="Enter your email address" 
+                                <input value={email} placeholder="Enter your UCLA email address" 
                                 type='text' disabled class={classes.input}/>  
                             }
                         </form>
@@ -55,62 +80,15 @@ export default Home;
 //<Typography class={classes.text2} style={{flexItem: 'flex-end'}}> Sign up <span onClick={props.redirect} class={classes.fancy} >now</span>.</Typography>
 
 const useStyles = makeStyles((theme) => ({
-    input: {
-        width: '520px',
-        height: '40px',
-        border: 'none',
-        borderRadius: '32px',
-        backgroundColor: '#569ad1',
-        padding: '8px',
-        paddingLeft: '33px',
-        color: 'white',
-        fontSize: '18px',
-        fontWeight: '200',
-        marginTop: '-10px',
-        outline: 'none',
-        '&::placeholder': {
-            color: 'white'
-        },
-    },
-    bottom: {
-        display:'flex',
-        flexDirection:'column',
-        alignItems:'flex-end', 
-        zIndex: '1',
-        marginRight: '-20px'
-    },
-    img: {
-        top: '50%',
-        left: '50%',
-        marginTop: '-230px',
-        marginLeft: '-255px',
-        width: '550px',
-        margin: '-20px',
-        marginBottom: '0px',
-        position: 'absolute',
-        alignSelf: 'center',
-        zIndex: '0'
-    },
     background: {
         backgroundColor: '#2d75b0',
         color: 'white',
         zIndex: '-1',
         left: 0,
-        height: '100%',
+        width: '100vw',
+        height: '100vh',
         fontFamily: 'Avenir',
         fontStyle: 'normal',
-    },
-    main: {
-        width: '60%',
-        height: '70%',
-        minHeight: '800px',
-        minWidth: '700px',
-        margin: 'auto',
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'flex-start',
-        alignItems: 'flex-start',
-        
     },
     top: {
         display: 'flex',
@@ -119,26 +97,83 @@ const useStyles = makeStyles((theme) => ({
         justifyContent: 'space-between',
         zIndex: '2'
     },
-    text1: {
+    bconnect: props => ({
+        textShadow: '3px 3px 3px rgba(0, 0, 0, 0.25)',
+        marginLeft: props.bconnectMarginLeft,
+        fontSize: props.bconnectSize,
+        fontWeight: '600'
+    }),
+    locIcon: props => ({
+        color: '#9fc9eb', 
+        fontSize: props.locIconSize,
+        margin: props.locIconMargin, 
+        marginBottom: props.locIconMarginBottom
+    }),
+    main: props => ({
+        width: props.mainWidth,
+        height: props.mainHeight,
+        minHeight: props.mainMinHeight,
+        minWidth: props.mainMinWidth,
+        margin: 'auto',
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: props.mainJustify,
+        alignItems: props.mainAlign,
+    }),
+    text1: props => ({
         fontWeight: '800',
-        fontSize: '50px',
-        lineHeight: '60px',
+        fontSize: props.text1Size,
+        lineHeight: props.text1LineHeight,
         margin: '0',
         alignSelf: 'flex-start',
         marginTop: '0'
+    }),
+    img: props => ({
+        marginTop: props.imgMarginTop,
+        marginLeft: '-10%',
+        marginBottom: '0%',
+        width: props.imgWidth,
+        alignSelf: 'center',
+        zIndex: '0'
+    }),
+    bottom: {
+        display:'flex',
+        flexDirection:'column',
+        alignItems:'flex-end', 
+        zIndex: '1',
+        //marginRight: '-20px',
     },
-    text2: {
+    text2: props => ({
         fontWeight: '500',
-        fontSize: '27px',
-        lineHeight: '40px',
-        alignSelf: 'flex-end',
-        width: '40%',
+        fontSize: props.text2Size,
+        lineHeight: props.text2LineHeight,
+        alignSelf: props.text2Align,
+        width: props.text2Width,
         "&:focus-within": {
             color: '#f9d149',
             textShadow: '3px 3px 3px rgba(0, 0, 0, 0.5)',
         },
-        marginRight: '-60px',
-    },
+    }),
+    form: props => ({
+        width: props.formWidth,
+        alignSelf: props.formAlignSelf
+    }),
+    input: props => ({
+        width: '100%',
+        height: props.inputHeight,
+        border: 'none',
+        borderRadius: '32px',
+        backgroundColor: '#569ad1',
+        paddingLeft: '10px',
+        color: 'white',
+        fontSize: props.inputTextSize,
+        fontWeight: '200',
+        marginTop: '-10px',
+        outline: 'none',
+        '&::placeholder': {
+            color: 'white'
+        },
+    }),
     fancy: {
         color: '#f9d149',
         "&:hover": {
@@ -146,17 +181,11 @@ const useStyles = makeStyles((theme) => ({
         },
         "&:focus": {
             color: '#f9d149',
-            textShadow: '3px 3px 3px rgba(0, 0, 0, 0.5)',
+            textShadow: '.3vh .3vh .3vh rgba(0, 0, 0, 0.5)',
         },
-    },
-    bconnect: {
-        textShadow: '3px 3px 3px rgba(0, 0, 0, 0.25)',
-        marginLeft: '55px',
-        fontSize: '40px',
-        fontWeight: '600'
     },
     about: {
         marginRight:'150px', 
         fontSize: '18px'
-    }
+    },
 }));
