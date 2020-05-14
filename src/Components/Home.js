@@ -3,6 +3,7 @@ import axios from 'axios'
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import LocationOnIcon from '@material-ui/icons/LocationOn';
+import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
 
 function Home(props){
     const [email, changeEmail] = useState("")
@@ -15,21 +16,23 @@ function Home(props){
     if(vw > 0 && vw < 450 && vh > 0 && vh < 850){
         cssProps = {bconnectMarginLeft: '3vh', bconnectSize: '3vh',
                 locIconSize: '2.4vh', locIconMargin: '-1.35vh', locIconMarginBottom: '-0.75vh',
-                imgWidth: '80%', imgMarginTop: '0%',
-                mainWidth: '90vw', mainHeight: '90vh', mainMinHeight: '0px', mainMinWidth: '0px', mainJustify: 'center', mainAlign: 'center',
-                text1Size: '4vh', text1LineHeight: '4.8vh',
-                text2Size: '3.8vh', text2LineHeight: '4.6vh', text2Width: '80%', text2Align: 'center',
-                formWidth: '70%', formAlignSelf: 'center',
-                inputTextSize: '13.5px', inputHeight: '30px', inputPaddingLeft: '15px'}
+                imgWidth: '80%', imgHeight: '',
+                mainWidth: '90vw', mainHeight: '90vh', mainMinHeight: '0px', mainMinWidth: '0px', mainJustify: 'center', mainAlign: 'center', mainDirection: 'column-reverse',
+                leftMinWidth: '0px', leftWidth: '60%', leftAlignSelf: 'center', leftJustify: 'flex-start', leftAlign: 'flex-start',
+                text1Size: '3vh', text1LineHeight: '3.6vh',
+                text2Size: '2vh', text2LineHeight: '2.5vh', text2Width: '100%', text2Align: 'center',
+                formWidth: '100%', formAlignSelf: '',
+                inputTextSize: '10px', inputHeight: '30px', inputPaddingLeft: '15px'}
     } else {
-        cssProps = {bconnectMarginLeft: '55px', bconnectSize: '40px',
-                locIconSize: '32px', locIconMargin: '-18px', locIconMarginBottom: '-10px',
-                imgWidth: '50%', imgMarginTop: '-10%',
-                mainWidth: '60vw', mainHeight: '80vh', mainMinHeight: '800px', mainMinWidth: '600ox', mainJustify: 'flex-start', mainAlign: 'flex-start',
-                text1Size: '50px', text1LineHeight: '60px',
-                text2Size: '27px', text2LineHeight: '40px', text2Width: '40%', text2Align: 'flex-end',
-                formWidth: '40%', formAlignSelf: 'flex-end',
-                inputTextSize: '18px', inputHeight: '40px', inputPaddingLeft: '33px'}
+        cssProps = {bconnectMarginLeft: '55px', bconnectSize: '60px',
+                locIconSize: '48px', locIconMargin: '-27px', locIconMarginBottom: '-15px',
+                imgWidth: '', imgHeight: '100%',
+                mainWidth: '85vw', mainHeight: '70vh', mainMinHeight: '0px', mainMinWidth: '0x', mainJustify: 'center', mainAlign: 'stretch', mainDirection: 'row',
+                leftMinWidth: '460px', leftWidth: '30%', leftAlignSelf: 'flex-start', leftJustify: 'center', leftAlign: 'flex-start',
+                text1Size: '80px', text1LineHeight: '80px',
+                text2Size: '20px', text2LineHeight: '24px', text2Width: '80%', text2Align: 'flex-start',
+                formWidth: '305px', formHeight: '35px', formAlignSelf: 'flex-start',
+                inputTextSize: '14px', inputPaddingLeft: '33px'}
     }
 
     const classes = useStyles(cssProps);
@@ -52,24 +55,24 @@ function Home(props){
                     <span style={{color: '#f9d149'}}>C <LocationOnIcon className={classes.locIcon} /> nnect</span></Typography>
             </div>
             <div class={classes.main}>
-                <div>
-                    <Typography class={classes.text1}> Meet <span style={{color: '#f9d149'}}>UCLA</span> </Typography>
-                    <Typography class={classes.text1}>alumni near</Typography>
-                    <Typography class={classes.text1}><span style={{color:'#9fc9eb'}}>you</span>.</Typography>
+                <div class={classes.left} >
+                    <div>
+                        <Typography class={classes.text1}> Meet <span style={{color: '#f9d149'}}>UCLA</span> </Typography>
+                        <Typography class={classes.text1}>alumni near</Typography>
+                        <Typography class={classes.text1}><span style={{color:'#9fc9eb'}}>you</span>.</Typography>
+                    </div>
+                    <Typography class={classes.text2}>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi amet tincidunt sed non auctor laoreet. 
+                        Metus faucibus feugiat fermentum lectus aliquam. Quisque mi cursus in auctor nibh ornare sapien non quis. Pellentesque eu leo ullamcorper id dignissim euismod.
+                    </Typography>
+                    <form onSubmit={submit} class={classes.form}>
+                        {submitted===false ? <input value={email} onChange={(e)=>{changeEmail(e.target.value)}} placeholder="Enter your UCLA email" 
+                            type='text' class={classes.input}/> :
+                            <input value={email} placeholder="Enter your UCLA email" 
+                            type='text' disabled class={classes.input}/>
+                        }
+                    </form>
                 </div>
                 <img class={classes.img} src={"/landing_graphic.png"} />
-                <div class={classes.bottom} >
-                        <Typography class={classes.text2}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod 
-                            tempor incididunt ut labore et dolore magna.
-                        </Typography>
-                        <form onSubmit={submit} class={classes.form}>
-                            {submitted===false ? <input value={email} onChange={(e)=>{changeEmail(e.target.value)}} placeholder="Enter your UCLA email address" 
-                                type='text' class={classes.input}/> :
-                                <input value={email} placeholder="Enter your UCLA email address" 
-                                type='text' disabled class={classes.input}/>  
-                            }
-                        </form>
-                </div>
             </div>
         </div>
     );
@@ -116,7 +119,7 @@ const useStyles = makeStyles((theme) => ({
         minWidth: props.mainMinWidth,
         margin: 'auto',
         display: 'flex',
-        flexDirection: 'column',
+        flexDirection: props.mainDirection,
         justifyContent: props.mainJustify,
         alignItems: props.mainAlign,
     }),
@@ -129,22 +132,25 @@ const useStyles = makeStyles((theme) => ({
         marginTop: '0'
     }),
     img: props => ({
-        marginTop: props.imgMarginTop,
-        marginLeft: '-10%',
-        marginBottom: '0%',
         width: props.imgWidth,
-        alignSelf: 'center',
+        //alignSelf: 'center',
+        height: props.imgHeight,
         zIndex: '0'
     }),
-    bottom: {
+    left: props => ({
         display:'flex',
+        height: '100%',
         flexDirection:'column',
-        alignItems:'flex-end', 
+        justifyContent: props.leftJustify,
+        minWidth: props.leftMinWidth,
+        alignItems: props.leftAlign, 
         zIndex: '1',
+        width: props.leftWidth,
+        alignSelf: props.leftAlignSelf
         //marginRight: '-20px',
-    },
+    }),
     text2: props => ({
-        fontWeight: '500',
+        fontWeight: 'normal',
         fontSize: props.text2Size,
         lineHeight: props.text2LineHeight,
         alignSelf: props.text2Align,
@@ -156,14 +162,15 @@ const useStyles = makeStyles((theme) => ({
     }),
     form: props => ({
         width: props.formWidth,
+        height: props.formHeight,
         alignSelf: props.formAlignSelf
     }),
     input: props => ({
         width: '100%',
-        height: props.inputHeight,
+        height: '100%',
         border: 'none',
-        borderRadius: '32px',
-        backgroundColor: '#569ad1',
+        borderRadius: '8px',
+        backgroundColor: 'rgba(159, 201, 235, 0.37)',
         paddingLeft: '10px',
         color: 'white',
         fontSize: props.inputTextSize,
@@ -171,7 +178,7 @@ const useStyles = makeStyles((theme) => ({
         marginTop: '-10px',
         outline: 'none',
         '&::placeholder': {
-            color: 'white'
+            color: '#bfccd9'
         },
     }),
     fancy: {
