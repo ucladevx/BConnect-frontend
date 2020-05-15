@@ -45,7 +45,7 @@ function Home(props){
         if(submitted === false){
             // call some function from props that is from reducer, calls axios
             // axios.post("https://protected-refuge-33249.herokuapp.com/CHANGE-THIS", {email})
-            changeEmail("Thank you! We will notify you when BConnect launches!")
+            changeEmail("Thanks! We'll let you know when we launch!")
             changeSubmitStatus(true)
             changeArrowDisplay("none")
         }
