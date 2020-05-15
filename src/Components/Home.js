@@ -4,11 +4,13 @@ import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import LocationOnIcon from '@material-ui/icons/LocationOn';
 import ArrowForwardRoundedIcon from '@material-ui/icons/ArrowForwardRounded';
+import Alert from '@material-ui/lab/Alert';
 
 function Home(props){
     const [email, changeEmail] = useState("")
     const [submitted, changeSubmitStatus] = useState(false)
     const [arrowDisplay, changeArrowDisplay] = useState("")
+    const [valid, changeValid] = useState(true)
     const vw = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
     const vh = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
 
@@ -43,11 +45,20 @@ function Home(props){
     const submit = (e) => {
         e.preventDefault()
         if(submitted === false){
-            // call some function from props that is from reducer, calls axios
-            // axios.post("https://protected-refuge-33249.herokuapp.com/CHANGE-THIS", {email})
-            changeEmail("Thanks! We'll let you know when we launch!")
-            changeSubmitStatus(true)
-            changeArrowDisplay("none")
+            if(email.match(/.*@ucla.edu/g) != null){
+                axios.post("https://protected-refuge-33249.herokuapp.com/email", {email}).then((resp)=>{
+                    //console.log(resp)
+                }).catch((err)=>{
+                    //console.log(err)
+                })
+                changeValid(true)
+                changeEmail("Thanks! We'll let you know when we launch!")
+                changeSubmitStatus(true)
+                changeArrowDisplay("none")
+                
+            } else {
+                changeValid(false)
+            }
         }
     }
 
@@ -76,6 +87,7 @@ function Home(props){
                         }
                         <ArrowForwardRoundedIcon style={{display: arrowDisplay}} onClick={submit} className={classes.arrowIcon}/>
                     </form>
+                    {valid === false ?  <span style={{marginTop: '5px'}}>Please enter a valid UCLA email address!</span> : null}
                 </div>
                 <img class={classes.img} src={"/landing_graphic.png"} />
             </div>
@@ -97,6 +109,7 @@ const useStyles = makeStyles((theme) => ({
         height: '100vh',
         fontFamily: 'Avenir',
         fontStyle: 'normal',
+        minWidth: '800px'
     },
     top: {
         display: 'flex',
