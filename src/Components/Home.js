@@ -28,11 +28,11 @@ function Home(props){
     } else {
         cssProps = {bconnectMarginLeft: '55px', bconnectSize: '60px',
                 locIconSize: '48px', locIconMargin: '-27px', locIconMarginBottom: '-15px',
-                imgWidth: '', imgHeight: '100%', imgMarginLeft: '-7.5%',
+                imgWidth: '', imgHeight: '100%', imgMarginLeft: '-6.5%',
                 mainWidth: '85vw', mainHeight: '70vh', mainMinHeight: '0px', mainMinWidth: '0x', mainJustify: 'center', mainAlign: 'stretch', mainDirection: 'row',
                 leftMinWidth: '460px', leftWidth: '30%', leftAlignSelf: 'flex-start', leftJustify: 'center', leftAlign: 'flex-start',
                 text1Size: '80px', text1LineHeight: '80px',
-                text2Size: '20px', text2LineHeight: '24px', text2Width: '90%', text2Align: 'flex-start',
+                text2Size: '20px', text2LineHeight: '24px', text2Width: '85%', text2Align: 'flex-start',
                 formWidth: '305px', formHeight: '35px', formAlignSelf: 'flex-start',
                 inputTextSize: '14px', inputPaddingLeft: '33px',
             }
