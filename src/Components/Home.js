@@ -3,11 +3,12 @@ import axios from 'axios'
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import LocationOnIcon from '@material-ui/icons/LocationOn';
-import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
+import ArrowForwardRoundedIcon from '@material-ui/icons/ArrowForwardRounded';
 
 function Home(props){
     const [email, changeEmail] = useState("")
     const [submitted, changeSubmitStatus] = useState(false)
+    const [arrowDisplay, changeArrowDisplay] = useState("")
     const vw = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
     const vh = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
 
@@ -16,23 +17,25 @@ function Home(props){
     if(vw > 0 && vw < 450 && vh > 0 && vh < 850){
         cssProps = {bconnectMarginLeft: '3vh', bconnectSize: '3vh',
                 locIconSize: '2.4vh', locIconMargin: '-1.35vh', locIconMarginBottom: '-0.75vh',
-                imgWidth: '80%', imgHeight: '',
+                imgWidth: '80%', imgHeight: '', imgMarginLeft: '',
                 mainWidth: '90vw', mainHeight: '90vh', mainMinHeight: '0px', mainMinWidth: '0px', mainJustify: 'center', mainAlign: 'center', mainDirection: 'column-reverse',
                 leftMinWidth: '0px', leftWidth: '60%', leftAlignSelf: 'center', leftJustify: 'flex-start', leftAlign: 'flex-start',
                 text1Size: '3vh', text1LineHeight: '3.6vh',
                 text2Size: '2vh', text2LineHeight: '2.5vh', text2Width: '100%', text2Align: 'center',
-                formWidth: '100%', formAlignSelf: '',
-                inputTextSize: '10px', inputHeight: '30px', inputPaddingLeft: '15px'}
+                formWidth: '100%', formHeight: '30px', formAlignSelf: '',
+                inputTextSize: '10px', inputPaddingLeft: '15px'
+            }
     } else {
         cssProps = {bconnectMarginLeft: '55px', bconnectSize: '60px',
                 locIconSize: '48px', locIconMargin: '-27px', locIconMarginBottom: '-15px',
-                imgWidth: '', imgHeight: '100%',
+                imgWidth: '', imgHeight: '100%', imgMarginLeft: '-7.5%',
                 mainWidth: '85vw', mainHeight: '70vh', mainMinHeight: '0px', mainMinWidth: '0x', mainJustify: 'center', mainAlign: 'stretch', mainDirection: 'row',
                 leftMinWidth: '460px', leftWidth: '30%', leftAlignSelf: 'flex-start', leftJustify: 'center', leftAlign: 'flex-start',
                 text1Size: '80px', text1LineHeight: '80px',
-                text2Size: '20px', text2LineHeight: '24px', text2Width: '80%', text2Align: 'flex-start',
+                text2Size: '20px', text2LineHeight: '24px', text2Width: '90%', text2Align: 'flex-start',
                 formWidth: '305px', formHeight: '35px', formAlignSelf: 'flex-start',
-                inputTextSize: '14px', inputPaddingLeft: '33px'}
+                inputTextSize: '14px', inputPaddingLeft: '33px',
+            }
     }
 
     const classes = useStyles(cssProps);
@@ -44,6 +47,7 @@ function Home(props){
             // axios.post("https://protected-refuge-33249.herokuapp.com/CHANGE-THIS", {email})
             changeEmail("Thank you! We will notify you when BConnect launches!")
             changeSubmitStatus(true)
+            changeArrowDisplay("none")
         }
     }
 
@@ -70,6 +74,7 @@ function Home(props){
                             <input value={email} placeholder="Enter your UCLA email" 
                             type='text' disabled class={classes.input}/>
                         }
+                        <ArrowForwardRoundedIcon style={{display: arrowDisplay}} onClick={submit} className={classes.arrowIcon}/>
                     </form>
                 </div>
                 <img class={classes.img} src={"/landing_graphic.png"} />
@@ -133,7 +138,7 @@ const useStyles = makeStyles((theme) => ({
     }),
     img: props => ({
         width: props.imgWidth,
-        //alignSelf: 'center',
+        marginLeft: props.imgMarginLeft,
         height: props.imgHeight,
         zIndex: '0'
     }),
@@ -163,7 +168,10 @@ const useStyles = makeStyles((theme) => ({
     form: props => ({
         width: props.formWidth,
         height: props.formHeight,
-        alignSelf: props.formAlignSelf
+        alignSelf: props.formAlignSelf,
+        display: 'flex',
+        flexDirection: 'row',
+        alignItems: 'flex-end'
     }),
     input: props => ({
         width: '100%',
@@ -177,10 +185,17 @@ const useStyles = makeStyles((theme) => ({
         fontWeight: '200',
         marginTop: '-10px',
         outline: 'none',
+        marginRight: '-10%',
         '&::placeholder': {
             color: '#bfccd9'
         },
     }),
+    arrowIcon: {
+        color: '#F9D149',
+        borderRadius: '2px',
+        border: '3px',
+        height: '100%'
+        },
     fancy: {
         color: '#f9d149',
         "&:hover": {
