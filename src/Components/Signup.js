@@ -48,26 +48,27 @@ function Signup(props){
               <Typography class={classes.bconnect}> <span style={{color: '#9fc9eb'}}>B</span>
                       <span style={{color: '#f9d149'}}>C <LocationOnIcon className={classes.locIcon} /> nnect</span></Typography>
               <Typography className={classes.bigtext} component="h1" variant="h4"> Sign <span className={classes.up}>Up</span> </Typography>
-              <form onSubmit={handleLogin} noValidate>
-                <div>
-                  <input className={classes.input} type="text" onChange={(e)=>{setFN(e.target.value)}}
-                    name="fname" id="fname" value={fName} autoComplete="off" 
+              <form onSubmit={handleLogin} className={classes.inputs} autocomplete="off">
+                <div className={classes.names}>
+                  <input style={{width: '186px'}} className={classes.input} type="text" onChange={(e)=>{setFN(e.target.value)}}
+                    name="fname" id="fname" placeholder="First Name *" value={fName}   autocomplete="off"
                     />
-                  <input className={classes.input} onChange={(e)=>{setLN(e.target.value)}}
-                    name="password" type="text" label="Last Name"  id="lname" value={lName} autoComplete="off"
+                  <input style={{width: '186px'}} className={classes.input} onChange={(e)=>{setLN(e.target.value)}}
+                    name="password" type="text" placeholder="Last Name *"  id="lname" value={lName} autocomplete="off"
                     />
                 </div>
-                <input autoComplete="off" onChange={(e)=>{setUsername(e.target.value)}} name="username" value={username} variant="outlined" 
-                  margin="normal" className={classes.input} id="text" autoFocus
+                <input  onChange={(e)=>{setUsername(e.target.value)}} name="username" value={username}  
+                  placeholder="Email *" className={classes.input} id="text" autocomplete="off"
                   />
-                <input className={classes.input} onChange={(e)=>{setPassword(e.target.value)}}
-                  name="password" type="password" id="password" value={password} autoComplete="off"
+                <input className={classes.input} onChange={(e)=>{setPassword(e.target.value)}} autocomplete="off"
+                  name="password" type="password" placeholder="Password *" id="password" value={password}
                   />
                 {passwordError === true ?  <Alert severity="error">Your passwords must match!</Alert> : null}
-                {props.error ?  <Alert severity="error">{props.error}</Alert> : null}
+                {props.error ?  <span style={{color: 'white'}}>{props.error}</span> : null}
                 <div style={{display: 'flex', justifyContent: 'center'}}><button type="submit" className={classes.submit}> Sign Up </button></div>
+
                 <Link className={classes.link}
-                     onClick={()=>{history.push("/login")}} variant="body2">Already have an account? Signin.</Link>
+                     onClick={()=>{history.push("/login")}}>Already have an account? Sign in.</Link>
                 </form>
               </div>
         </div>
@@ -100,13 +101,24 @@ const useStyles = makeStyles(theme => ({
       fontSize: '20px',
       marginTop: '100px',
       fontWeight: '600',
-      opacity: '1'
     },
     locIcon: {
       height: '20px',
       width: '20px',
-      margin: '-9px',
+      margin: '-8px',
       color: '#9fc9eb'
+    },
+    inputs: {
+      display: 'flex',
+      flexDirection: 'column',
+      justifyContent: 'center',
+      alignItems: 'center'
+    },
+    names: {
+      display: 'flex',
+      flexDirection: 'row',
+      justifyContent: 'center',
+      alignItems: 'center'
     },
     main: {
       backgroundColor: '#9fc9eb',
@@ -123,9 +135,8 @@ const useStyles = makeStyles(theme => ({
       lineHeight: '40px',
       color: 'white',
       textShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)',
-      marginBottom: '50px',
-      marginTop: '10px',
-      opacity: '1'
+      marginBottom: '65px',
+      marginTop: '25px',
     },
     up: {
       color: '#f9d149',
@@ -138,33 +149,52 @@ const useStyles = makeStyles(theme => ({
       alignItems: 'center',
       zIndex: '1',
       position: 'absolute',
-      backgroundColor: '#2d75b0',
+      backgroundColor: 'rgba(45, 117, 176, .95)',
       width: '506px',   
       height: '728px',
       boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)',
       borderRadius: '20px',
       right: '100px',
-      opacity: '.95'
     },
     input: {
-      width: '430px',
+      width: '400px',
       height: '60px',
       margin: '12px',
       border: '1px solid white',
       background: 'none',
       outline: 'none',
-      opacity: '1'
+      alignSelf: 'center',
+      paddingTop: '0',
+      color: 'white',
+      '&::placeholder': {
+        color: '#f9d149'
+    },
     },
     link: {
       color: '#F9D149',
       fontSize: '12px',
       fontWeight: '300',
       margin: 'auto',
-      opacity: '1'
     },
     submit: {
-      opacity: '1',
-      
+      width: '164px',
+      height: '50px',
+      color: 'white',
+      backgroundColor: '#9fc9eb',
+      borderRadius: '20px',
+      fontSize: '15px',
+      fontWeight: '400',
+      letterSpacing: '2px',
+      outline: 'none',
+      border: 'none',
+      boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)',
+      margin: '20px',
+      "&:hover": {
+        boxShadow: '2px 6px 6px rgba(0, 0, 0, 0.3)'
+      },
+      "&:focus": {
+        boxShadow: '0px 0px 0px rgba(0, 0, 0, 0.25)'
+      },
     }
 
     
