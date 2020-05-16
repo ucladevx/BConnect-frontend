@@ -27,13 +27,8 @@ function Signup(props){
 
     let handleLogin = (e) => {
         e.preventDefault();
-        if(password === mpassword){
-          changePError(false)
-          props.register(username, password, fName, lName)
-        } else {
-          changePError(true)
-        }
-        
+        props.register(username, password, fName, lName)
+      
         //not sure if this is doing anything
         if(props.authenticated){
           props.next();
@@ -63,7 +58,7 @@ function Signup(props){
                 <input className={classes.input} onChange={(e)=>{setPassword(e.target.value)}} autocomplete="off"
                   name="password" type="password" placeholder="Password *" id="password" value={password}
                   />
-                {passwordError === true ?  <Alert severity="error">Your passwords must match!</Alert> : null}
+                
                 {props.error ?  <span style={{color: 'white'}}>{props.error}</span> : null}
                 <div style={{display: 'flex', justifyContent: 'center'}}><button type="submit" className={classes.submit}> Sign Up </button></div>
 
@@ -76,6 +71,7 @@ function Signup(props){
 }
 
 export default Signup;
+// {passwordError === true ?  <Alert severity="error">Your passwords must match!</Alert> : null}
 
 
 const useStyles = makeStyles(theme => ({
@@ -85,8 +81,9 @@ const useStyles = makeStyles(theme => ({
     logoPic: {
       width: '88px',
       height: '123px',
-      left: '30px',
+      left: '25px',
       top: '25px',
+      position: 'absolute'
     }, 
     powell: {
       zIndex: '0',
@@ -124,6 +121,7 @@ const useStyles = makeStyles(theme => ({
       backgroundColor: '#9fc9eb',
       height: '100%',
       width: '100%',
+
       zIndez: '-1',
       position: 'absolute',
       fontFamily: 'Avenir',
@@ -143,6 +141,7 @@ const useStyles = makeStyles(theme => ({
       textShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)',
     },
     formBox: {
+      marginTop: '100px',
       display: 'flex',
       flexDirection: 'column',
       justifyContent: 'flex-start',
@@ -164,10 +163,12 @@ const useStyles = makeStyles(theme => ({
       background: 'none',
       outline: 'none',
       alignSelf: 'center',
-      paddingTop: '0',
+      fontSize: '19px',
       color: 'white',
       '&::placeholder': {
-        color: '#f9d149'
+        color: '#f9d149',
+        fontSize: '12px',
+        paddingLeft: '0px'
     },
     },
     link: {

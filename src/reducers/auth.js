@@ -87,6 +87,8 @@ export const register = (username, password, fname, lname) => async (dispatch) =
     try {
         if(username === "" || password === "" || fname === "" || lname === ""){
             throw new Error("Cannot leave inputs empty")
+        } else if (username.match(/.*@ucla.edu/g) == null){
+            throw new Error("Please enter a valid UCLA email address")
         }
         let response = await axios.post(`${baseUrl}/signup`, {username, password, fname, lname})
         //var response = {success: true, data: {user:{name:'not complete'}}}
