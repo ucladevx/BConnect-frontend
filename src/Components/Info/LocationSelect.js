@@ -19,7 +19,7 @@ const LocationSelect = compose(
 )((props) =>
   <React.Fragment>
     <div style={{height: '86px', width: '421px', position: 'absolute', top: '50%', left: '50%',
-        marginTop: `${props.useCurLoc===true ? '-97px' : '-43px'}`, marginLeft: '-210px', backgroundColor: 'rgb(45, 117, 176)', borderRadius: '10px',
+        marginTop: '-43px', marginLeft: '-210px', backgroundColor: 'rgb(45, 117, 176)', borderRadius: '10px',
         boxShadow: '6px 7px 31px -1px rgba(0,0,0,0.47)', padding: '5px', display: 'flex', justifyContent: 'space-around',
         alignItems: 'center'}}>
       <Typography style={{color: 'white', fontFamily: 'Avenir', fontType: 'normal', fontSize: '18px', fontWeight: '700'}}>

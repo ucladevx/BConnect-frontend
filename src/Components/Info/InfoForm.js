@@ -54,11 +54,11 @@ input: {
   background: 'rgba(255,255,255,.2)',
   outline: 'none',
   alignSelf: 'center',
-  fontSize: '19px',
+  fontSize: '20px',
   color: 'white',
   '&::placeholder': {
     color: '#f9d149',
-    fontSize: '12px',
+    fontSize: '14px',
     paddingLeft: '0px'
   },
 },

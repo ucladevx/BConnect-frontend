@@ -70,7 +70,7 @@ function Info(props) {
   };
 
   return (
-    <React.Fragment>
+    <React.Fragment >
       <div class={classes.back}></div>
       <div class={classes.picBehind}></div>
       <CssBaseline />
@@ -87,8 +87,8 @@ function Info(props) {
             {activeStep === steps.length ? (
               <div className={classes.final}>
                 <img src="/cute_bear.png" />
-                <h1 component="h1" variant="h4"> Congratulations! </h1>
-                <p> Your account has been successfully created! </p>
+                <h1 className={classes.congrats}> Congratulations! </h1>
+                <p className={classes.success}> Your account has been successfully created! </p>
               </div>
             ) : (
               <React.Fragment>
@@ -99,12 +99,14 @@ function Info(props) {
                       <BackArrow className={classes.arrowIcon} /> BACK
                     </button>
                   )}
-                  <button
-                    onClick={handleNext}
-                    className={classes.button}
-                  >
-                    {activeStep === steps.length - 1 ? 'Done' : <span>NEXT <ForwardArrow className={classes.arrowIcon} /></span>}
-                  </button>
+                  {activeStep === steps.length - 1 ?  
+                    <button onClick={handleNext} className={classes.button} 
+                      style={{backgroundColor: '#F9D149', height: '32px', width: '89px', 
+                      borderRadius: '14px', letterSpacing: '2px'}}>Done </button> 
+                  : <button onClick={handleNext} className={classes.button}>
+                      NEXT <ForwardArrow className={classes.arrowIcon} /> </button>
+                  }
+              
                 </div>
               </React.Fragment>
             )}
@@ -118,6 +120,22 @@ function Info(props) {
 export default Info;
 
 const useStyles = makeStyles(theme => ({
+  congrats: {
+    fontFamily: 'Avenir',
+    fontStyle: 'normal',
+    fontWeight: '800',
+    fontSize: '48px',
+    lineHeight: '40px',
+    color: '#F9D149',
+  },
+  success: {
+    fontFamily: 'Avenir',
+    fontStyle: 'normal',
+    fontWeight: 'normal',
+    fontSize: '14px',
+    lineHeight: '40px',
+    color: 'white',
+  },
   back: {
     zIndex : '-2',
     left: '0',
@@ -148,7 +166,8 @@ const useStyles = makeStyles(theme => ({
   picBehind: {
     zIndex: -2,
     left: 0,
-    top: 0,
+    top: '0',
+    // clip: 'rect(0px,400px,0,0)',
     position: 'absolute',
     width: '100%',
     height: '100%',
