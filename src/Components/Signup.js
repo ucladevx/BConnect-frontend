@@ -169,7 +169,7 @@ const useStyles = makeStyles(theme => ({
         color: '#f9d149',
         fontSize: '12px',
         paddingLeft: '0px'
-    },
+      },
     },
     link: {
       color: '#F9D149',
