@@ -171,6 +171,7 @@ const useStyles = makeStyles(theme => ({
     position: 'absolute',
     fontFamily: 'Avenir',
     width: '986px',
+    height: '683px',
     fontStyle: 'normal',
     backgroundColor: 'rgba(45, 117, 176, .9)',
     borderRadius: '20px',
@@ -200,7 +201,7 @@ const useStyles = makeStyles(theme => ({
     fontStyle: 'normal',
     letterSpacing: '1.5px',
     marginTop: theme.spacing(3),
-    marginLeft: theme.spacing(1),
+    marginLeft: theme.spacing(1)
     
   },
 }));
