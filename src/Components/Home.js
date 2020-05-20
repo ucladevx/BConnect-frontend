@@ -10,34 +10,7 @@ function Home(props){
     const [email, changeEmail] = useState("")
     const [submitted, changeSubmitStatus] = useState(false)
     const [arrowDisplay, changeArrowDisplay] = useState("")
-    const vw = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
-    const vh = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
-
-    let cssProps;
-
-    if(vw > 0 && vw < 450 && vh > 0 && vh < 850){
-        cssProps = {bconnectMarginLeft: '3vh', bconnectSize: '3vh',
-                locIconSize: '2.4vh', locIconMargin: '-1.35vh', locIconMarginBottom: '-0.75vh',
-                imgWidth: '80%', imgHeight: '', imgMarginLeft: '',
-                mainWidth: '90vw', mainHeight: '90vh', mainMinHeight: '0px', mainMinWidth: '0px', mainJustify: 'center', mainAlign: 'center', mainDirection: 'column-reverse',
-                leftMinWidth: '0px', leftWidth: '60%', leftAlignSelf: 'center', leftJustify: 'flex-start', leftAlign: 'flex-start',
-                text1Size: '3vh', text1LineHeight: '3.6vh',
-                text2Size: '2vh', text2LineHeight: '2.5vh', text2Width: '100%', text2Align: 'center',
-                formWidth: '100%', formHeight: '30px', formAlignSelf: '',
-                inputTextSize: '10px', inputPaddingLeft: '15px'
-            }
-    } else {
-        cssProps = {bconnectMarginLeft: '55px', bconnectSize: '60px',
-                locIconSize: '48px', locIconMargin: '-27px', locIconMarginBottom: '-15px',
-                imgWidth: '', imgHeight: '100%', imgMarginLeft: '-6.5%',
-                mainWidth: '85vw', mainHeight: '70vh', mainMinHeight: '0px', mainMinWidth: '0x', mainJustify: 'center', mainAlign: 'stretch', mainDirection: 'row',
-                leftMinWidth: '460px', leftWidth: '30%', leftAlignSelf: 'flex-start', leftJustify: 'center', leftAlign: 'flex-start',
-                text1Size: '80px', text1LineHeight: '80px',
-                text2Size: '20px', text2LineHeight: '24px', text2Width: '85%', text2Align: 'flex-start',
-                formWidth: '305px', formHeight: '35px', formAlignSelf: 'flex-start',
-                inputTextSize: '14px', inputPaddingLeft: '33px',
-            }
-    }
+    const cssProps = {breakpoint: 1170}
 
     const classes = useStyles(cssProps);
 
@@ -70,8 +43,9 @@ function Home(props){
                         <Typography class={classes.text1}>alumni near</Typography>
                         <Typography class={classes.text1}><span style={{color:'#9fc9eb'}}>you</span>.</Typography>
                     </div>
-                    <Typography class={classes.text2}>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi amet tincidunt sed non auctor laoreet. 
-                        Metus faucibus feugiat fermentum lectus aliquam. Quisque mi cursus in auctor nibh ornare sapien non quis. Pellentesque eu leo ullamcorper id dignissim euismod.
+                    <Typography class={classes.text2}>BConnect is a social platform that connects UCLA alumni after graduation, where you’ll be able to drop a pin on a map
+                        and find Bruins close to you! You’ll be able to build connections based on shared passions with our filter-by-interest system. 
+                        We hope to release the initial product by the end of 2020 - sign up <b>now</b> to be notified when we launch!
                     </Typography>
                     <form onSubmit={submit} class={classes.form}>
                         {submitted===false ? <input value={email} onChange={(e)=>{changeEmail(e.target.value)}} placeholder="Enter your UCLA email" 
@@ -101,8 +75,7 @@ const useStyles = makeStyles((theme) => ({
         width: '100vw',
         height: '100vh',
         fontFamily: 'Avenir',
-        fontStyle: 'normal',
-        minWidth: '800px'
+        fontStyle: 'normal'
     },
     top: {
         display: 'flex',
@@ -113,71 +86,107 @@ const useStyles = makeStyles((theme) => ({
     },
     bconnect: props => ({
         textShadow: '3px 3px 3px rgba(0, 0, 0, 0.25)',
-        marginLeft: props.bconnectMarginLeft,
-        fontSize: props.bconnectSize,
+        marginLeft: '55px',
+        fontSize: '60px',
+        [theme.breakpoints.down(props.breakpoint)]: {
+            marginLeft: '3vh',
+            fontSize: '3vh'
+        },
         fontWeight: '600'
     }),
     locIcon: props => ({
+        textShadow: '3px 3px 3px rgba(0, 0, 0, 0.25)',
         color: '#9fc9eb', 
-        fontSize: props.locIconSize,
-        margin: props.locIconMargin, 
-        marginBottom: props.locIconMarginBottom
+        fontSize: '48px',
+        margin: '-27px', 
+        marginBottom: '-15px',
+        [theme.breakpoints.down(props.breakpoint)]: {
+            fontSize: '2.4vh',
+            margin: '-1.35vh', 
+            marginBottom: '-0.75vh'
+        }
     }),
     main: props => ({
-        width: props.mainWidth,
-        height: props.mainHeight,
-        minHeight: props.mainMinHeight,
-        minWidth: props.mainMinWidth,
         margin: 'auto',
         display: 'flex',
-        flexDirection: props.mainDirection,
-        justifyContent: props.mainJustify,
-        alignItems: props.mainAlign,
+        width: '85vw',
+        height: '70vh',
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'stretch',
+        [theme.breakpoints.down(props.breakpoint)]: {
+            width: '90vw',
+            height: '90vh',
+            flexDirection: 'column-reverse',
+            alignItems: 'center',
+        }
     }),
     text1: props => ({
         fontWeight: '800',
-        fontSize: props.text1Size,
-        lineHeight: props.text1LineHeight,
+        fontSize: '80px',
+        lineHeight: '80px',
         margin: '0',
         alignSelf: 'flex-start',
-        marginTop: '0'
+        marginTop: '0',
+        [theme.breakpoints.down(props.breakpoint)]: {
+            fontSize: '3vh',
+            lineHeight: '3.6vh'
+        }
     }),
     img: props => ({
-        width: props.imgWidth,
-        marginLeft: props.imgMarginLeft,
-        height: props.imgHeight,
-        zIndex: '0'
+        zIndex: '0',
+        [theme.breakpoints.up(props.breakpoint)]: {
+            marginLeft: '-6.5%',
+            height: '100%',
+        },
+        [theme.breakpoints.down(props.breakpoint)]: {
+            width: '80%',
+        }
     }),
     left: props => ({
         display:'flex',
         height: '100%',
         flexDirection:'column',
-        justifyContent: props.leftJustify,
-        minWidth: props.leftMinWidth,
-        alignItems: props.leftAlign, 
+        justifyContent: 'center',
+        minWidth: '460px',
+        alignItems: 'flex-start', 
         zIndex: '1',
-        width: props.leftWidth,
-        alignSelf: props.leftAlignSelf
-        //marginRight: '-20px',
+        width: '30%',
+        alignSelf: 'flex-start',
+        [theme.breakpoints.down(props.breakpoint)]: {
+            justifyContent: 'flex-start',
+            minWidth: '0px',
+            width: '60%',
+            alignSelf: 'center'
+        }
     }),
     text2: props => ({
         fontWeight: 'normal',
-        fontSize: props.text2Size,
-        lineHeight: props.text2LineHeight,
-        alignSelf: props.text2Align,
-        width: props.text2Width,
+        fontSize: '20px',
+        lineHeight: '24px',
+        alignSelf: 'flex-start',
+        width: '85%',
         "&:focus-within": {
             color: '#f9d149',
             textShadow: '3px 3px 3px rgba(0, 0, 0, 0.5)',
         },
+        [theme.breakpoints.down(props.breakpoint)]: {
+            fontSize: '2vh',
+            lineHeight: '2.4vh',
+            alignSelf: 'center',
+            width: '100%'
+        }
     }),
     form: props => ({
-        width: props.formWidth,
-        height: props.formHeight,
-        alignSelf: props.formAlignSelf,
+        width: '305px',
+        height: '35px',
         display: 'flex',
         flexDirection: 'row',
-        alignItems: 'flex-end'
+        alignItems: 'flex-end',
+        [theme.breakpoints.down(props.breakpoint)]: {
+            width: '100%',
+            height: '30px',
+        }
     }),
     input: props => ({
         width: '100%',
@@ -187,7 +196,7 @@ const useStyles = makeStyles((theme) => ({
         backgroundColor: 'rgba(159, 201, 235, 0.37)',
         paddingLeft: '10px',
         color: 'white',
-        fontSize: props.inputTextSize,
+        fontSize: '14px',
         fontWeight: '200',
         marginTop: '-10px',
         outline: 'none',
@@ -195,6 +204,9 @@ const useStyles = makeStyles((theme) => ({
         '&::placeholder': {
             color: '#bfccd9'
         },
+        [theme.breakpoints.down(props.breakpoint)]: {
+            fontSize: '10px'
+        }
     }),
     arrowIcon: {
         color: '#F9D149',
