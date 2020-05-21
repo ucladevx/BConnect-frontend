@@ -15,22 +15,22 @@ function InfoForm(props) {
       <Grid container spacing={3}>
         <Grid item xs={12} sm={6}>
           <input style={{width: '362px'}} type="text" value={props.degree} onChange={(e)=>{props.setDegree(e.target.value)}} 
-            name="degree" placeholder="Age *" className={classes.input} />
+            name="degree" placeholder="  Age*" className={classes.input} />
         </Grid>
         <Grid item xs={12} sm={6}>
           <input style={{width: '362px'}} type="text" value={props.year} onChange={(e)=>{props.setYear(e.target.value)}} 
-            name="year" placeholder="Gender *" className={classes.input} />
+            name="year" placeholder="  Gender*" className={classes.input} />
         </Grid>
         <Grid item xs={12} sm={6}>
           <input style={{width: '362px'}} type="text" value={props.clubs} onChange={(e)=>{props.setClubs(e.target.value)}} 
-             name="clubs" placeholder="Graduation Year *" className={classes.input}  />
+             name="clubs" placeholder="  Graduation Year*" className={classes.input}  />
         </Grid>
         <Grid item xs={12} sm={6}>
           <input style={{width: '362px'}} type="text" value={props.bio} onChange={(e)=>{props.setBio(e.target.value)}}  
-            name="bio" multiline rowsMax="5" placeholder="Major/Minor *" className={classes.input}  />
+            name="bio" multiline rowsMax="5" placeholder="  Major/Minor*" className={classes.input}  />
         </Grid>
         <Grid item xs={12}>
-          <input type="text" className={classes.input} name="job" placeholder="Current Job *"  />
+          <input type="text" className={classes.input} name="job" placeholder="  Current Job*"  />
         </Grid>
       </Grid>
     </div>
@@ -56,6 +56,8 @@ input: {
   alignSelf: 'center',
   fontSize: '20px',
   color: 'white',
+  paddingLeft: '10px',
+  paddingRight: '-10px',
   '&::placeholder': {
     color: '#f9d149',
     fontSize: '14px',
