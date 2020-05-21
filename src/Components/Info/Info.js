@@ -89,21 +89,25 @@ function Info(props) {
                 <img src="/cute_bear.png" />
                 <h1 className={classes.congrats}> Congratulations! </h1>
                 <p className={classes.success}> Your account has been successfully created! </p>
+                <p className={classes.success}> If you're not redirected in a few seconds, please 
+                  click <span style={{textDecoration: "underline", cursor: "pointer"}} 
+                    onClick={()=>{history.push("/connect")}}>here</span> </p>
               </div>
             ) : (
-              <React.Fragment>
+              <React.Fragment >
                 {getStepContent(activeStep, formFuncs, infos, loc, interestInfo)}
                 <div className={classes.buttons}>
-                  {activeStep !== 0 && (
-                    <button onClick={handleBack} className={classes.button}>
+                  {activeStep !== 0 ? (
+                    <button style={{float: 'left'}} onClick={handleBack} className={classes.button}>
                       <BackArrow className={classes.arrowIcon} /> BACK
                     </button>
-                  )}
+                  ) : <div></div>}
                   {activeStep === steps.length - 1 ?  
                     <button onClick={handleNext} className={classes.button} 
-                      style={{backgroundColor: '#F9D149', height: '32px', width: '89px', 
-                      borderRadius: '14px', letterSpacing: '2px'}}>Done </button> 
-                  : <button onClick={handleNext} className={classes.button}>
+                      style={{backgroundColor: '#F9D149', height: '33px', width: '83px', 
+                      borderRadius: '4px', letterSpacing: '2px', padding: '5px',
+                      boxShadow: '0px 3px 12px 1px rgba(0,0,0,0.4)'}}>DONE </button> 
+                  : <button onClick={handleNext} className={classes.button} >
                       NEXT <ForwardArrow className={classes.arrowIcon} /> </button>
                   }
               
@@ -133,7 +137,6 @@ const useStyles = makeStyles(theme => ({
     fontStyle: 'normal',
     fontWeight: 'normal',
     fontSize: '14px',
-    lineHeight: '40px',
     color: 'white',
   },
   back: {
@@ -208,12 +211,17 @@ const useStyles = makeStyles(theme => ({
   },
   buttons: {
     display: 'flex',
-    justifyContent: 'flex-end',
+    justifyContent: 'space-between',
+    width: '98%',
+    position: 'absolute',
+    right: '12px',
+    bottom: '12px'
   },
   button: {
     border: 'none',
     outline: 'none',
     color: 'white',
+    fontWeight: '600',
     background: 'none',
     fontSize: '16px',
     fontFamily: 'Avenir',
