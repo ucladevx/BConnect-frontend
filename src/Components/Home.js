@@ -87,7 +87,7 @@ const useStyles = makeStyles((theme) => ({
     bconnect: props => ({
         textShadow: '3px 3px 3px rgba(0, 0, 0, 0.25)',
         marginLeft: '55px',
-        fontSize: '60px',
+        fontSize: '6.0vh',
         [theme.breakpoints.down(props.breakpoint)]: {
             marginLeft: '3vh',
             fontSize: '3vh'
@@ -97,9 +97,9 @@ const useStyles = makeStyles((theme) => ({
     locIcon: props => ({
         textShadow: '3px 3px 3px rgba(0, 0, 0, 0.25)',
         color: '#9fc9eb', 
-        fontSize: '48px',
-        margin: '-27px', 
-        marginBottom: '-15px',
+        fontSize: '4.8vh',
+        margin: '-2.7vh', 
+        marginBottom: '-1.5vh',
         [theme.breakpoints.down(props.breakpoint)]: {
             fontSize: '2.4vh',
             margin: '-1.35vh', 
@@ -119,12 +119,13 @@ const useStyles = makeStyles((theme) => ({
             height: '90vh',
             flexDirection: 'column-reverse',
             alignItems: 'center',
+            maxWidth: '780px'
         }
     }),
     text1: props => ({
         fontWeight: '800',
-        fontSize: '80px',
-        lineHeight: '80px',
+        fontSize: '8.0vh',
+        lineHeight: '8.0vh',
         margin: '0',
         alignSelf: 'flex-start',
         marginTop: '0',
@@ -141,6 +142,8 @@ const useStyles = makeStyles((theme) => ({
         },
         [theme.breakpoints.down(props.breakpoint)]: {
             width: '80%',
+            maxHeight: '50vh',
+            maxWidth: '60vh'
         }
     }),
     left: props => ({
@@ -162,8 +165,8 @@ const useStyles = makeStyles((theme) => ({
     }),
     text2: props => ({
         fontWeight: 'normal',
-        fontSize: '20px',
-        lineHeight: '24px',
+        fontSize: '2.0vh',
+        lineHeight: '2.4vh',
         alignSelf: 'flex-start',
         width: '85%',
         "&:focus-within": {
