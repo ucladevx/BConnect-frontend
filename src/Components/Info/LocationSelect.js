@@ -11,15 +11,17 @@ const LocationSelect = compose(
   withProps({
     googleMapURL: `https://maps.googleapis.com/maps/api/js?key=${KEY}&v=3.exp&libraries=geometry,drawing,places`,
     loadingElement: <div style={{ height: `100%` }} />,
-    containerElement: <div style={{ height: `500px`}} />,
+    containerElement: <div style={{ height: `390px`, width: '815px', margin: '80px auto auto auto'}} />,
     mapElement: <div style={{ height: `100%`}} />,
   }),
   withScriptjs,
   withGoogleMap
 )((props) =>
-  <React.Fragment>
+  <div>
+    <h1 style={{fontFamily: 'Avenir', fontType: 'normal', fontSize: '40px', fontWeight: '800', 
+        color: 'white', position: 'absolute', top: '106px', width: '815px', marginBottom: '20px'}}>Where in the <span style={{color: '#F9D149'}}>world</span> are you now?</h1>
     <div style={{height: '86px', width: '421px', position: 'absolute', top: '50%', left: '50%',
-        marginTop: '-43px', marginLeft: '-210px', backgroundColor: 'rgb(45, 117, 176)', borderRadius: '10px',
+        marginTop: '0px', marginLeft: '-210px', backgroundColor: 'rgb(45, 117, 176)', borderRadius: '10px',
         boxShadow: '6px 7px 31px -1px rgba(0,0,0,0.47)', padding: '5px', display: 'flex', justifyContent: 'space-around',
         alignItems: 'center'}}>
       <Typography style={{color: 'white', fontFamily: 'Avenir', fontType: 'normal', fontSize: '18px', fontWeight: '700'}}>
@@ -41,7 +43,7 @@ const LocationSelect = compose(
         </GoogleMap>
       </React.Fragment>
       }
-  </React.Fragment>
+  </div>
 
 )
 
