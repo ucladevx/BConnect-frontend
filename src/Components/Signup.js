@@ -27,7 +27,13 @@ function Signup(props){
 
     let handleLogin = (e) => {
         e.preventDefault();
-        props.register(username, password, fName, lName)
+        if(mpassword === password){
+          changePError(false)
+          props.register(username, password, fName, lName)
+        } else {
+          changePError(true)
+        }
+        
       
         //not sure if this is doing anything
         if(props.authenticated){
@@ -43,23 +49,27 @@ function Signup(props){
               <Typography class={classes.bconnect}> <span style={{color: '#9fc9eb'}}>B</span>
                       <span style={{color: '#f9d149'}}>C <LocationOnIcon className={classes.locIcon} /> nnect</span></Typography>
               <Typography className={classes.bigtext} component="h1" variant="h4"> Sign <span className={classes.up}>Up</span> </Typography>
-              <form onSubmit={handleLogin} className={classes.inputs} autocomplete="off">
+              <form onSubmit={handleLogin} className={classes.inputs} autoComplete="off">
                 <div className={classes.names}>
-                  <input style={{width: '186px'}} className={classes.input} type="text" onChange={(e)=>{setFN(e.target.value)}}
-                    name="fname" id="fname" placeholder="First Name *" value={fName}   autocomplete="off"
+                  <input style={{width: '186px', marginRight: '2px'}} className={classes.input} type="text" onChange={(e)=>{setFN(e.target.value)}}
+                    name="fname" id="fname" placeholder="  First Name*" value={fName}   autoComplete="off"
                     />
                   <input style={{width: '186px'}} className={classes.input} onChange={(e)=>{setLN(e.target.value)}}
-                    name="password" type="text" placeholder="Last Name *"  id="lname" value={lName} autocomplete="off"
+                    name="password" type="text" placeholder="  Last Name*"  id="lname" value={lName} autoComplete="off"
                     />
                 </div>
                 <input  onChange={(e)=>{setUsername(e.target.value)}} name="username" value={username}  
-                  placeholder="Email *" className={classes.input} id="text" autocomplete="off"
+                  placeholder="  Email*" className={classes.input} id="text" autoComplete="off"
                   />
-                <input className={classes.input} onChange={(e)=>{setPassword(e.target.value)}} autocomplete="off"
-                  name="password" type="password" placeholder="Password *" id="password" value={password}
+                <input className={classes.input} onChange={(e)=>{setPassword(e.target.value)}} autoComplete="off"
+                  name="password" type="password" placeholder="  Password*" id="password" value={password}
                   />
+                 <input className={classes.input} onChange={(e)=>{setMPassword(e.target.value)}} autoComplete="off"
+                  name="mpassword" type="password" placeholder="  Confirm Password*" id="mpassword" value={mpassword}
+                />
                 
-                {props.error ?  <span style={{color: 'white'}}>{props.error}</span> : null}
+                {props.error ?  <span style={{color: 'white'}}>{props.error}</span> : 
+                  (passwordError===true ?  <span style={{color: 'white'}}>Your passwords must match</span> : null)}
                 <div style={{display: 'flex', justifyContent: 'center'}}><button type="submit" className={classes.submit}> Sign Up </button></div>
 
                 <Link className={classes.link}
@@ -96,7 +106,7 @@ const useStyles = makeStyles(theme => ({
     }, 
     bconnect: {
       fontSize: '20px',
-      marginTop: '100px',
+      marginTop: '70px',
       fontWeight: '600',
     },
     locIcon: {
@@ -133,8 +143,8 @@ const useStyles = makeStyles(theme => ({
       lineHeight: '40px',
       color: 'white',
       textShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)',
-      marginBottom: '65px',
-      marginTop: '25px',
+      marginBottom: '50px',
+      marginTop: '20px',
     },
     up: {
       color: '#f9d149',
@@ -165,6 +175,8 @@ const useStyles = makeStyles(theme => ({
       alignSelf: 'center',
       fontSize: '19px',
       color: 'white',
+      paddingLeft: '10px',
+      paddingRight: '-10px',
       '&::placeholder': {
         color: '#f9d149',
         fontSize: '12px',
