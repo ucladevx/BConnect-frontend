@@ -197,6 +197,8 @@ const useStyles = makeStyles(theme => ({
     fontStyle: 'normal',
     backgroundColor: 'rgba(45, 117, 176, .9)',
     borderRadius: '20px',
+    left: 'calc(50% - 494px)',
+    top: '60px',
     marginTop: theme.spacing(3),
     marginBottom: theme.spacing(3),
     padding: theme.spacing(2),
