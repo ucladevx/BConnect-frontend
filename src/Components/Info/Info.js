@@ -31,6 +31,7 @@ function Info(props) {
   const [useCurLoc, set] = useState(true);  
   const [locObj, setLoc] = useState({lat: "", lng:""});  
   const [hasClicked, setClick] = useState(false)
+  const [hasSubmitted, changeSubmit] = useState(false)
 
   let formFuncs = {setDegree, setYear, setGender, setCurJob, setAge, set}
   let interestInfo = {interests, setInterests}
@@ -46,7 +47,8 @@ function Info(props) {
         history.push("/connect")
       }, 4000)
     }
-    if(activeStep === steps.length){
+    if(activeStep === steps.length && hasSubmitted === false){
+      changeSubmit(true)
       token = props.token
       props.handleInfo({degree, year, interests, age, currentjob, gender, locObj}, token)
     }
