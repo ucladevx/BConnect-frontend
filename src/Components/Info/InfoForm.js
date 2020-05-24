@@ -14,23 +14,24 @@ function InfoForm(props) {
       </Typography>
       <Grid container spacing={3}>
         <Grid item xs={12} sm={6}>
-          <input style={{width: '362px'}} type="text" value={props.degree} onChange={(e)=>{props.setDegree(e.target.value)}} 
-            name="degree" placeholder="  Age*" className={classes.input} />
+          <input style={{width: '362px'}} type="text" value={props.age} onChange={(e)=>{props.setAge(e.target.value)}} 
+            name="age" placeholder="  Age*" className={classes.input} />
+        </Grid>
+        <Grid item xs={12} sm={6}>
+          <input style={{width: '362px'}} type="text" value={props.gender} onChange={(e)=>{props.setGender(e.target.value)}} 
+            name="gender" placeholder="  Gender*" className={classes.input} />
         </Grid>
         <Grid item xs={12} sm={6}>
           <input style={{width: '362px'}} type="text" value={props.year} onChange={(e)=>{props.setYear(e.target.value)}} 
-            name="year" placeholder="  Gender*" className={classes.input} />
+             name="gradyear" placeholder="  Graduation Year*" className={classes.input}  />
         </Grid>
         <Grid item xs={12} sm={6}>
-          <input style={{width: '362px'}} type="text" value={props.clubs} onChange={(e)=>{props.setClubs(e.target.value)}} 
-             name="clubs" placeholder="  Graduation Year*" className={classes.input}  />
-        </Grid>
-        <Grid item xs={12} sm={6}>
-          <input style={{width: '362px'}} type="text" value={props.bio} onChange={(e)=>{props.setBio(e.target.value)}}  
-            name="bio" multiline rowsMax="5" placeholder="  Major/Minor*" className={classes.input}  />
+          <input style={{width: '362px'}} type="text" value={props.degree} onChange={(e)=>{props.setDegree(e.target.value)}}  
+            name="degree" placeholder="  Major/Minor*" className={classes.input}  />
         </Grid>
         <Grid item xs={12}>
-          <input type="text" className={classes.input} name="job" placeholder="  Current Job*"  />
+          <input type="text" className={classes.input} name="job" placeholder="  Current Job*" value={props.currentjob}
+            onChange={(e)=>{props.setCurJob(e.target.value)}}  />
         </Grid>
       </Grid>
     </div>

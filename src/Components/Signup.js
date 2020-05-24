@@ -13,8 +13,8 @@ function Signup(props){
     const [password, setPassword] = useState("");
     const [mpassword, setMPassword] = useState("");
     const [username, setUsername] = useState("");
-    const [fName, setFN] = useState("");
-    const [lName, setLN] = useState("");
+    const [firstname, setFN] = useState("");
+    const [lastname, setLN] = useState("");
     const [passwordError, changePError] = useState(false)
 
     useEffect(()=>{
@@ -29,7 +29,7 @@ function Signup(props){
         e.preventDefault();
         if(mpassword === password){
           changePError(false)
-          props.register(username, password, fName, lName)
+          props.register(username, password, firstname, lastname)
         } else {
           changePError(true)
         }
@@ -52,10 +52,10 @@ function Signup(props){
               <form onSubmit={handleLogin} className={classes.inputs} autoComplete="off">
                 <div className={classes.names}>
                   <input style={{width: '186px', marginRight: '2px'}} className={classes.input} type="text" onChange={(e)=>{setFN(e.target.value)}}
-                    name="fname" id="fname" placeholder="  First Name*" value={fName}   autoComplete="off"
+                    name="fname" id="fname" placeholder="  First Name*" value={firstname}   autoComplete="off"
                     />
                   <input style={{width: '186px'}} className={classes.input} onChange={(e)=>{setLN(e.target.value)}}
-                    name="password" type="text" placeholder="  Last Name*"  id="lname" value={lName} autoComplete="off"
+                    name="password" type="text" placeholder="  Last Name*"  id="lname" value={lastname} autoComplete="off"
                     />
                 </div>
                 <input  onChange={(e)=>{setUsername(e.target.value)}} name="username" value={username}  

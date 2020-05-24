@@ -25,15 +25,16 @@ function Info(props) {
   const [degree, setDegree] = useState("");
   const [year, setYear] = useState('');
   const [interests, setInterests] = useState([]);
-  const [clubs, setClubs] = useState("");
-  const [bio, setBio] = useState("");
+  const [gender, setGender] = useState("");
+  const [currentjob, setCurJob] = useState("");
+  const [age, setAge] = useState("");
   const [useCurLoc, set] = useState(true);  
   const [locObj, setLoc] = useState({lat: "", lng:""});  
   const [hasClicked, setClick] = useState(false)
 
-  let formFuncs = {setDegree, setYear, setClubs, setBio, set}
+  let formFuncs = {setDegree, setYear, setGender, setCurJob, setAge, set}
   let interestInfo = {interests, setInterests}
-  let infos = {degree, year, interests, clubs, bio, useCurLoc}
+  let infos = {degree, year, interests, currentjob, age, gender, useCurLoc}
   let loc = {locObj, setLoc, useCurLoc, hasClicked, setClick, set}
 
   let token = props.token
@@ -47,7 +48,7 @@ function Info(props) {
     }
     if(activeStep === steps.length){
       token = props.token
-      props.handleInfo({degree, year, interests, clubs, bio, locObj}, token)
+      props.handleInfo({degree, year, interests, age, currentjob, gender, locObj}, token)
     }
   })
 
