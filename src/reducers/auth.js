@@ -83,12 +83,14 @@ export const logout = () => async (dispatch) => {
 };
 
 
-export const register = (username, password, fname, lname) => async (dispatch) => {
+export const register = (username, password, firstname, lastname) => async (dispatch) => {
     try {
-        if(username === "" || password === "" || fname === "" || lname === ""){
+        if(username === "" || password === "" || firstname === "" || lastname === ""){
             throw new Error("Cannot leave inputs empty")
+        } else if (username.match(/.*@ucla.edu/g) == null && username.match(/.*@g.ucla.edu/g) == null){
+            throw new Error("Please enter a valid UCLA email address")
         }
-        let response = await axios.post(`${baseUrl}/signup`, {username, password, fname, lname})
+        let response = await axios.post(`${baseUrl}/signup`, {username, password, firstname, lastname})
         //var response = {success: true, data: {user:{name:'not complete'}}}
         if(response.status !== 200){
             throw new Error("Error in creating new account")
@@ -106,13 +108,13 @@ export const addInfo = (data, token) => async (dispatch) => {
         let degree = "degree" in data ? data.degree : ""
         let year = "year" in data ? data.year : ""
         let interests = "interests" in data ? data.interests : []
-        let clubs = "clubs" in data ? data.clubs : ""
-        let bio = "bio" in data ? data.bio : ""
+        let age = "age" in data ? data.age : ""
+        let currentjob = "currentjob" in data ? data.currentjob : ""
+        let gender = "gender" in data ? data.gender : ""
         let locObj = "locObj" in data ? data.locObj : {}
 
-        let response = await axios.post(`${CORSurl}${baseUrl}/auth/change`, {degree, year, interests, clubs, bio, locObj}, {
-            headers: {"x-access-token": token}
-        })
+        let response = await axios.post(`${CORSurl}${baseUrl}/auth/change`, 
+        {degree, year, interests, age, gender, currentjob, locObj}, {headers: {"x-access-token": token}})
         if(response.status !== 200){
             throw new Error("Could not update info")
         }

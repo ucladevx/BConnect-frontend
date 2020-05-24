@@ -1,25 +1,20 @@
 import React, {useState, useEffect} from 'react'
-import Button from '@material-ui/core/Button';
-import TextField from '@material-ui/core/TextField';
-import Avatar from '@material-ui/core/Avatar';
-import CssBaseline from '@material-ui/core/CssBaseline';
 import Link from '@material-ui/core/Link';
-import Paper from '@material-ui/core/Paper';
 import Box from '@material-ui/core/Box';
 import Grid from '@material-ui/core/Grid';
-import GroupAddIcon from '@material-ui/icons/GroupAdd';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import {useHistory} from 'react-router-dom'
 import Alert from '@material-ui/lab/Alert';
+import LocationOnIcon from '@material-ui/icons/LocationOn';
 
 function Signup(props){
     let history = useHistory();
     const [password, setPassword] = useState("");
     const [mpassword, setMPassword] = useState("");
     const [username, setUsername] = useState("");
-    const [fName, setFN] = useState("");
-    const [lName, setLN] = useState("");
+    const [firstname, setFN] = useState("");
+    const [lastname, setLN] = useState("");
     const [passwordError, changePError] = useState(false)
 
     useEffect(()=>{
@@ -32,13 +27,14 @@ function Signup(props){
 
     let handleLogin = (e) => {
         e.preventDefault();
-        if(password === mpassword){
+        if(mpassword === password){
           changePError(false)
-          props.register(username, password, fName, lName)
+          props.register(username, password, firstname, lastname)
         } else {
           changePError(true)
         }
         
+      
         //not sure if this is doing anything
         if(props.authenticated){
           props.next();
@@ -46,82 +42,173 @@ function Signup(props){
     }
 
     return (
-            <Grid container component="main" className={classes.root}>
-            <CssBaseline />
-            <Grid item xs={false} sm={5} md={8} className={classes.image} />
-            <Grid item xs={12} sm={6} md={4} component={Paper} elevation={6} square>
-              <div className={classes.paper}>
-                <img style={{width: '70px', height: '80px', marginTop: '-10px'}} src='logo.png'/>
-                <Typography component="h1" variant="h4"> Sign Up </Typography>
-                <form onSubmit={handleLogin} className={classes.form} noValidate>
-                  <div >
-                    <TextField style={{width: '49%', marginRight: '1%'}} variant="outlined" margin="normal" required  onChange={(e)=>{setFN(e.target.value)}}
-                      name="fname" label="First Name" id="fname" value={fName} autoComplete="off" 
+      <div className={classes.main}>
+            <img className={classes.powell} src='powell.png'/>
+            <img className={classes.logoPic} src='logo.png'/>
+            <div className={classes.formBox}>
+              <Typography class={classes.bconnect}> <span style={{color: '#9fc9eb'}}>B</span>
+                      <span style={{color: '#f9d149'}}>C <LocationOnIcon className={classes.locIcon} /> nnect</span></Typography>
+              <Typography className={classes.bigtext} component="h1" variant="h4"> Sign <span className={classes.up}>Up</span> </Typography>
+              <form onSubmit={handleLogin} className={classes.inputs} autoComplete="off">
+                <div className={classes.names}>
+                  <input style={{width: '186px', marginRight: '2px'}} className={classes.input} type="text" onChange={(e)=>{setFN(e.target.value)}}
+                    name="fname" id="fname" placeholder="  First Name*" value={firstname}   autoComplete="off"
                     />
-                    <TextField style={{width: '49%', marginLeft: '1%'}} variant="outlined" margin="normal" required onChange={(e)=>{setLN(e.target.value)}}
-                      name="password" label="Last Name"  id="lname" value={lName} autoComplete="off"
+                  <input style={{width: '186px'}} className={classes.input} onChange={(e)=>{setLN(e.target.value)}}
+                    name="password" type="text" placeholder="  Last Name*"  id="lname" value={lastname} autoComplete="off"
                     />
-                  </div>
-                  <TextField autoComplete="off" onChange={(e)=>{setUsername(e.target.value)}} name="username" value={username} variant="outlined" 
-                    margin="normal" required fullWidth id="email" label="Email" autoFocus
+                </div>
+                <input  onChange={(e)=>{setUsername(e.target.value)}} name="username" value={username}  
+                  placeholder="  Email*" className={classes.input} id="text" autoComplete="off"
                   />
-                  <TextField variant="outlined" margin="normal" required fullWidth onChange={(e)=>{setPassword(e.target.value)}}
-                    name="password" label="Password" type="password" id="password" value={password} autoComplete="off"
+                <input className={classes.input} onChange={(e)=>{setPassword(e.target.value)}} autoComplete="off"
+                  name="password" type="password" placeholder="  Password*" id="password" value={password}
                   />
-                   <TextField variant="outlined" margin="normal" required fullWidth onChange={(e)=>{setMPassword(e.target.value)}}
-                    name="mpassword" label="Match Password" type="password" id="mpassword" value={mpassword} autoComplete="off"
-                  />
-                  {passwordError === true ?  <Alert severity="error">Your passwords must match!</Alert> : null}
-                  {props.error ?  <Alert severity="error">{props.error}</Alert> : null}
-                  <Button type="submit" fullWidth variant="contained" style={{backgroundColor:'#2d75b0', color: 'white'}} className={classes.submit}>
-                    Sign Up
-                  </Button>
-                  <Grid container>
-                    <Grid item>
-                      <Link style={{color: '#2d75b0'}}
-                          onClick={()=>{history.push("/login")}} variant="body2">{"Already have an account? Login"}</Link>
-                    </Grid>
-                  </Grid>
-                  <Box mt={5}>
-                  </Box>
+                 <input className={classes.input} onChange={(e)=>{setMPassword(e.target.value)}} autoComplete="off"
+                  name="mpassword" type="password" placeholder="  Confirm Password*" id="mpassword" value={mpassword}
+                />
+                
+                {props.error ?  <span style={{color: 'white'}}>{props.error}</span> : 
+                  (passwordError===true ?  <span style={{color: 'white'}}>Your passwords must match</span> : null)}
+                <div style={{display: 'flex', justifyContent: 'center'}}><button type="submit" className={classes.submit}> Sign Up </button></div>
+
+                <Link className={classes.link}
+                     onClick={()=>{history.push("/login")}}>Already have an account? Sign in.</Link>
                 </form>
               </div>
-            </Grid>
-          </Grid>
+        </div>
     );
 }
 
 export default Signup;
+// {passwordError === true ?  <Alert severity="error">Your passwords must match!</Alert> : null}
 
 
 const useStyles = makeStyles(theme => ({
     root: {
       height: '100vh',
     },
-    image: {
-      backgroundImage: 'url(https://a.scpr.org/i/7d9bd45f92843d2662606be0fcae096a/77475-full.jpg)',
-      backgroundRepeat: 'no-repeat',
-      backgroundColor:
-        theme.palette.type === 'dark' ? theme.palette.grey[900] : theme.palette.grey[50],
-      backgroundSize: 'cover',
-      backgroundPosition: 'left',
+    logoPic: {
+      width: '88px',
+      height: '123px',
+      left: '25px',
+      top: '25px',
+      position: 'absolute'
+    }, 
+    powell: {
+      zIndex: '0',
+      left: '0',
+      top: '0',
+      width: '100%',
+      height: '100%',
+      position: 'absolute',
+      minWidth: '1000px'
+    }, 
+    bconnect: {
+      fontSize: '20px',
+      marginTop: '70px',
+      fontWeight: '600',
     },
-    paper: {
-      margin: theme.spacing(8, 4),
-      marginTop: theme.spacing(17),
+    locIcon: {
+      height: '20px',
+      width: '20px',
+      margin: '-8px',
+      color: '#9fc9eb'
+    },
+    inputs: {
       display: 'flex',
       flexDirection: 'column',
+      justifyContent: 'center',
+      alignItems: 'center'
+    },
+    names: {
+      display: 'flex',
+      flexDirection: 'row',
+      justifyContent: 'center',
+      alignItems: 'center'
+    },
+    main: {
+      backgroundColor: '#9fc9eb',
+      height: '100%',
+      width: '100%',
+
+      zIndez: '-1',
+      position: 'absolute',
+      fontFamily: 'Avenir',
+      fontStyle: 'normal',
+    },
+    bigtext: {
+      fontWeight: '800',
+      fontSize: '90px',
+      lineHeight: '40px',
+      color: 'white',
+      textShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)',
+      marginBottom: '50px',
+      marginTop: '20px',
+    },
+    up: {
+      color: '#f9d149',
+      textShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)',
+    },
+    formBox: {
+      marginTop: '100px',
+      display: 'flex',
+      flexDirection: 'column',
+      justifyContent: 'flex-start',
       alignItems: 'center',
+      zIndex: '1',
+      position: 'absolute',
+      backgroundColor: 'rgba(45, 117, 176, .95)',
+      width: '506px',   
+      height: '728px',
+      boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)',
+      borderRadius: '20px',
+      right: '100px',
     },
-    avatar: {
-      margin: theme.spacing(1),
-      backgroundColor: '#2d75b0',
+    input: {
+      width: '400px',
+      height: '60px',
+      margin: '12px',
+      border: '1px solid white',
+      background: 'none',
+      outline: 'none',
+      alignSelf: 'center',
+      fontSize: '19px',
+      color: 'white',
+      paddingLeft: '10px',
+      paddingRight: '-10px',
+      '&::placeholder': {
+        color: '#f9d149',
+        fontSize: '12px',
+        paddingLeft: '0px'
+      },
     },
-    form: {
-      width: '95%', // Fix IE 11 issue.
-      marginTop: theme.spacing(2),
+    link: {
+      color: '#F9D149',
+      fontSize: '12px',
+      fontWeight: '300',
+      margin: 'auto',
     },
     submit: {
-      margin: theme.spacing(3, 0, 2),
-    },
+      width: '164px',
+      height: '50px',
+      color: 'white',
+      backgroundColor: '#9fc9eb',
+      borderRadius: '20px',
+      fontSize: '15px',
+      fontWeight: '400',
+      letterSpacing: '2px',
+      outline: 'none',
+      border: 'none',
+      boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)',
+      margin: '20px',
+      "&:hover": {
+        boxShadow: '2px 6px 6px rgba(0, 0, 0, 0.3)'
+      },
+      "&:focus": {
+        boxShadow: '0px 0px 0px rgba(0, 0, 0, 0.25)'
+      },
+    }
+
+    
   }));

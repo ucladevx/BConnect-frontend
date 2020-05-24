@@ -1,31 +1,76 @@
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import Switch from '@material-ui/core/Switch';
-import TextField from '@material-ui/core/TextField';
 import React from 'react';
+import { makeStyles } from '@material-ui/core/styles';
 
 function InfoForm(props) {
+  const classes = useStyles();
+
   return (
-    <React.Fragment>
-      <Typography style={{marginTop: '10px', marginBottom: '20px'}} variant="h6" gutterBottom>
-        We just need a little information
+    <div className={classes.inputBox}>
+      <Typography className={classes.mainText}  component="h1" variant="h4" gutterBottom>
+        Let's start with the <span style={{color: '#f9d149'}}>basics</span>.
       </Typography>
       <Grid container spacing={3}>
         <Grid item xs={12} sm={6}>
-          <TextField value={props.degree} onChange={(e)=>{props.setDegree(e.target.value)}} variant="outlined" required name="degree" label="Major" fullWidth />
+          <input style={{width: '362px'}} type="text" value={props.age} onChange={(e)=>{props.setAge(e.target.value)}} 
+            name="age" placeholder="  Age*" className={classes.input} />
         </Grid>
         <Grid item xs={12} sm={6}>
-          <TextField value={props.year} onChange={(e)=>{props.setYear(e.target.value)}} variant="outlined" required name="year" label="Graduation Year" fullWidth />
+          <input style={{width: '362px'}} type="text" value={props.gender} onChange={(e)=>{props.setGender(e.target.value)}} 
+            name="gender" placeholder="  Gender*" className={classes.input} />
+        </Grid>
+        <Grid item xs={12} sm={6}>
+          <input style={{width: '362px'}} type="text" value={props.year} onChange={(e)=>{props.setYear(e.target.value)}} 
+             name="gradyear" placeholder="  Graduation Year*" className={classes.input}  />
+        </Grid>
+        <Grid item xs={12} sm={6}>
+          <input style={{width: '362px'}} type="text" value={props.degree} onChange={(e)=>{props.setDegree(e.target.value)}}  
+            name="degree" placeholder="  Major/Minor*" className={classes.input}  />
         </Grid>
         <Grid item xs={12}>
-          <TextField value={props.clubs} onChange={(e)=>{props.setClubs(e.target.value)}} variant="outlined" name="clubs" label="Clubs/Fraternities/Sororities" fullWidth />
-        </Grid>
-        <Grid item xs={12}>
-          <TextField value={props.bio} onChange={(e)=>{props.setBio(e.target.value)}} variant="outlined" name="bio" multiline rowsMax="5" label="Bio" fullWidth />
+          <input type="text" className={classes.input} name="job" placeholder="  Current Job*" value={props.currentjob}
+            onChange={(e)=>{props.setCurJob(e.target.value)}}  />
         </Grid>
       </Grid>
-    </React.Fragment>
+    </div>
   );
 }
+
+const useStyles = makeStyles(theme => ({
+mainText: {
+  color: 'white',
+  marginTop: '10px',
+  marginBottom: '20px',
+  fontWeight: '700',
+  fontSize: '40px',
+  lineHeight: '40px',
+},
+input: {
+  width: '767px',
+  height: '60px',
+  margin: '12px',
+  border: '1px solid white',
+  background: 'rgba(255,255,255,.2)',
+  outline: 'none',
+  alignSelf: 'center',
+  fontSize: '20px',
+  color: 'white',
+  paddingLeft: '10px',
+  paddingRight: '-10px',
+  '&::placeholder': {
+    color: '#f9d149',
+    fontSize: '14px',
+    paddingLeft: '0px'
+  },
+},
+inputBox: {
+  margin: 'auto',
+  width: '800px'
+}
+
+  
+}));
 
 export default InfoForm;
