@@ -48,9 +48,9 @@ function Home(props){
                         We hope to release the initial product by the end of 2020 - sign up <b>now</b> to be notified when we launch!
                     </Typography>
                     <form onSubmit={submit} class={classes.form}>
-                        {submitted===false ? <input value={email} onChange={(e)=>{changeEmail(e.target.value)}} placeholder="Enter your UCLA email" 
+                        {submitted===false ? <input value={email} onChange={(e)=>{changeEmail(e.target.value)}} placeholder="Enter your email" 
                             type='text' class={classes.input}/> :
-                            <input value={email} placeholder="Enter your UCLA email" 
+                            <input value={email} placeholder="Enter your email" 
                             type='text' disabled class={classes.input}/>
                         }
                         <ArrowForwardRoundedIcon style={{display: arrowDisplay}} onClick={submit} className={classes.arrowIcon}/>
