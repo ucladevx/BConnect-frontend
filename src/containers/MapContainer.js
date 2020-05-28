@@ -11,7 +11,7 @@ import Typography from '@material-ui/core/Typography';
 import Map from '../Components/Map';
 // import Navbar from '../Components/Navbar'
 // import Search from '../Components/Search'
-import Filter from '../Components/Filter'
+import Filter from '../Components/FilterBar'
 
 class LandingContainer extends Component {
   constructor(props){
@@ -32,6 +32,14 @@ class LandingContainer extends Component {
       //console.log(this.props.markers)
   }
 
+  componentDidUpdate(){
+    if(!this.props.authenticated){
+      setTimeout(()=>{
+        this.props.history.push("/")
+      }, 500)
+    }
+  }
+
   toggleSearch = () => {
     this.setState({showSearch: !this.state.showSearch})
   }
@@ -44,7 +52,7 @@ class LandingContainer extends Component {
   render() {
     return (
       <div>
-            <Filter markers={this.props.markers} />
+            <Filter markers={this.props.markers} logout={this.props.logout} />
             <Map  toggle={this.toggle} markers={this.props.markers} />
       </div>
     );
