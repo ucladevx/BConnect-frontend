@@ -29,7 +29,8 @@ const MapComponent = compose(
       defaultCenter={{ lat: 34.073, lng: -118.4496559 }}
     > 
       {props.markers ? props.markers.map((data, i)=>{
-      return <Marker onClick={()=>{props.toggle(data)}} key={i} position={{lng: data.lng, lat: data.lat}} />
+      return <Marker icon={{url: 'pin.png', scaledSize: { width: 40, height: 62}}} onClick={()=>{props.toggle(data)}} 
+        key={i}position={{lng: data.lng, lat: data.lat}} />
       }) : null} 
     </GoogleMap>
   </React.Fragment>
