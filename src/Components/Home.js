@@ -192,6 +192,7 @@ const useStyles = makeStyles((theme) => ({
         }
     }),
     input: props => ({
+        fontFamily: 'Avenir',
         width: '100%',
         height: '100%',
         border: 'none',

@@ -182,7 +182,8 @@ const useStyles = makeStyles(theme => ({
     backgroundSize: 'cover'
   },
   layout: {
-    width: 'auto',
+    width: '100vw',
+    height: '100vh',
     position: 'relative',
     marginLeft: theme.spacing(2),
     marginRight: theme.spacing(2),
@@ -201,15 +202,17 @@ const useStyles = makeStyles(theme => ({
     backgroundColor: 'rgba(45, 117, 176, .9)',
     borderRadius: '20px',
     left: 'calc(50% - 494px)',
-    top: '60px',
-    marginTop: theme.spacing(3),
+    //top: '60px',
+    top: '50%',
+    transform: 'translateY(-50%)',
+    /*marginTop: theme.spacing(3),
     marginBottom: theme.spacing(3),
     padding: theme.spacing(2),
     [theme.breakpoints.up(600 + theme.spacing(3) * 2)]: {
       marginTop: theme.spacing(6),
       marginBottom: theme.spacing(6),
       padding: theme.spacing(3),
-    },
+    }*/
   },
   stepper: {
     padding: theme.spacing(3, 0, 5),
@@ -217,10 +220,11 @@ const useStyles = makeStyles(theme => ({
   buttons: {
     display: 'flex',
     justifyContent: 'space-between',
-    width: '98%',
+    alignItems: 'start',
+    width: '90%',
     position: 'absolute',
-    right: '12px',
-    bottom: '12px'
+    right: '5%',
+    bottom: '30px'
   },
   button: {
     border: 'none',
@@ -232,7 +236,7 @@ const useStyles = makeStyles(theme => ({
     fontFamily: 'Avenir',
     fontStyle: 'normal',
     letterSpacing: '1.5px',
-    marginTop: theme.spacing(3),
+    //marginTop: theme.spacing(3),
     marginLeft: theme.spacing(1)
     
   },
