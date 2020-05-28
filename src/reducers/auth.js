@@ -112,9 +112,12 @@ export const addInfo = (data, token) => async (dispatch) => {
         let currentjob = "currentjob" in data ? data.currentjob : ""
         let gender = "gender" in data ? data.gender : ""
         let locObj = "locObj" in data ? data.locObj : {}
-
+        let lat = "lat" in locObj ? locObj.lat : {}
+        let lon = "lng" in locObj ? locObj.lng : {}
+        console.log(lat, lon)
+        console.log(locObj)
         let response = await axios.post(`${CORSurl}${baseUrl}/auth/change`, 
-        {degree, year, interests, age, gender, currentjob, locObj}, {headers: {"x-access-token": token}})
+        {degree, year, interests, age, gender, currentjob, lat, lon}, {headers: {"x-access-token": token}})
         if(response.status !== 200){
             throw new Error("Could not update info")
         }
