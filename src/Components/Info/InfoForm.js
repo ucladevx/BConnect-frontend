@@ -91,6 +91,7 @@ function InfoForm(props) {
 
 const useStyles = makeStyles(theme => ({
 mainText: {
+  fontFamily: 'Avenir',
   color: 'white',
   marginTop: '10px',
   marginBottom: '20px',
@@ -100,6 +101,7 @@ mainText: {
   marginLeft: '12.5px'
 },
 formControl: {
+  fontFamily: 'Avenir',
   margin: '12px',
   marginTop: '24px'
 },

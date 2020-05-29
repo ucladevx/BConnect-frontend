@@ -159,10 +159,10 @@ const useStyles = makeStyles(theme => ({
       },
     }), 
     logoPic: {
-      width: '88px',
-      height: '123px',
-      left: '25px',
-      top: '25px',
+      width: '9vh',
+      height: '12.5vh',
+      left: '2.7vh',
+      top: '2.7vh',
       position: 'absolute'
     },
     formBox: {
@@ -178,19 +178,19 @@ const useStyles = makeStyles(theme => ({
       transform: 'translateY(-50%)',
       backgroundColor: 'rgba(45, 117, 176, .95)',
       width: '506px',   
-      height: '728px',
+      height: '73vh',
       boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)',
       borderRadius: '20px',
     },
     bconnect: {
-      fontSize: '20px',
-      marginTop: '70px',
+      fontSize: '2.2vh',
+      marginTop: '7.2vh',
       fontWeight: '600',
     },
     locIcon: {
-      height: '20px',
-      width: '20px',
-      margin: '-8px',
+      height: '2.2vh',
+      width: '2.2vh',
+      margin: '-1vh',
       color: '#9fc9eb'
     },
     notchedOutline: {
@@ -214,24 +214,24 @@ const useStyles = makeStyles(theme => ({
     bigtext: {
       fontFamily: 'Avenir',
       fontWeight: '800',
-      fontSize: '90px',
-      lineHeight: '40px',
+      fontSize: '9.2vh',
+      lineHeight: '4.2vh',
       color: 'white',
       textShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)',
-      marginBottom: '50px',
-      marginTop: '20px',
+      marginBottom: '5.2vh',
+      marginTop: '2.2vh',
     },
     up: {
       color: '#f9d149',
       textShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)',
     },
     formControl: {
-      margin: '12px'
+      margin: '1.2vh'
     },
     input: {
       fontFamily: 'Avenir',
       width: '400px',
-      height: '60px',
+      height: '6.2vh',
       color: 'white',
 
       alignSelf: 'center',
@@ -252,18 +252,18 @@ const useStyles = makeStyles(theme => ({
       margin: 'auto',
     },
     submit: {
-      width: '164px',
-      height: '50px',
+      width: '16.2vh',
+      height: '5.2vh',
       color: 'white',
       backgroundColor: '#9fc9eb',
       borderRadius: '20px',
-      fontSize: '15px',
+      fontSize: '1.7vh',
       fontWeight: '400',
-      letterSpacing: '2px',
+      letterSpacing: '.3vh',
       outline: 'none',
       border: 'none',
       boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)',
-      margin: '20px',
+      margin: '2.2vh',
       "&:hover": {
         boxShadow: '2px 6px 6px rgba(0, 0, 0, 0.3)'
       },

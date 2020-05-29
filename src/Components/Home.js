@@ -31,32 +31,32 @@ function Home(props){
 
 
     return (
-        <div class={classes.background}>
-            <div class={classes.top}>
-                <Typography class={classes.bconnect}> <span style={{color: '#9fc9eb'}}>B</span>
-                    <span style={{color: '#f9d149'}}>C <LocationOnIcon className={classes.locIcon} /> nnect</span></Typography>
+        <div className={classes.background}>
+            <div className={classes.top}>
+                <p className={classes.bconnect}> <span style={{color: '#9fc9eb'}}>B</span>
+                    <span style={{color: '#f9d149'}}>C <LocationOnIcon className={classes.locIcon} /> nnect</span></p>
             </div>
-            <div class={classes.main}>
-                <div class={classes.left} >
+            <div className={classes.main}>
+                <div className={classes.left} >
                     <div>
-                        <Typography class={classes.text1}> Meet <span style={{color: '#f9d149'}}>UCLA</span> </Typography>
-                        <Typography class={classes.text1}>alumni near</Typography>
-                        <Typography class={classes.text1}><span style={{color:'#9fc9eb'}}>you</span>.</Typography>
+                        <p className={classes.text1}> Meet <span style={{color: '#f9d149'}}>UCLA</span> </p>
+                        <p className={classes.text1}>alumni near</p>
+                        <p className={classes.text1}><span style={{color:'#9fc9eb'}}>you</span>.</p>
                     </div>
-                    <Typography class={classes.text2}>BConnect is a social platform that connects UCLA alumni after graduation, where you’ll be able to drop a pin on a map
+                    <p className={classes.text2}>BConnect is a social platform that connects UCLA alumni after graduation, where you’ll be able to drop a pin on a map
                         and find Bruins close to you! You’ll be able to build connections based on shared passions with our filter-by-interest system. 
                         We hope to release the initial product by the end of 2020 - sign up <b>now</b> to be notified when we launch!
-                    </Typography>
-                    <form onSubmit={submit} class={classes.form}>
+                    </p>
+                    <form onSubmit={submit} className={classes.form}>
                         {submitted===false ? <input value={email} onChange={(e)=>{changeEmail(e.target.value)}} placeholder="Enter your email" 
-                            type='text' class={classes.input}/> :
+                            type='text' className={classes.input}/> :
                             <input value={email} placeholder="Enter your email" 
-                            type='text' disabled class={classes.input}/>
+                            type='text' disabled className={classes.input}/>
                         }
                         <ArrowForwardRoundedIcon style={{display: arrowDisplay}} onClick={submit} className={classes.arrowIcon}/>
                     </form>
                 </div>
-                <img class={classes.img} src={"/landing_graphic.png"} />
+                <img className={classes.img} src={"/landing_graphic.png"} />
             </div>
         </div>
     );
