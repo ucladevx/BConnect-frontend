@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import { makeStyles, withStyles } from '@material-ui/core/styles';
 
-function Filter(props){
+function Profile(props){
     const classes = useStyles();
 
     return (
@@ -11,7 +11,7 @@ function Filter(props){
     )
 }
 
-export default Filter;
+export default Profile;
 
 const useStyles = makeStyles((theme) => ({ 
     main: {

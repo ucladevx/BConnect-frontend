@@ -3,9 +3,11 @@ import { makeStyles, withStyles } from '@material-ui/core/styles';
 
 function Nearby(props){
     const classes = useStyles();
-    //make 'right' style depending on whether filtering tab is open
+    
+    
     return (
-        <div className={classes.main} style={{right: '279px'}}>
+        <div className={classes.main} style={props.appear===true ? {display: 'block'} : {display: 'none'},
+            props.filter===true ? {right: '719px'} : {right: '279px'}}>
            <div className={classes.content}>
                <h3 className={classes.nearText}>Near You</h3>
                 {props.people.map((person, i)=>{

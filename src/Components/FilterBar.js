@@ -2,19 +2,35 @@ import React, {useState, useEffect} from 'react';
 import {useHistory} from 'react-router-dom'
 import { makeStyles, withStyles } from '@material-ui/core/styles';
 import Nearby from './Nearby'
+import Profile from './Profile'
+import Filter from './Filter'
 
-function Filter(props){
+function FilterBar(props){
     let history = useHistory();
     const classes = useStyles();
     const [settings, changeSettings] = useState(false)
+    const [profile, changeProfile] = useState(false)
+    const [filter, changeFilter] = useState(false)
+
+    const onFilterClick = () => {
+        changeFilter(!filter)
+        changeProfile(false)
+    }
+
+
+    const onProfileClick = () => {
+        changeProfile(!profile)
+        changeFilter(false)
+    }
 
     return (
         <div className={classes.main}>
-            <Nearby people={props.markers}  />
+            {profile===true ? <Profile /> : <Nearby people={props.markers} filter={filter} />}
+            {filter ===true ? <Filter /> : null }
             <div className={classes.content}>
                 <img className={classes.logo} src="logo.png" />
-                <h3 className={classes.basicText}>Filter By</h3>
-                <h3 className={classes.basicText}>Profile</h3>
+                <h3 onClick={onFilterClick} className={classes.basicText}>Filter By</h3>
+                <h3 className={classes.basicText} onClick={onProfileClick}>Profile</h3>
                 <div style={{bottom: '25px', position: 'absolute'}}>
                     <div className={classes.settingsBox}
                          style={settings ? {visibility: 'visible', opacity: '1'} : {visibility: 'hidden', opacity: '0'}}>
@@ -28,7 +44,7 @@ function Filter(props){
     )
 }
 
-export default Filter;
+export default FilterBar;
 
 const useStyles = makeStyles((theme) => ({ 
  main: {
