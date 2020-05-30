@@ -24,14 +24,14 @@ export const fetchMarkers = () => async (dispatch) => {
         var response = {success: true, 
             data: {
                 markers: [
-                    {lat: 34.1, lng: -118.446569, name: "Thomas Kamm", major: "Computer Science", year: "2023",},
-                    {lat: 34.08, lng: -118.4558, name: "Saachi Kudtarkar", major: "Computer Science", year: "2023"},
-                    {lat: 34.3, lng: -118.449657, name: "Shreya Chatterjee", major: "Computer Science", year: "2023"},
-                    {lat: 34.2, lng: -118.449658, name: "Rahul Natarajan", major: "Computer Science", year: "2023"},
-                    {lat: 34.04, lng: -118.449659, name: "Leonard Wang", major: "Computer Science", year: "2023"},
-                    {lat: 34.3, lng: -118.4496, name: "Sue Ellen Zhang", major: "Computer Science", year: "2023"},
-                    {lat: 34.9, lng: -118.449559, name: "John Smith", major: "Computer Science", year: "2023"},
-                    {lat: 34.078, lng: -118.445599, name: "Anna Doe", major: "Computer Science", year: "2023"}
+                    {lat: 34.1, lng: -118.446569, name: "Thomas Kamm", major: "Computer Science", year: "2023", interests: ["Cooking", "Rock climbing", "Baking"]},
+                    {lat: 34.08, lng: -118.4558, name: "Saachi Kudtarkar", major: "Computer Science", year: "2023", interests: ["Cooking", "Rock climbing", "Baking"]},
+                    {lat: 34.3, lng: -118.449657, name: "Shreya Chatterjee", major: "Computer Science", year: "2023", interests: ["Cooking", "Rock climbing", "Baking"]},
+                    {lat: 34.2, lng: -118.449658, name: "Rahul Natarajan", major: "Computer Science", year: "2023", interests: ["Cooking", "Rock climbing", "Baking"]},
+                    {lat: 34.04, lng: -118.449659, name: "Leonard Wang", major: "Computer Science", year: "2023", interests: ["Cooking", "Rock climbing", "Baking"]},
+                    {lat: 34.3, lng: -118.4496, name: "Sue Ellen Zhang", major: "Computer Science", year: "2023", interests: ["Cooking", "Rock climbing", "Baking"]},
+                    {lat: 34.9, lng: -118.449559, name: "John Smith", major: "Computer Science", year: "2023", interests: ["Cooking", "Rock climbing", "Baking"]},
+                    {lat: 34.078, lng: -118.445599, name: "Anna Doe", major: "Computer Science", year: "2023", interests: ["Cooking", "Rock climbing", "Baking"]}
                     ]
         }}
     } catch(err){

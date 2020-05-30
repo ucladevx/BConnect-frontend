@@ -17,8 +17,9 @@ const useStyles = makeStyles((theme) => ({
     main: {
         position: 'absolute',
         height: '100%',
-        width: '440px',
+        width: '470px',
         backgroundColor: '#2D75AF',
-        borderRadius: '30px'
+        borderRadius: '30px',
+        zIndex: '2'
     }
 }))

@@ -27,18 +27,19 @@ function FilterBar(props){
         <div className={classes.main}>
             {profile===true ? <Profile /> : <Nearby people={props.markers} filter={filter} />}
             {filter ===true ? <Filter /> : null }
-            <div className={classes.content}>
-                <img className={classes.logo} src="logo.png" />
-                <h3 onClick={onFilterClick} className={classes.basicText}>Filter By</h3>
-                <h3 className={classes.basicText} onClick={onProfileClick}>Profile</h3>
-                <div style={{bottom: '25px', position: 'absolute'}}>
-                    <div className={classes.settingsBox}
-                         style={settings ? {visibility: 'visible', opacity: '1'} : {visibility: 'hidden', opacity: '0'}}>
-                        <h3 className={classes.basicText} onClick={props.logout}>Log out</h3>
+            <div className={classes.bar} style={(profile===true || filter===true) ? {width: '320px'} : {width: '279px'}}>
+                <div className={classes.content}>
+                    <img className={classes.logo} src="logo.png" />
+                    <h3 onClick={onFilterClick} className={classes.basicText}>Filter By</h3>
+                    <h3 className={classes.basicText} onClick={onProfileClick}>Profile</h3>
+                    <div style={{bottom: '25px', position: 'absolute'}}>
+                        <div className={classes.settingsBox}
+                            style={settings ? {visibility: 'visible', opacity: '1'} : {visibility: 'hidden', opacity: '0'}}>
+                            <h3 className={classes.basicText} onClick={props.logout}>Log out</h3>
+                        </div>
+                        <h3 className={classes.basicText} onClick={()=> changeSettings(!settings)}>Settings</h3>
                     </div>
-                    <h3 className={classes.basicText} onClick={()=> changeSettings(!settings)}>Settings</h3>
                 </div>
-                
             </div>
         </div>
     )
@@ -55,16 +56,23 @@ const useStyles = makeStyles((theme) => ({
     right: '0',
     zIndex: '1'
  },
+ bar: {
+    position: 'absolute',
+    backgroundColor: '#225883',
+    height: '100%',
+    right: '0',
+ },
  content: {
+    position: 'absolute',
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
-    backgroundColor: '#225883',
-   
+    right: '0',
     width: '279px',
     height: '100%',
     fontFamily: 'Avenir',
-    fontStyle: 'normal'
+    fontStyle: 'normal',
+    zIndex: '2'
  },
  basicText: {
     fontWeight: '800',
