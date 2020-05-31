@@ -30,8 +30,14 @@ function FilterBar(props){
             <div className={classes.bar} style={(profile===true || filter===true) ? {width: '320px'} : {width: '279px'}}>
                 <div className={classes.content}>
                     <img className={classes.logo} src="logo.png" />
-                    <h3 onClick={onFilterClick} className={classes.basicText}>Filter By</h3>
-                    <h3 className={classes.basicText} onClick={onProfileClick}>Profile</h3>
+                    <div className={classes.selectionDiff} 
+                        style={filter===true ? {backgroundColor: '#2D75AF', boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)', clipPath: 'inset(-5px -5px -5px 0px)'} : null}>
+                        <h3 onClick={onFilterClick} className={classes.basicText}>Filter By</h3>
+                    </div>
+                    <div className={classes.selectionDiff} 
+                        style={profile===true ? {backgroundColor: '#2D75AF', boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)',  clipPath: 'inset(-5px -5px -5px 0px)'} : null}>
+                        <h3 className={classes.basicText} onClick={onProfileClick}>Profile</h3>
+                    </div>
                     <div style={{bottom: '25px', position: 'absolute'}}>
                         <div className={classes.settingsBox}
                             style={settings ? {visibility: 'visible', opacity: '1'} : {visibility: 'hidden', opacity: '0'}}>
@@ -62,6 +68,16 @@ const useStyles = makeStyles((theme) => ({
     height: '100%',
     right: '0',
  },
+ selectionDiff: {
+    height: '86px',
+    width: '97%',
+    marginRight: '3%',
+    borderTopRightRadius: '24px',
+    borderBottomRightRadius: '24px',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center'
+ },
  content: {
     position: 'absolute',
     display: 'flex',
@@ -81,8 +97,8 @@ const useStyles = makeStyles((theme) => ({
     letterSpacing: '0.2em',
     textTransform: 'uppercase',
     color: 'white',
-    marginBottom: '50px',
-    cursor: 'pointer'
+    cursor: 'pointer',
+    userSelect: 'none'
  },
  logo: {
     width: '146px',
