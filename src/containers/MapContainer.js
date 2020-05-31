@@ -17,9 +17,8 @@ class LandingContainer extends Component {
   constructor(props){
     super(props)
     this.state = {
-      infoHidden: true,
-      data: {},
-      showSearch: false
+      center: {},
+      selected: false
     }
   }
   
@@ -40,12 +39,8 @@ class LandingContainer extends Component {
     }
   }
 
-  toggleSearch = () => {
-    this.setState({showSearch: !this.state.showSearch})
-  }
-
   toggle = (data) => {
-    this.setState({infoHidden: false, data})
+    this.setState({data, selected: true})
   }
 
   //TODO: move out the paper element and its children as its own component/class
@@ -53,7 +48,7 @@ class LandingContainer extends Component {
     return (
       <div>
             <Filter markers={this.props.markers} logout={this.props.logout} />
-            <Map  toggle={this.toggle} markers={this.props.markers} />
+            <Map  toggle={this.toggle} markers={this.props.markers} data={this.state.center} selected={this.state.selected}/>
       </div>
     );
   }

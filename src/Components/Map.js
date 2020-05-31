@@ -26,7 +26,8 @@ const MapComponent = compose(
   <React.Fragment>
     <GoogleMap
       defaultZoom={11}
-      defaultCenter={{ lat: 34.073, lng: -118.4496559 }}
+      center={props.selected===true ? { lat: props.data.lat, lng: props.data.lng }
+         : {lat: 34.073, lng: -118.4496559}}
       options={{disableDefaultUI: true}}
     > 
       {props.markers ? props.markers.map((data, i)=>{
