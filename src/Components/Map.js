@@ -26,10 +26,13 @@ const MapComponent = compose(
   <React.Fragment>
     <GoogleMap
       defaultZoom={11}
-      defaultCenter={{ lat: 34.073, lng: -118.4496559 }}
+      center={props.selected===true ? { lat: props.data.lat, lng: props.data.lng }
+         : {lat: 34.073, lng: -118.4496559}}
+      options={{disableDefaultUI: true}}
     > 
       {props.markers ? props.markers.map((data, i)=>{
-      return <Marker onClick={()=>{props.toggle(data)}} key={i} position={{lng: data.lng, lat: data.lat}} />
+      return <Marker icon={{url: 'pin.png', scaledSize: { width: 40, height: 62}}} onClick={()=>{props.toggle(data)}} 
+        key={i}position={{lng: data.lng, lat: data.lat}} />
       }) : null} 
     </GoogleMap>
   </React.Fragment>

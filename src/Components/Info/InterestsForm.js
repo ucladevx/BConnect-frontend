@@ -24,7 +24,7 @@ const and = "&"
         Tell us about your <span style={{color: '#F9D149'}}>interests</span> and  
           <span style={{color: '#F9D149'}}> hobbies</span>.
       </Typography>
-      <div style={{display: 'flex', flexDirection: 'column', flexWrap: 'wrap', height: '417px'}}>
+      <div style={{display: 'flex', flexDirection: 'column', flexWrap: 'wrap', height: '417px', marginLeft: '50px'}}>
         {Object.keys(interests).map((item, index)=>{
             return <div key={index} style={{width: '400px'}}>
                 <h2 className={classes.categoryTitle}>{item.split(" ")[0]} <span style={{color: '#F9D149'}}>{and}</span> {item.split(" ")[1]}</h2>
@@ -58,6 +58,7 @@ const useStyles = makeStyles(theme => ({
     color: 'white',
     marginTop: '10px',
     marginBottom: '25px',
+    marginLeft: '50px',
     fontFamily: 'Avenir',
     fontStyle: 'normal',
     fontWeight: '800',
