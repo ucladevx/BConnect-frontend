@@ -4,8 +4,9 @@ import Cookies from 'universal-cookie';
 const cookies = new Cookies();
  
 
-
-const baseUrl = "https://protected-refuge-33249.herokuapp.com"
+//TODO: make base url an env variable, can easily be changed within heroku if necessary
+// in the form: const baseUrl = process.env.REACT_APP_BASE_URL
+const baseUrl = "https://bconnect-backend.herokuapp.com"
 const CORSurl = "https://cors-anywhere.herokuapp.com/";
 
 const AUTH_FAILURE = "AUTH_FAILURE"

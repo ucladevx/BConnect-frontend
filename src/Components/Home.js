@@ -18,7 +18,7 @@ function Home(props){
     const submit = (e) => {
         e.preventDefault()
         if(submitted === false){
-                axios.post("https://protected-refuge-33249.herokuapp.com/email", {email}).then((resp)=>{
+                axios.post("https://bconnect-backend.herokuapp.com/email", {email}).then((resp)=>{
                     //console.log(resp)
                 }).catch((err)=>{
                     //console.log(err)
