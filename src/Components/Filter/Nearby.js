@@ -7,7 +7,7 @@ function Nearby(props){
     
     return (
         <div className={classes.main} style={props.appear===true ? {display: 'block'} : {display: 'none'},
-            props.filter===true ? {right: '740px', width: '280px'} : {right: '279px', width: '240px'}}>
+            props.filter===true ? {right: '711px', width: '280px'} : {right: '279px', width: '240px'}}>
            <div className={classes.content}>
                <h3 className={classes.nearText}>Near You</h3>
                 {props.people.map((person, i)=>{

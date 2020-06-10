@@ -5,8 +5,8 @@ function Profile(props){
     const classes = useStyles();
 
     return (
-        <div className={classes.main} style={{right: '279px'}}>
-           
+        <div className={classes.main} style={{right: '250px'}}>
+            
         </div>
     )
 }

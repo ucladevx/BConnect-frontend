@@ -70,8 +70,8 @@ const useStyles = makeStyles((theme) => ({
  },
  selectionDiff: {
     height: '86px',
-    width: '97%',
-    marginRight: '3%',
+    width: '223px',
+    marginRight: '5',
     borderTopRightRadius: '24px',
     borderBottomRightRadius: '24px',
     display: 'flex',

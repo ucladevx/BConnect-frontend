@@ -19,12 +19,8 @@ function Filter(props){
     const [distance, changeDistance] = useState(30)
 
     return (
-        <div className={classes.main} style={{right: '279px'}}>
+        <div className={classes.main} style={{right: '250px'}}>
            <div className={classes.content}>
-                <div name="(probably) need to put the search icon in this div">
-                    <input value={search} type="text" placeholder="Search" className={classes.search}
-                        onChange={(e)=>{setSearch(e.target.value)}} />
-                </div>
                 <div style={{marginTop: '10px', marginBottom: '10px'}}>
                     <div className={classes.distanceTextBox}>
                         <p className={classes.text}>Maximum Distance</p>
@@ -106,7 +102,7 @@ const useStyles = makeStyles((theme) => ({
         textShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)',
         float: 'right',
         cursor: 'pointer',
-        marginTop: '-9px'
+        marginTop: '0'
     },
     chip: {
         padding: '7px',
