@@ -10,7 +10,7 @@ import LinkedInIcon from '@material-ui/icons/LinkedIn';
 function Profile(props){
     const classes = useStyles();
     const [edit, changeMode] = useState(false)
-    console.log(props.user)
+    const {firstname, lastname, currentjob, gender, lat, lon, gradyear, age, major} = props.user
 
     return (
         <div className={classes.main} style={{right: '250px'}}>
@@ -20,34 +20,34 @@ function Profile(props){
                     <CreateOutlinedIcon style={{height: '20px'}}/>
                 </div>
                 <h3 className={classes.labelText} style={{marginTop: '-8px'}}>Hey there,</h3>
-                <h1 className={classes.name}>Placeholder</h1>
+                <h1 className={classes.name}>{firstname}</h1>
                 <div className={classes.locationBox}>
                     <PlaceIcon className={classes.placeIcon}/>
                     <div className={classes.locationTextBox}>
                         <h3 style={{margin: '0', fontSize: '24px'}}>My Current Location</h3>
-                        <p style={{margin: '0', color: '#5791BF', fontSize: '16px'}}>Placeholder Location</p>
+                        <p style={{margin: '0', color: '#5791BF', fontSize: '16px'}}>{lat},{lon}</p>
                     </div>
                 </div>
                 <div className={classes.infoBoxMain}>
                     <div className={classes.infoPair}>
                         <h3 className={classes.labelText}>Age</h3>
-                        <div className={classes.infoBox}>21</div>
+                        <div className={classes.infoBox}>{age}</div>
                     </div>
                     <div className={classes.infoPair}>
                         <h3 className={classes.labelText}>Gender</h3>
-                        <div className={classes.infoBox}>Male</div>
+                        <div className={classes.infoBox}>{gender}</div>
                     </div>
                     <div className={classes.infoPair}>
                         <h3 className={classes.labelText}>Class of</h3>
-                        <div className={classes.infoBox}>2022</div>
+                        <div className={classes.infoBox}>{gradyear}</div>
                     </div>
                     <div className={classes.infoPair}>
                         <h3 className={classes.labelText}>Major</h3>
-                        <div className={classes.infoBox}>Computer Science</div>
+                        <div className={classes.infoBox}>{major}</div>
                     </div>
                 </div>
                 <h3 className={classes.labelText}>Current Job</h3>
-                <div className={classes.infoBox} style={{width: 'auto'}}>Software Engineer at Microsoft</div>
+                <div className={classes.infoBox} style={{width: 'auto'}}>{currentjob}</div>
                 <div >
                     <h3 className={classes.labelText}>Connect</h3>
                     <div className={classes.socialBox}>
