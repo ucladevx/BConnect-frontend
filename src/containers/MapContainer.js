@@ -42,7 +42,7 @@ class LandingContainer extends Component {
   render() {
     return (
       <div>
-            <Filter markers={this.props.markers} logout={this.props.logout} />
+            <Filter user={this.props.user} markers={this.props.markers} logout={this.props.logout} />
             <Map  toggle={this.toggle} markers={this.props.markers} data={this.state.center} selected={this.state.selected}/>
       </div>
     );
@@ -52,6 +52,7 @@ class LandingContainer extends Component {
 const mapStateToProps = state => ({
   authenticated: state.authReducer.authenticated,
   markers: state.mapReducer.markers,
+  user: state.authReducer.user
 });
 
 const mapDispatchToProps = dispatch => ({
