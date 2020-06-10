@@ -17,7 +17,10 @@ Dummy map data displayed on front page map
 
 Additional forms after sign up to get more information and location data
 
-UI for searching for other Bruins
+Filter UI
+
+Profile UI
+
 
 ## Upcoming
 
@@ -32,10 +35,6 @@ Dockerfile  (?)
 Real time chat between friends
 
 Add friends feature
-
-Profile page
-
-Better UI (pretty much redo everything, only minimal MaterialUI?)
 
 ## Running the code
 
