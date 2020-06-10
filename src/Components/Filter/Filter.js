@@ -18,6 +18,12 @@ function Filter(props){
     const [search, setSearch] = useState("")
     const [distance, changeDistance] = useState(30)
 
+    const moveSlider = (e) => {
+        let distance = e.target.ariaValueNow
+        if(distance !== null)
+            changeDistance(distance)       
+    }
+
     return (
         <div className={classes.main} style={{right: '250px'}}>
            <div className={classes.content}>
@@ -27,7 +33,7 @@ function Filter(props){
                         <p className={classes.text} style={{color: '#9FC9EB'}}>{distance}</p>
                     </div>
                     <PrettoSlider className={classes.slider} defaultValue={30} step={1} min={1} max={100} 
-                        onChange={(e)=>{changeDistance(e.target.ariaValueNow)}}
+                        onChange={moveSlider}
                         />
                 </div>
                 {Object.keys(filler).map((item, index)=>{
