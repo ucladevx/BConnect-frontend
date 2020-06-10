@@ -2,16 +2,11 @@ import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import { fetchMarkers } from '../reducers/map';
 import { logout } from '../reducers/auth'
-// import Divider from '@material-ui/core/Divider';
 import {withRouter} from 'react-router-dom'
-// import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
-// import Zoom from '@material-ui/core/Zoom';
 
 import Map from '../Components/Map';
-// import Navbar from '../Components/Navbar'
-// import Search from '../Components/Search'
-import Filter from '../Components/FilterBar'
+import Filter from '../Components/Filter/FilterBar'
 
 class LandingContainer extends Component {
   constructor(props){
