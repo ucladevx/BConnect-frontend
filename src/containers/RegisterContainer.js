@@ -33,8 +33,8 @@ const mapDispatchToProps = dispatch => ({
     register: (email, password, fname, lname) => {
         dispatch(register(email, password, fname, lname));
     },
-    handleInfo: (data, token) => {
-        dispatch(addInfo(data, token));
+    handleInfo: (data) => {
+        dispatch(addInfo(data));
     }
 });
 

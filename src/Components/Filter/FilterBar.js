@@ -25,7 +25,7 @@ function FilterBar(props){
 
     return (
         <div className={classes.main}>
-            {profile===true ? <Profile user={props.user} /> : <Nearby people={props.markers} filter={filter} />}
+            {profile===true ? <Profile updateUser={props.updateUser} user={props.user} /> : <Nearby people={props.markers} filter={filter} />}
             {filter ===true ? <Filter /> : null }
             <div className={classes.bar} style={(profile===true || filter===true) ? {width: '320px'} : {width: '279px'}}>
                 <div className={classes.content}>

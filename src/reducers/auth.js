@@ -92,8 +92,9 @@ export const register = (username, password, firstname, lastname) => async (disp
     }
 };
 
-export const addInfo = (data, token) => async (dispatch) => {
+export const addInfo = (data) => async (dispatch) => {
     try {
+        let token = cookies.get("token")
         let degree = "degree" in data ? data.degree : ""
         let year = "year" in data ? data.year : ""
         let interests = "interests" in data ? data.interests : []
@@ -105,7 +106,7 @@ export const addInfo = (data, token) => async (dispatch) => {
         let lon = "lng" in locObj ? locObj.lng : {}
     
         let response = await axios.post(`${CORSurl}${baseUrl}/auth/change`, 
-        {degree, year, interests, age, gender, currentjob, lat, lon}, {headers: {"x-access-token": token}})
+            {degree, year, interests, age, gender, currentjob, lat, lon}, {headers: {"x-access-token": token}})
         if(response.status !== 200){
             throw new Error("Could not update info")
         }

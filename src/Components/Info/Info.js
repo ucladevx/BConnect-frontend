@@ -50,7 +50,7 @@ function Info(props) {
     if(activeStep === steps.length && hasSubmitted === false){
       changeSubmit(true)
       token = props.token
-      props.handleInfo({degree, year, interests, age, currentjob, gender, locObj}, token)
+      props.handleInfo({degree, year, interests, age, currentjob, gender, locObj})
     }
   })
 

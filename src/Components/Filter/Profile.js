@@ -12,15 +12,29 @@ function Profile(props){
     const [edit, changeMode] = useState(false)
     const {firstname, lastname, currentjob, gender, lat, lon, gradyear, age, major} = props.user
 
+    const [jobEdit, changeJob] = useState(currentjob)
+    const [genderEdit, changeGender] = useState(gender)
+    const [gradEdit, changeGradYear] = useState(gradyear)
+    const [ageEdit, changeAge] = useState(age)
+    const [majorEdit, changeMajor] = useState(major)
+    const [updated, changeStatus] = useState(false)
+
+    const handleDone = () => {
+        changeMode(false)
+        changeStatus(true)
+        // props.updateUser({jobEdit, genderEdit, gradEdit, ageEdit, majorEdit})
+    }
+    
     return (
         <div className={classes.main} style={{right: '250px'}}>
             <div className={classes.content}>
                 <div className={classes.editBar}>
-                    <p className={classes.edit} onClick={()=>{changeMode(!edit)}} >Edit</p>
-                    <CreateOutlinedIcon style={{height: '20px'}}/>
+                    {edit===false ? (<React.Fragment><p className={classes.edit} onClick={handleDone}>Edit</p>
+                    <CreateOutlinedIcon style={{height: '20px'}}/></React.Fragment>)
+                    : <p className={classes.edit} onClick={()=>{changeMode(false)}}>Done</p> }
                 </div>
                 <h3 className={classes.labelText} style={{marginTop: '-8px'}}>Hey there,</h3>
-                <h1 className={classes.name}>{firstname}</h1>
+                <h1 className={classes.name}>{firstname} {lastname}</h1>
                 <div className={classes.locationBox}>
                     <PlaceIcon className={classes.placeIcon}/>
                     <div className={classes.locationTextBox}>
@@ -31,23 +45,39 @@ function Profile(props){
                 <div className={classes.infoBoxMain}>
                     <div className={classes.infoPair}>
                         <h3 className={classes.labelText}>Age</h3>
-                        <div className={classes.infoBox}>{age}</div>
+                        {edit===false ? <div className={classes.infoBox}>{updated===false ? age : ageEdit}</div>
+                            : <input type="text" className={classes.infoBox} value={ageEdit}
+                               onChange={(e)=>{changeAge(e.target.value)}} />
+                        }
                     </div>
                     <div className={classes.infoPair}>
                         <h3 className={classes.labelText}>Gender</h3>
-                        <div className={classes.infoBox}>{gender}</div>
+                        {edit===false ? <div className={classes.infoBox}>{updated===false ? gender : genderEdit}</div>
+                            : <input type="text" className={classes.infoBox} value={genderEdit}
+                                onChange={(e)=>{changeGender(e.target.value)}} />
+                        }
                     </div>
                     <div className={classes.infoPair}>
                         <h3 className={classes.labelText}>Class of</h3>
-                        <div className={classes.infoBox}>{gradyear}</div>
+                        {edit===false ? <div className={classes.infoBox}>{updated===false ? gradyear : gradEdit}</div>
+                            : <input type="text" className={classes.infoBox} value={gradEdit}
+                                onChange={(e)=>{changeGradYear(e.target.value)}} />
+                        }
                     </div>
                     <div className={classes.infoPair}>
                         <h3 className={classes.labelText}>Major</h3>
-                        <div className={classes.infoBox}>{major}</div>
+                        {edit===false ? <div className={classes.infoBox}>{updated===false ? major : majorEdit}</div>
+                            : <input type="text" className={classes.infoBox} value={majorEdit}
+                                onChange={(e)=>{changeMajor(e.target.value)}} />
+                        }
                     </div>
                 </div>
                 <h3 className={classes.labelText}>Current Job</h3>
-                <div className={classes.infoBox} style={{width: 'auto'}}>{currentjob}</div>
+                {edit===false ? <div className={classes.infoBox} style={{width: 'auto'}}>
+                        {updated===false ? currentjob : jobEdit}</div>
+                    : <input type="text" className={classes.infoBox} value={jobEdit}
+                    onChange={(e)=>{changeJob(e.target.value)}} style={{width: '388px'}}/>
+                }
                 <div >
                     <h3 className={classes.labelText}>Connect</h3>
                     <div className={classes.socialBox}>
@@ -159,7 +189,12 @@ const useStyles = makeStyles((theme) => ({
         fontSize: '14px',
         fontWeight: '300',
         padding: '16px',
-        width: '170px'
+        width: '170px',
+        height: '13px',
+        outline: 'none',
+        border: 'none',
+        marginTop: '-15px',
+        marginBottom: '-5px'
     },
     socialBox: {
         backgroundColor: '#225883',

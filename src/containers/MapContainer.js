@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import { fetchMarkers } from '../reducers/map';
-import { logout } from '../reducers/auth'
+import { logout, addInfo } from '../reducers/auth'
 import {withRouter} from 'react-router-dom'
 import Typography from '@material-ui/core/Typography';
 
@@ -38,12 +38,14 @@ class LandingContainer extends Component {
     this.setState({data, selected: true})
   }
 
-  //TODO: move out the paper element and its children as its own component/class
   render() {
     return (
       <div>
-            <Filter user={this.props.user} markers={this.props.markers} logout={this.props.logout} />
-            <Map  toggle={this.toggle} markers={this.props.markers} data={this.state.center} selected={this.state.selected}/>
+            <Filter updateUser={this.props.handleInfo} user={this.props.user}
+                 markers={this.props.markers} logout={this.props.logout} />
+
+            <Map  toggle={this.toggle} markers={this.props.markers} data={this.state.center} 
+                selected={this.state.selected}/>
       </div>
     );
   }
@@ -61,7 +63,10 @@ const mapDispatchToProps = dispatch => ({
   },
   logout : () => {
     dispatch(logout());
-  }
+  },
+  handleInfo: (data) => {
+    dispatch(addInfo(data));
+}
 });
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(LandingContainer));
