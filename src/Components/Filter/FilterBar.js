@@ -1,12 +1,10 @@
-import React, {useState, useEffect} from 'react';
-import {useHistory} from 'react-router-dom'
-import { makeStyles, withStyles } from '@material-ui/core/styles';
+import React, {useState} from 'react';
+import { makeStyles } from '@material-ui/core/styles';
 import Nearby from './Nearby'
 import Profile from './Profile'
 import Filter from './Filter'
 
 function FilterBar(props){
-    let history = useHistory();
     const classes = useStyles();
     const [settings, changeSettings] = useState(false)
     const [profile, changeProfile] = useState(false)
@@ -29,7 +27,7 @@ function FilterBar(props){
             {filter ===true ? <Filter /> : null }
             <div className={classes.bar} style={(profile===true || filter===true) ? {width: '320px'} : {width: '279px'}}>
                 <div className={classes.content}>
-                    <img className={classes.logo} src="logo.png" />
+                    <img alt="logo" className={classes.logo} src="logo.png" />
                     <div className={classes.selectionDiff} 
                         style={filter===true ? {backgroundColor: '#2D75AF', boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)', clipPath: 'inset(-5px -5px -5px 0px)'} : null}>
                         <h3 onClick={onFilterClick} className={classes.basicText}>Filter By</h3>

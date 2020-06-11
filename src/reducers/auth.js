@@ -67,6 +67,7 @@ export const logout = () => async (dispatch) => {
     dispatch({type: AUTH_LOGOUT, user: {}, token: ""})
     setTokenHeader(null);
     cookies.set("token", null, {path: '/'});
+    cookies.set("bconnect_user", null, {path: '/'});
 };
 
 
@@ -78,7 +79,7 @@ export const register = (username, password, firstname, lastname) => async (disp
             throw new Error("Please enter a valid UCLA email address")
         }
         let response = await axios.post(`${baseUrl}/signup`, {username, password, firstname, lastname})
-        //var response = {success: true, data: {user:{name:'not complete'}}}
+        
         if(response.status !== 200){
             throw new Error("Error in creating new account")
         }
@@ -110,6 +111,7 @@ export const addInfo = (data) => async (dispatch) => {
         if(response.status !== 200){
             throw new Error("Could not update info")
         }
+        console.log(response)
         dispatch({type: INFO_UPDATE_SUCCESS})
     } catch(err){
         dispatch({type: INFO_UPDATE_FAILURE, err: err.message})

@@ -1,5 +1,5 @@
-import React, {useState, useEffect} from 'react';
-import { makeStyles, withStyles } from '@material-ui/core/styles';
+import React, {useState} from 'react';
+import { makeStyles } from '@material-ui/core/styles';
 import CreateOutlinedIcon from '@material-ui/icons/CreateOutlined';
 import PlaceIcon from '@material-ui/icons/Place';
 import FacebookIcon from '@material-ui/icons/Facebook';
@@ -22,18 +22,18 @@ function Profile(props){
     const handleDone = () => {
         changeMode(false)
         changeStatus(true)
-        // props.updateUser({jobEdit, genderEdit, gradEdit, ageEdit, majorEdit})
+        props.updateUser({currentjob: jobEdit, gender: genderEdit, year: gradEdit, age: ageEdit, degree: majorEdit})
     }
     
     return (
         <div className={classes.main} style={{right: '250px'}}>
             <div className={classes.content}>
                 <div className={classes.editBar}>
-                    {edit===false ? (<React.Fragment><p className={classes.edit} onClick={handleDone}>Edit</p>
+                    {edit===false ? (<React.Fragment><p className={classes.edit} onClick={()=>changeMode(true)}>Edit</p>
                     <CreateOutlinedIcon style={{height: '20px'}}/></React.Fragment>)
-                    : <p className={classes.edit} onClick={()=>{changeMode(false)}}>Done</p> }
+                    : <p className={classes.edit} onClick={handleDone}>Done</p> }
                 </div>
-                <h3 className={classes.labelText} style={{marginTop: '-8px'}}>Hey there,</h3>
+                <h3 className={classes.labelText} style={{marginTop: '-14px'}}>Hey there,</h3>
                 <h1 className={classes.name}>{firstname} {lastname}</h1>
                 <div className={classes.locationBox}>
                     <PlaceIcon className={classes.placeIcon}/>

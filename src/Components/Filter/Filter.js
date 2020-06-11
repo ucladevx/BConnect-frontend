@@ -1,8 +1,7 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 import { makeStyles, withStyles } from '@material-ui/core/styles';
 import Chip from '@material-ui/core/Chip';
 import Slider from '@material-ui/core/Slider';
-import SearchIcon from '@material-ui/icons/Search';
 
 const and = "&"
 const filler = { "Food Drink":["Baking", "Cooking", "Trying new foods", "Wine tasting", "Vegan", "Vegetarian"],
@@ -15,7 +14,6 @@ const filler = { "Food Drink":["Baking", "Cooking", "Trying new foods", "Wine ta
 function Filter(props){
     const classes = useStyles();
     const [interests, setInterests] = useState([])
-    const [search, setSearch] = useState("")
     const [distance, changeDistance] = useState(30)
 
     const moveSlider = (e) => {
