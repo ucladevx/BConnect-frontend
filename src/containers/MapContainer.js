@@ -30,7 +30,7 @@ class LandingContainer extends Component {
     if(!this.props.authenticated){
       setTimeout(()=>{
         this.props.history.push("/")
-      }, 500)
+      }, 200)
     }
   }
 

@@ -152,6 +152,8 @@ const useStyles = makeStyles((theme) => ({
         fontSize: '60px',
         fontWeight: '800',
         color: 'white',
+        width: '400px',
+        overflow: 'hidden',
         textAlign: 'center',
         textShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)',
         marginTop: '-10px'
@@ -194,7 +196,9 @@ const useStyles = makeStyles((theme) => ({
         outline: 'none',
         border: 'none',
         marginTop: '-15px',
-        marginBottom: '-5px'
+        marginBottom: '-5px',
+        whiteSpace: 'nowrap',
+        overflow: 'hidden'
     },
     socialBox: {
         backgroundColor: '#225883',
