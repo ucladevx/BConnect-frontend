@@ -4,9 +4,15 @@ import Cookies from 'universal-cookie';
 const cookies = new Cookies();
  
 
-//TODO: make base url an env variable, can easily be changed within heroku if necessary
+//POSSIBLE TODO: make base url an env variable, can easily be changed within heroku if necessary
 // in the form: const baseUrl = process.env.REACT_APP_BASE_URL
+
+//MAIN BACKEND
 const baseUrl = "https://bconnect-backend.herokuapp.com"
+
+//TESTING BACKEND
+// const baseUrl = "https://bconnect-backend-testing.herokuapp.com/"
+
 const CORSurl = "https://cors-anywhere.herokuapp.com/";
 
 const AUTH_FAILURE = "AUTH_FAILURE"
@@ -34,7 +40,7 @@ export function authReducer(state = initialState, action) {
         case AUTH_LOGOUT:
             return {...state, authenticated: false, needInfo: true, user: action.user, token: action.token}
         case INFO_UPDATE_SUCCESS:
-            return {...state, needInfo: false}
+            return {...state, needInfo: false, user: action.user}
         case INFO_UPDATE_FAILURE:
             return {...state, error: action.err}
       default:
@@ -96,8 +102,8 @@ export const register = (username, password, firstname, lastname) => async (disp
 export const addInfo = (data) => async (dispatch) => {
     try {
         let token = cookies.get("token")
-        let degree = "degree" in data ? data.degree : ""
-        let year = "year" in data ? data.year : ""
+        let major = "degree" in data ? data.degree : ""
+        let gradyear = "year" in data ? data.year : ""
         let interests = "interests" in data ? data.interests : []
         let age = "age" in data ? data.age : ""
         let currentjob = "currentjob" in data ? data.currentjob : ""
@@ -105,14 +111,15 @@ export const addInfo = (data) => async (dispatch) => {
         let locObj = "locObj" in data ? data.locObj : {}
         let lat = "lat" in locObj ? locObj.lat : {}
         let lon = "lng" in locObj ? locObj.lng : {}
-    
+        console.log({major, gradyear, interests, age, gender, currentjob, lat, lon})
         let response = await axios.post(`${CORSurl}${baseUrl}/auth/change`, 
-            {degree, year, interests, age, gender, currentjob, lat, lon}, {headers: {"x-access-token": token}})
+            {major, gradyear, interests, age, gender, currentjob, lat, lon}, {headers: {"x-access-token": token}})
         if(response.status !== 200){
             throw new Error("Could not update info")
         }
         console.log(response)
-        dispatch({type: INFO_UPDATE_SUCCESS})
+        dispatch({type: INFO_UPDATE_SUCCESS, user: response.data.mod_user})
+        cookies.set("bconnect_user", response.data.mod_user, {path: '/'});
     } catch(err){
         dispatch({type: INFO_UPDATE_FAILURE, err: err.message})
     }
