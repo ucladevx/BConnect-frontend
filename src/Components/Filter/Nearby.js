@@ -7,7 +7,8 @@ function Nearby(props){
                     ((props.filter===false && props.switchMode===false) ? '240px' : '380px')
     return (
         <div className={classes.main} style={props.appear===true ? {display: 'block'} : {display: 'none'},
-            props.filter===true ? {right: '711px', width: '280px'} : {right: '279px', width: '240px'}}>
+            props.filter===true ? {right: '711px', width: props.switchMode===true ? '360px' : '280px'} : 
+                {right: '279px', width: props.switchMode===true ? '360px' : '240px'}}>
            {props.switchMode===false ?
                 <div className={classes.content}>
                     <h3 className={classes.nearText}>Near You</h3>
@@ -19,16 +20,22 @@ function Nearby(props){
                     })}
                 </div>
             :
-                <div className={classes.content} style={{width: '380px'}}>
-                    <h3 className={classes.nearText} style={{fontSize: '40px'}}>Near You</h3>
+                <div className={classes.content} style={{width: '360px'}}>
+                    <h3 className={classes.nearText} style={props.filter===true ? {fontSize: '40px'} : {fontSize: '20px'}, 
+                        {marginBottom: '15px'}}>Near You</h3>
                     {props.people.map((person, i)=>{
                         return <div key={i} className={classes.onFilterBox}>
                             <div className={classes.tempPic}> </div>
                             <div className={classes.onFilterContent}>
-                                <h3 className={classes.tempName} style={{margin: '0px', marginBottom: '-15px'}}>{person.name}</h3>
-                                <h4 className={classes.onFilterText} style={{color: '#9FC9EB'}}>20 miles away</h4>
-                                <h4 className={classes.onFilterText} style={{color: '#F9D149'}}>Also interested in...</h4>
-                                <p className={classes.onFilterText} >Baking, Tennis, Swimming, Chess</p>
+                                <div className={classes.topBox}>
+                                    <h3 className={classes.onFilterName}>{person.name}</h3>
+                                    <h4 className={classes.onFilterText} 
+                                        style={{color: '#9FC9EB', fontWeight: '300', marginTop: '20px'}}>20 miles away</h4>
+                                </div>
+                                <div style={{width: '120px', marginTop: '10px'}}>
+                                    <h4 className={classes.onFilterText} style={{color: '#F9D149'}}>Also interested in...</h4>
+                                    <p className={classes.onFilterText} style={{fontWeight: '300'}}>Baking, Tennis, Swimming, Chess</p>
+                                </div>
                             </div>
                         </div>
                     })}
@@ -66,7 +73,8 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: '#C4C4C4',
     height: '109px',
     width: '109px',
-    borderRadius: '50%'
+    borderRadius: '50%',
+    cursor: 'pointer'
  },
  content: {
      width: '240px',
@@ -89,19 +97,36 @@ const useStyles = makeStyles((theme) => ({
  onFilterContent: {
      display: 'flex',
      flexDirection: 'column',
-     justifyContent: 'center',
-     alignAligns: 'center'
+     alignAligns: 'center',
+     height: '100%'
  },
  onFilterBox: {
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    marginBottom: '20px'
+    marginBottom: '30px',
+    width: '262px',
+    marginRight: '20px'
  },
  onFilterText: {
      margin: '0px',
      fontSize: '12px',
      color: 'white',
+ },
+ topBox: {
+     display: 'flex',
+     flexDirection: 'column',
+     overflow: 'hidden'
+ },
+ onFilterName: {
+    fontWeight: '800',
+    fontSize: '16px',
+    color: '#F9D149',
+    margin: '0',
+    marginBottom:'5px',
+    position: 'absolute',
+    left: '180px',
+    cursor: 'pointer'
  }
 }))
