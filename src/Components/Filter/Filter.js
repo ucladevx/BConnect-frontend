@@ -15,6 +15,7 @@ function Filter(props){
     const classes = useStyles();
     const [interests, setInterests] = useState([])
     const [distance, changeDistance] = useState(30)
+    
 
     const moveSlider = (e) => {
         let distance = e.target.ariaValueNow
@@ -46,7 +47,9 @@ function Filter(props){
                                 } else {
                                     setInterests([...interests, item2]);
                                 }
-                                }} style={interests.includes(item2) ? {backgroundColor:"#225883"} : {backgroundColor: "#9FC9EB"}} />
+                                props.modify(true)
+                                }} 
+                                style={interests.includes(item2) ? {backgroundColor:"#225883"} : {backgroundColor: "#9FC9EB"}} />
                             })}
                         </div>
                     </div>

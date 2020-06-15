@@ -9,6 +9,7 @@ function FilterBar(props){
     const [settings, changeSettings] = useState(false)
     const [profile, changeProfile] = useState(false)
     const [filter, changeFilter] = useState(false)
+    const [startedFiltering, changeNearby] = useState(false)
 
     const onFilterClick = () => {
         changeFilter(!filter)
@@ -23,8 +24,9 @@ function FilterBar(props){
 
     return (
         <div className={classes.main}>
-            {profile===true ? <Profile updateUser={props.updateUser} user={props.user} /> : <Nearby people={props.markers} filter={filter} />}
-            {filter ===true ? <Filter /> : null }
+            {profile===true ? <Profile updateUser={props.updateUser} user={props.user} /> 
+                : <Nearby people={props.markers} filter={filter} switchMode={startedFiltering} />}
+            {filter ===true ? <Filter modify={changeNearby} /> : null }
             <div className={classes.bar} style={(profile===true || filter===true) ? {width: '320px'} : {width: '279px'}}>
                 <div className={classes.content}>
                     <img alt="logo" className={classes.logo} src="logo.png" />
