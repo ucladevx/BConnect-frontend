@@ -7,6 +7,7 @@ import Typography from '@material-ui/core/Typography';
 
 import Map from '../Components/Map';
 import Filter from '../Components/Filter/FilterBar'
+import Chat from '../Components/Chat'
 
 class LandingContainer extends Component {
   constructor(props){
@@ -41,6 +42,7 @@ class LandingContainer extends Component {
   render() {
     return (
       <div>
+            <Chat />
             <Filter updateUser={this.props.handleInfo} user={this.props.user}
                  markers={this.props.markers} logout={this.props.logout} />
 
